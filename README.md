@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MontHaly: web montovaných hal
 
-## Getting Started
+Koncept nového webu pro MontHaly s.r.o. (mont-haly.cz). Next.js 16, Tailwind 4, statické stránky a jedna API routa pro poptávku.
 
-First, run the development server:
+## Spuštění
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Obsah
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Všechen obsah (typy hal, realizace, kontakty, FAQ, postup) je v `src/lib/data.ts`. Novou realizaci přidáte jedním záznamem v poli `realizations` a třemi fotkami ve `public/foto/` (webp, 1600 × 1200).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Poptávkový formulář
 
-## Learn More
+Formulář posílá data na `/api/poptavka`. Bez nastavených proměnných běží v ukázkovém režimu a nic neodesílá.
 
-To learn more about Next.js, take a look at the following resources:
+| Proměnná | K čemu |
+|---|---|
+| `RESEND_API_KEY` | klíč k Resend pro odesílání e-mailů |
+| `POPTAVKA_TO` | kam poptávky chodí, víc adres oddělte čárkou |
+| `POPTAVKA_FROM` | odesílatel, např. `MontHaly web <web@mont-haly.cz>` (doména musí být ověřená v Resend) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Po úspěšném odeslání se do `window.dataLayer` zapíše událost `generate_lead`, na kterou jde navázat konverze v Google Ads přes GTM.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Spuštění na ostré doméně
 
-## Deploy on Vercel
+| Proměnná | K čemu |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | adresa webu, výchozí `https://www.mont-haly.cz` |
+| `SITE_LIVE=1` | povolí indexaci. Bez ní má web `noindex` a robots.txt vše zakazuje |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Přesměrování ze starých adres WordPressu (`/montovane-haly-2/...`, staré slugy realizací) jsou v `next.config.ts`.

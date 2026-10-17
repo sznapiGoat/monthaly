@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Barvy podle logo manuálu: navy #0E326B a azurová #1BAFFF. */
+  --color-night: #071a30;
+  --color-deep: #0b2545;
+  --color-brand: #0e326b;
+  --color-azure: #1bafff;
+  --color-azure-soft: #8fd6ff;
+  --color-link: #00679a;
+  --color-ink: #0f1b2a;
+  --color-dim: #4f5f6f;
+  --color-mist: #f1f5f8;
+  --color-line: #d6dfe7;
+  --color-line-dark: #24405f;
+
+  --font-serif: var(--font-serif-display), Georgia, serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-serif {
+  font-weight: 400;
+  font-synthesis: none;
+  font-feature-settings: "kern", "liga";
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-azure-soft);
+  color: var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 3px;
+}
+
+/* Reveal jen s JS. Bez skriptu zůstává obsah vidět. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+dialog::backdrop {
+  background: rgb(7 26 48 / 0.92);
 }
