@@ -19,7 +19,6 @@ export function HeroSlideshow() {
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(true);
   const root = useRef<HTMLDivElement>(null);
-  const canvas = useRef<HTMLCanvasElement>(null);
 
   const running = !userPaused && !reduced && visible;
 
@@ -46,71 +45,6 @@ export function HeroSlideshow() {
     return () => clearTimeout(t);
   }, [running, index]);
 
-  // Sníh. Jemný, pod 30 fps, na mobilu méně vloček.
-  useEffect(() => {
-    const el = canvas.current;
-    const ctx = el?.getContext("2d");
-    if (!el || !ctx || !running) {
-      ctx?.clearRect(0, 0, el?.width ?? 0, el?.height ?? 0);
-      return;
-    }
-    let w = 0;
-    let h = 0;
-    let raf = 0;
-    let last = 0;
-    let t = 0;
-    let flakes: { x: number; y: number; r: number; v: number; drift: number; phase: number; a: number }[] = [];
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      w = el.clientWidth;
-      h = el.clientHeight;
-      el.width = Math.round(w * dpr);
-      el.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = w < 768 ? 55 : 120;
-      flakes = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.6 + Math.random() * 1.6,
-        v: 16 + Math.random() * 30,
-        drift: 4 + Math.random() * 10,
-        phase: Math.random() * Math.PI * 2,
-        a: 0.25 + Math.random() * 0.5,
-      }));
-    };
-
-    const tick = (now: number) => {
-      raf = requestAnimationFrame(tick);
-      if (last && now - last < 33) return;
-      const dt = last ? Math.min((now - last) / 1000, 0.08) : 0;
-      last = now;
-      t += dt;
-      ctx.clearRect(0, 0, w, h);
-      for (const f of flakes) {
-        f.y += f.v * dt;
-        f.x += Math.sin(t * 0.8 + f.phase) * f.drift * dt;
-        if (f.y > h + 4) {
-          f.y = -4;
-          f.x = Math.random() * w;
-        }
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${f.a})`;
-        ctx.fill();
-      }
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-    raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-      ctx.clearRect(0, 0, w, h);
-    };
-  }, [running]);
-
   const s = slides[index];
 
   return (
@@ -135,7 +69,6 @@ export function HeroSlideshow() {
           </div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-night/95 via-night/60 to-night/0 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
-        <canvas ref={canvas} aria-hidden className="pointer-events-none absolute inset-0 h-full w-full" />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-4 z-20 md:top-auto md:bottom-[84px]">

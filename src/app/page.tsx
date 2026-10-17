@@ -18,42 +18,40 @@ export default function Home() {
         <HeroSlideshow />
 
         <div className={`${container} flex min-h-[calc(100svh-72px-64px)] flex-col justify-center py-16 md:min-h-[640px] lg:min-h-[700px]`}>
-          <div className="max-w-[720px]">
+          <div className="max-w-[760px]">
             <h1 className="font-serif">
-              <span className="hero-rise block text-[28px] leading-tight text-white/85 sm:text-[34px]">Naše haly jsou stavěné pro</span>
-              <span className="hero-rise mt-1 block text-[54px] leading-[0.98] [animation-delay:120ms] sm:text-[78px] lg:text-[96px]">vysokou sněhovou zátěž.</span>
+              <span className="hero-rise block text-[52px] leading-[1] sm:text-[76px] lg:text-[88px]">
+                Montované haly <br className="max-[379px]:hidden" />
+                <span className="whitespace-nowrap">na míru.</span>
+              </span>
+              <span className="hero-rise mt-2 block text-[34px] leading-[1.05] text-white/75 [animation-delay:120ms] sm:text-[48px] lg:text-[56px]">
+                Od návrhu po montáž.
+              </span>
             </h1>
-            <p className="hero-rise mt-7 max-w-[520px] text-[18px] leading-relaxed text-white/80 [animation-delay:280ms]">
-              Lehké montované haly s opláštěním z plachty nebo trapézového plechu pro skladování, výrobu, sport i letadla. Prodej i pronájem.
+            <p className="hero-rise mt-7 max-w-[540px] text-[18px] leading-relaxed text-white/85 [animation-delay:280ms]">
+              Sklady, výroba, sport i zemědělství. Vlastní projektanti, prodej i pronájem. Kalkulaci pošleme do několika dnů.
             </p>
             <div className="hero-rise mt-9 flex flex-col gap-3 [animation-delay:400ms] sm:flex-row">
               <Link href="/poptavka" className={btn.primary}>
-                Probrat můj projekt
+                Nezávazná poptávka
               </Link>
               <Link href="/realizace" className={btn.ghostLight}>
                 Prohlédnout realizace
               </Link>
             </div>
           </div>
-
-          <div className="hero-rise mt-14 flex items-end gap-4 self-start [animation-delay:600ms] rounded-md bg-night/80 py-4 pl-4 pr-6 md:absolute md:bottom-28 md:right-8 md:mt-0 lg:right-[max(2rem,calc((100vw-1240px)/2+2rem))]">
-            <span className="h-14 w-[3px] bg-azure" aria-hidden />
-            <p className="leading-none">
-              <span className="block text-[14px] text-white/90">Záruka až</span>
-              <span className="mt-1 block font-serif text-[56px] leading-none">
-                6 <span className="text-[28px]">let</span>
-              </span>
-              <span className="mt-2 block text-[12px] text-white/80">u vybraných řešení</span>
-            </p>
-          </div>
         </div>
 
-        <div className="border-t border-white/15 bg-night/70">
-          <ul className={`${container} grid grid-cols-3 text-center text-[13px] font-semibold sm:text-[15px]`}>
-            {["Návrh na míru", "Dokumentace", "Dodávka a montáž"].map((t, i) => (
-              <li key={t} className={i > 0 ? "border-l border-white/15" : ""}>
-                <Link href="/jak-pracujeme" className="block px-2 py-5 text-white/85 hover:text-white">
-                  {t}
+        <div className="border-t border-white/15 bg-night/80">
+          <ul className={`${container} grid text-[14px] sm:grid-cols-3 sm:text-[15px]`}>
+            {[
+              { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru v místě stavby" },
+              { href: "/jak-pracujeme", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
+              { href: "/realizace", strong: "Realizace v ČR", rest: "i na Slovensku" },
+            ].map((t, i) => (
+              <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
+                <Link href={t.href} className={`block py-4 text-white/70 hover:text-white sm:py-5 ${i === 0 ? "sm:pr-6" : "sm:px-6"}`}>
+                  <span className="font-semibold text-white">{t.strong}</span> {t.rest}
                 </Link>
               </li>
             ))}
