@@ -74,10 +74,12 @@ export function HeroSlideshow() {
           </div>
         ))}
         <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/95 via-night/70 to-night/10 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
+        {/* Horní přechod, aby byla průhledná hlavička čitelná i nad světlou oblohou. */}
+        <div className="absolute inset-x-0 top-0 z-[3] h-48 bg-gradient-to-b from-night/80 to-transparent" />
         <SeasonalEffect running={running} />
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 top-4 z-20 md:top-auto md:bottom-[84px]">
+      <div className="pointer-events-none absolute inset-x-0 top-[88px] z-20 md:top-auto md:bottom-[84px]">
         <div className="mx-auto flex w-full max-w-[1240px] items-center justify-end gap-5 px-5 sm:px-8 md:items-end md:justify-start md:gap-8 [&>*]:pointer-events-auto">
           <div className="flex items-center gap-1.5 md:gap-2" role="group" aria-label="Fotografie realizací">
             {slides.map((sl, i) => (

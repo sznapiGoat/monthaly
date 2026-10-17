@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-clip bg-night text-white">
+      <section id="hero" className="relative isolate overflow-clip bg-night pt-[72px] text-white">
         <HeroSlideshow />
 
         <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>

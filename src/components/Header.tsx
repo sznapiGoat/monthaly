@@ -38,11 +38,27 @@ export function Header() {
     };
   }, [open]);
 
+  // Na úvodce je hlavička nad tmavým hero průhledná. Jakmile hero odjede pod hlavičku, přepne se na bílou.
+  const isHome = pathname === "/";
+  const [heroUnder, setHeroUnder] = useState(true);
+  useEffect(() => {
+    const hero = isHome ? document.getElementById("hero") : null;
+    if (!hero) return;
+    const io = new IntersectionObserver(([e]) => setHeroUnder(e.isIntersecting), { rootMargin: "-72px 0px 0px 0px" });
+    io.observe(hero);
+    return () => io.disconnect();
+  }, [isHome]);
+  const clear = isHome && heroUnder && !open;
+
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line bg-white">
+      <header
+        className={`${isHome ? "fixed inset-x-0" : "sticky"} top-0 z-40 border-b transition-[background-color,border-color] duration-300 ${
+          clear ? "border-white/15 bg-transparent" : "border-line bg-white"
+        }`}
+      >
         <div className={`${container} flex h-[72px] items-center justify-between gap-6`}>
           <Link
             href="/"
@@ -55,7 +71,27 @@ export function Header() {
               }
             }}
           >
-            <Image src="/logo.svg" alt="MontHaly s.r.o." width={192} height={40} loading="eager" className="h-8 w-auto sm:h-10" />
+            <span className="relative block">
+              <Image
+                src="/logo.svg"
+                alt="MontHaly s.r.o."
+                width={192}
+                height={40}
+                loading="eager"
+                className={`h-8 w-auto transition-opacity duration-300 sm:h-10 ${clear ? "opacity-0" : "opacity-100"}`}
+              />
+              {isHome && (
+                <Image
+                  src="/logo-light.svg"
+                  alt=""
+                  aria-hidden
+                  width={192}
+                  height={40}
+                  loading="eager"
+                  className={`absolute inset-0 h-8 w-auto transition-opacity duration-300 sm:h-10 ${clear ? "opacity-100" : "opacity-0"}`}
+                />
+              )}
+            </span>
           </Link>
 
           <nav aria-label="Hlavní navigace" className="hidden lg:block">
@@ -66,9 +102,11 @@ export function Header() {
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={`relative py-2 text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-[1px] after:h-[2px] after:origin-left after:bg-azure after:transition-transform ${
-                      isActive(item.href)
-                        ? "text-brand after:scale-x-100"
-                        : "text-ink/80 after:scale-x-0 hover:text-brand"
+                      clear
+                        ? "text-white/85 after:scale-x-0 hover:text-white"
+                        : isActive(item.href)
+                          ? "text-brand after:scale-x-100"
+                          : "text-ink/80 after:scale-x-0 hover:text-brand"
                     }`}
                   >
                     {item.label}
@@ -79,16 +117,19 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-6 lg:flex">
-            <a href={`tel:${company.phone}`} className="text-[15px] font-semibold tabular-nums text-ink hover:text-brand">
+            <a
+              href={`tel:${company.phone}`}
+              className={`text-[15px] font-semibold tabular-nums transition-colors ${clear ? "text-white hover:text-azure-soft" : "text-ink hover:text-brand"}`}
+            >
               {company.phoneIntl}
             </a>
-            <Link href="/poptavka" className={`${btn.dark} px-5 py-2.5 text-[14px]`}>
+            <Link href="/poptavka" className={`${clear ? btn.primary : btn.dark} px-5 py-2.5 text-[14px]`}>
               Nezávazná poptávka
             </Link>
           </div>
 
           <div className="flex items-center gap-1 lg:hidden">
-            <a href={`tel:${company.phone}`} className="whitespace-nowrap rounded-md px-2 py-2 text-[15px] font-semibold tabular-nums text-brand max-[359px]:hidden">
+            <a href={`tel:${company.phone}`} className={`whitespace-nowrap rounded-md px-2 py-2 text-[15px] font-semibold tabular-nums transition-colors max-[359px]:hidden ${clear ? "text-white" : "text-brand"}`}>
               {company.phoneLabel}
             </a>
             <button
@@ -97,7 +138,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Zavřít menu" : "Otevřít menu"}
-              className="-mr-2 flex h-11 w-11 items-center justify-center rounded-md text-ink"
+              className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-md transition-colors ${clear ? "text-white" : "text-ink"}`}
             >
               <span className="relative block h-3.5 w-6">
                 <span className={`absolute left-0 h-[2px] w-6 bg-current transition-transform ${open ? "top-1.5 rotate-45" : "top-0"}`} />
