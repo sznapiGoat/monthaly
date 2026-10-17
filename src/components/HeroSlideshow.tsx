@@ -15,7 +15,9 @@ const slides = [
 const SLIDE_MS = 7000;
 
 export function HeroSlideshow() {
-  const [index, setIndex] = useState(0);
+  // Předchozí fotka zůstává pod novou, dokud ji nová nepřejede.
+  const [{ index, prev }, setSlide] = useState({ index: 0, prev: -1 });
+  const go = (n: number) => setSlide((st) => (n === st.index ? st : { index: n, prev: st.index }));
   const [userPaused, setUserPaused] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -42,7 +44,7 @@ export function HeroSlideshow() {
   // Přepínání fotek. Při pauze se interval zastaví a po spuštění běží od aktuální fotky.
   useEffect(() => {
     if (!running) return;
-    const t = setTimeout(() => setIndex((i) => (i + 1) % slides.length), SLIDE_MS);
+    const t = setTimeout(() => setSlide((st) => ({ index: (st.index + 1) % slides.length, prev: st.index })), SLIDE_MS);
     return () => clearTimeout(t);
   }, [running, index]);
 
@@ -53,9 +55,11 @@ export function HeroSlideshow() {
       <div ref={root} className="sd-hero-media absolute inset-0 -z-10">
         {slides.map((sl, i) => (
           <div
-            key={sl.src}
+            key={i === index ? `${sl.src}-${index}-${prev}` : sl.src}
             aria-hidden={i !== index}
-            className={`absolute inset-0 overflow-hidden transition-opacity duration-[1600ms] ease-in-out ${i === index ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 overflow-hidden ${
+              i === index ? `z-[2] ${prev >= 0 && !reduced ? "hero-wipe" : ""}` : i === prev ? "z-[1]" : "invisible"
+            }`}
           >
             <Image
               src={sl.src}
@@ -65,11 +69,11 @@ export function HeroSlideshow() {
               loading="eager"
               fetchPriority={i === 0 ? "high" : "low"}
               style={{ objectPosition: sl.focus }}
-              className={`object-cover ${i === index && !reduced ? "hero-zoom" : ""} ${userPaused ? "[animation-play-state:paused]" : ""}`}
+              className={`object-cover ${!reduced ? (i === index ? "hero-zoom" : i === prev ? "scale-[1.075]" : "") : ""} ${userPaused ? "[animation-play-state:paused]" : ""}`}
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-night/95 via-night/60 to-night/0 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
+        <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/95 via-night/70 to-night/10 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
         <SeasonalEffect running={running} />
       </div>
 
@@ -80,7 +84,7 @@ export function HeroSlideshow() {
               <button
                 key={sl.src}
                 type="button"
-                onClick={() => setIndex(i)}
+                onClick={() => go(i)}
                 aria-label={`Zobrazit ${sl.place}`}
                 aria-current={i === index}
                 className="group relative h-6 w-7 md:w-12"

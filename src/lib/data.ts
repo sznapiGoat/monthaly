@@ -265,6 +265,8 @@ export type Realization = {
   hallType: string;
   dimensions?: string;
   area?: string;
+  /** Celková půdorysná plocha v m², pro souhrny a řazení. */
+  areaM2: number;
   summary: string;
   notes: string[];
   country?: "SK";
@@ -276,6 +278,7 @@ const r = (file: string, alt: string) => p(file, alt, 1600, 1200);
 export const realizations: Realization[] = [
   {
     slug: "skladova-hala-steti",
+    areaM2: 1125,
     place: "Štětí",
     title: "Skladová hala ve Štětí",
     kind: "Skladová hala",
@@ -293,6 +296,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladove-haly-mosnov",
+    areaM2: 1920,
     place: "Mošnov",
     title: "Dvě skladové haly v Mošnově",
     kind: "Skladové haly",
@@ -310,6 +314,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladova-hala-litvinov",
+    areaM2: 900,
     place: "Litvínov",
     title: "Skladová hala v Litvínově",
     kind: "Skladová hala",
@@ -327,6 +332,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladova-hala-opatovice",
+    areaM2: 800,
     place: "Opatovice nad Labem",
     title: "Skladová hala v Opatovicích",
     kind: "Skladová hala",
@@ -344,6 +350,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladova-hala-vamberk",
+    areaM2: 375,
     place: "Vamberk",
     title: "Skladová hala ve Vamberku",
     kind: "Skladová hala",
@@ -361,6 +368,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladova-hala-veselicko",
+    areaM2: 216,
     place: "Veselíčko",
     title: "Skladová hala ve Veselíčku",
     kind: "Skladová hala",
@@ -378,6 +386,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "hala-zakamenne",
+    areaM2: 288,
     place: "Zákamenné",
     title: "Víceúčelová hala v Zákamenném",
     kind: "Víceúčelová hala",
@@ -396,6 +405,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladova-hala-lhotka-nad-becvou",
+    areaM2: 450,
     place: "Lhotka nad Bečvou",
     title: "Skladová hala v Lhotce nad Bečvou",
     kind: "Skladová hala",
@@ -414,6 +424,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "skladova-hala-libeznice",
+    areaM2: 600,
     place: "Líbeznice",
     title: "Skladová hala v Líbeznicích",
     kind: "Skladová hala",
@@ -432,6 +443,7 @@ export const realizations: Realization[] = [
   },
   {
     slug: "sportovni-hala-brno",
+    areaM2: 950,
     place: "Brno",
     title: "Sportovní hala v Brně",
     kind: "Sportovní hala",
@@ -515,3 +527,10 @@ export const steps = [
 export const getHall = (slug: string) => halls.find((h) => h.slug === slug);
 export const getRealization = (slug: string) => realizations.find((x) => x.slug === slug);
 export const hallTypeOptions = halls.map((h) => ({ value: h.slug, label: h.name }));
+
+/** Podobné realizace: nejdřív stejná kategorie, pak nejbližší plochou. */
+export const similarRealizations = (item: Realization, count = 3) =>
+  realizations
+    .filter((r) => r !== item)
+    .sort((a, b) => Number(b.category === item.category) - Number(a.category === item.category) || Math.abs(a.areaM2 - item.areaM2) - Math.abs(b.areaM2 - item.areaM2))
+    .slice(0, count);

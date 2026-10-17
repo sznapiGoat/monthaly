@@ -81,6 +81,17 @@ body {
 .hero-zoom {
   animation: hero-zoom 8.6s ease-out both;
 }
+/* Nová fotka přejede přes předchozí zprava doleva. */
+@keyframes hero-wipe {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.hero-wipe {
+  animation: hero-wipe 1.3s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-wipe { animation: none; }
+}
 @keyframes hero-progress {
   from { width: 0; }
   to { width: 100%; }

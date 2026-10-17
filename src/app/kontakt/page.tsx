@@ -72,6 +72,12 @@ export default function KontaktPage() {
                   {company.street}
                   <br />
                   {company.city}, {company.country}
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Pavlovsk%C3%A1+21%2C+623+00+Brno"
+                    className="mt-2 block text-[15px] font-semibold text-link underline decoration-link/30 underline-offset-4 hover:decoration-link"
+                  >
+                    Otevřít v mapách
+                  </a>
                 </dd>
               </div>
               <div>

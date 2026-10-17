@@ -71,7 +71,7 @@ function Snowfall({ running }: { running: boolean }) {
     };
   }, [running]);
 
-  return <canvas ref={canvas} aria-hidden data-season="zima" className="pointer-events-none absolute inset-0 h-full w-full" />;
+  return <canvas ref={canvas} aria-hidden data-season="zima" className="pointer-events-none absolute inset-0 z-[4] h-full w-full" />;
 }
 
 const noop = () => () => {};

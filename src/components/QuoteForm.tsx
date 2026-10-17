@@ -40,6 +40,7 @@ export function QuoteForm() {
     return {
       ...emptyQuote,
       typ: typ && getHall(typ) ? typ : emptyQuote.typ,
+      zamer: params.get("zamer") === "pronajem" ? "Pronájem" : emptyQuote.zamer,
       realizace: params.get("realizace")?.slice(0, 160) ?? "",
     };
   });

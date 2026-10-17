@@ -4,9 +4,34 @@ import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { UseCaseSwitcher } from "@/components/UseCaseSwitcher";
 import { faq, getRealization, halls, realizations, steps } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
+
+// Mozaika: hlavní obory nahoře, vizuálně nejsilnější fotky na konci.
+const mosaic = ["skladove-haly", "vyrobni-haly", "sportovni-haly", "zemedelske-haly", "jezdecke-haly", "letecke-hangary", "party-stany", "membranova-zastreseni"].map(
+  (s) => halls.find((h) => h.slug === s)!,
+);
+
+const offers = [
+  {
+    title: "Pořízení haly",
+    text: "Hala zůstane vaše. Navrhneme ji podle provozu a místa stavby, připravíme dokumentaci a postavíme ji.",
+    points: ["Návrh na míru a projektová dokumentace", "Dodávka a montáž", "Záruka až 6 let u vybraných řešení"],
+    photo: { src: "/foto/vyrobni-haly.webp", alt: "Zateplená výrobní hala z tmavých sendvičových panelů" },
+    href: "/poptavka",
+    cta: "Poptat pořízení",
+    primary: true,
+  },
+  {
+    title: "Pronájem",
+    text: "Když halu potřebujete jen na čas, třeba na sezónu nebo na akci. Možnosti pronájmu ověříme podle typu haly a termínu.",
+    points: ["Dočasné zastřešení bez pořízení haly", "Možnosti ověříme podle typu a termínu", "Pronájem: Ing. Romana Chalupková, +420 724 323 672"],
+    photo: { src: "/foto/party-stany-1.webp", alt: "Bílý párty stan s obloukovými okny na trávníku" },
+    href: "/poptavka?zamer=pronajem",
+    cta: "Poptat pronájem",
+    primary: false,
+  },
+];
 
 const featured = ["skladova-hala-lhotka-nad-becvou", "sportovni-hala-brno", "skladove-haly-mosnov"].map((s) => getRealization(s)!);
 const rest = realizations.filter((r) => !featured.includes(r));
@@ -73,23 +98,47 @@ export default function Home() {
             </p>
           </div>
           <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {halls.map((h, i) => (
-              <li key={h.slug} className="reveal" style={{ transitionDelay: `${(i % 4) * 90}ms` }}>
-                <HallCard hall={h} />
-              </li>
-            ))}
+            {mosaic.map((h, i) => {
+              const large = i < 2 || i > 5;
+              return (
+                <li key={h.slug} className={`reveal ${large ? "sm:col-span-2" : ""}`} style={{ transitionDelay: `${(i % 2) * 90}ms` }}>
+                  <HallCard hall={h} large={large} sizes={large ? "(min-width: 1024px) 600px, 100vw" : "(min-width: 1024px) 290px, 50vw"} />
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
 
-      {/* Využití */}
+      {/* Koupě a pronájem */}
       <section className="bg-mist py-20 md:py-28">
         <div className={container}>
-          <h2 className={`reveal ${h2}`}>
-            Jeden partner. <span className="text-brand">Mnoho možností.</span>
-          </h2>
-          <div className="reveal mt-12">
-            <UseCaseSwitcher />
+          <div className="reveal">
+            <h2 className={h2}>Koupit, nebo pronajmout?</h2>
+            <p className={lead}>Halu můžete pořídit natrvalo, nebo si ji pronajmout na dobu, kdy ji potřebujete.</p>
+          </div>
+          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-8">
+            {offers.map((o) => (
+              <article key={o.title} className="reveal flex flex-col">
+                <div className="sd-reveal relative aspect-[16/10] overflow-clip rounded-md bg-line">
+                  <Image src={o.photo.src} alt={o.photo.alt} fill sizes="(min-width: 768px) 600px, 100vw" className="object-cover" />
+                </div>
+                <h3 className="mt-7 font-display text-[28px] leading-tight text-ink sm:text-[32px]">{o.title}</h3>
+                <p className="mt-3 max-w-[52ch] text-[17px] leading-relaxed text-dim">{o.text}</p>
+                <ul className="mt-6 border-t border-line text-[16px] text-ink">
+                  {o.points.map((pt) => (
+                    <li key={pt} className="border-b border-line py-3">
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto pt-8">
+                  <Link href={o.href} className={o.primary ? btn.dark : btn.ghost}>
+                    {o.cta}
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>

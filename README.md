@@ -29,7 +29,7 @@ Po úspěšném odeslání se do `window.dataLayer` zapíše událost `generate_
 
 Fotky v hero jsou vždy skutečné realizace. Sezóna přidává jen jemnou animaci kreslenou kódem (`src/components/SeasonalEffect.tsx`, logika v `src/lib/season.ts`).
 
-- Podle data: prosinec až únor je zima (padá sníh). Jaro, léto a podzim zatím efekt nemají, mají připravené místo.
+- Výchozí je teď zimní verze (`DEFAULT_SETTING` v `src/lib/season.ts`). Po zimě přepnout na `"auto"`, pak se sezóna řídí datem (prosinec až únor zima). Jaro, léto a podzim zatím efekt nemají, mají připravené místo.
 - Pro screenshoty: `/?sezona=zima` nebo `/?sezona=normal`.
 - Pro celý web: `NEXT_PUBLIC_SEZONA=zima|jaro|leto|podzim|normal`.
 

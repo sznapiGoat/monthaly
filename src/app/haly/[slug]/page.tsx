@@ -4,8 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { RealizationCard } from "@/components/Cards";
+import { Faq } from "@/components/Faq";
 import { Gallery } from "@/components/Gallery";
-import { getHall, getRealization, halls } from "@/lib/data";
+import { faq, getHall, getRealization, halls } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
 export const dynamicParams = false;
@@ -143,7 +144,19 @@ export default async function HallPage({ params }: PageProps<"/haly/[slug]">) {
         </section>
       )}
 
-      <nav aria-label="Další typ haly" className={`border-t border-line ${related.length ? "" : "mt-0"}`}>
+      <section className={`py-20 md:py-28 ${related.length ? "bg-mist" : ""}`}>
+        <div className={`${container} grid gap-12 lg:grid-cols-12`}>
+          <div className="reveal lg:col-span-5">
+            <h2 className="font-display text-[34px] leading-[1.05] text-ink sm:text-[40px]">Časté otázky</h2>
+            <p className="mt-5 max-w-[46ch] text-[17px] leading-relaxed text-dim">Na co se zákazníci ptají, než pošlou poptávku.</p>
+          </div>
+          <div className="reveal lg:col-span-7">
+            <Faq items={[0, 2, 3, 4, 6].map((i) => faq[i])} />
+          </div>
+        </div>
+      </section>
+
+      <nav aria-label="Další typ haly" className="border-t border-line">
         <Link href={`/haly/${next.slug}`} className={`${container} group flex items-center justify-between gap-6 py-10`}>
           <span>
             <span className="block text-[14px] text-dim">Další typ haly</span>

@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RealizationCard } from "@/components/Cards";
 import { Gallery } from "@/components/Gallery";
-import { getHall, getRealization, realizations } from "@/lib/data";
+import { getHall, getRealization, realizations, similarRealizations } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
 export const dynamicParams = false;
@@ -115,7 +116,20 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
         </div>
       </section>
 
-      <nav aria-label="Další realizace" className="border-b border-line">
+      <section className="py-20 md:py-24">
+        <div className={container}>
+          <h2 className="reveal font-display text-[34px] leading-[1.05] text-ink sm:text-[40px]">Podobné realizace</h2>
+          <ul className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {similarRealizations(item).map((r) => (
+              <li key={r.slug} className="reveal">
+                <RealizationCard item={r} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <nav aria-label="Další realizace" className="border-y border-line">
         <div className={`${container} flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between`}>
           <Link href="/realizace" className={link}>
             Zpět na všechny realizace

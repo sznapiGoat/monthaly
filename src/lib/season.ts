@@ -15,13 +15,17 @@ export function seasonFromDate(d: Date): Season {
 
 const isSetting = (v: string | null | undefined): v is SeasonSetting => !!v && (SETTINGS as string[]).includes(v);
 
+// Výchozí nastavení pro produkci. "auto" = podle data. Teď běží zimní verze, po zimě přepnout na "auto".
+const DEFAULT_SETTING: SeasonSetting | "auto" = "zima";
+
 /**
  * Pořadí: ?sezona= v adrese (kvůli screenshotům do prezentace), pak NEXT_PUBLIC_SEZONA
- * pro celý web, jinak podle data. Vrací null, když se nemá zobrazit žádný efekt.
+ * pro celý web, pak DEFAULT_SETTING. Vrací null, když se nemá zobrazit žádný efekt.
  */
 export function resolveSeason(search: string, now = new Date()): Season | null {
   const fromUrl = new URLSearchParams(search).get("sezona");
   const fromEnv = process.env.NEXT_PUBLIC_SEZONA;
-  const setting = isSetting(fromUrl) ? fromUrl : isSetting(fromEnv) ? fromEnv : seasonFromDate(now);
+  const fallback = DEFAULT_SETTING === "auto" ? seasonFromDate(now) : DEFAULT_SETTING;
+  const setting = isSetting(fromUrl) ? fromUrl : isSetting(fromEnv) ? fromEnv : fallback;
   return setting === "normal" ? null : setting;
 }

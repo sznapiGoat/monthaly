@@ -30,10 +30,10 @@ export function RealizationCard({ item, sizes, eager }: { item: Realization; siz
   );
 }
 
-export function HallCard({ hall, sizes }: { hall: Hall; sizes?: string }) {
+export function HallCard({ hall, sizes, large }: { hall: Hall; sizes?: string; large?: boolean }) {
   return (
     <Link href={`/haly/${hall.slug}`} className="group block">
-      <div className="sd-reveal relative aspect-[3/2] overflow-clip rounded-md bg-mist">
+      <div className={`sd-reveal relative overflow-clip rounded-md bg-mist ${large ? "aspect-[3/2] lg:aspect-[16/9]" : "aspect-[3/2]"}`}>
         <Image
           src={hall.photos[0].src}
           alt={hall.photos[0].alt}
@@ -43,7 +43,7 @@ export function HallCard({ hall, sizes }: { hall: Hall; sizes?: string }) {
         />
         <span className="pointer-events-none absolute inset-0 rounded-md ring-0 ring-inset ring-azure transition-[box-shadow] group-hover:ring-4" />
       </div>
-      <h3 className="mt-4 text-[18px] font-bold text-ink transition-colors group-hover:text-brand">{hall.name}</h3>
+      <h3 className={`mt-4 font-bold text-ink transition-colors group-hover:text-brand ${large ? "text-[21px]" : "text-[18px]"}`}>{hall.name}</h3>
       <p className="mt-1 text-[15px] leading-snug text-dim">{hall.short}</p>
     </Link>
   );

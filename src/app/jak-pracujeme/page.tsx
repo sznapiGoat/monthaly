@@ -5,7 +5,15 @@ import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { PageIntro } from "@/components/PageIntro";
 import { steps } from "@/lib/data";
-import { container, link } from "@/lib/ui";
+import { btn, container, link } from "@/lib/ui";
+
+// Shrnuto z textů MontHaly: co pomůže k první nabídce.
+const needs = [
+  { k: "Účel haly", v: "Co v ní bude a jak se bude prostor používat. Podle toho volíme konstrukci a opláštění." },
+  { k: "Přibližná velikost", v: "Orientační rozměry, nebo jen co se má dovnitř vejít. S přesnými rozměry pomůžeme." },
+  { k: "Obec, kde má hala stát", v: "Místo ovlivňuje zatížení sněhem a větrem, kotvení i dopravu." },
+  { k: "Fotky nebo nákres pozemku", v: "Pomohou s přístupem techniky, podkladem a umístěním vjezdů." },
+];
 
 export const metadata: Metadata = {
   title: "Jak pracujeme: od zadání po předání haly",
@@ -30,8 +38,8 @@ export default function JakPracujemePage() {
       />
 
       <section className="py-20 md:py-28">
-        <div className={container}>
-          <ol className="relative max-w-3xl">
+        <div className={`${container} grid gap-14 lg:grid-cols-12`}>
+          <ol className="relative lg:col-span-7">
             <span aria-hidden className="absolute bottom-6 left-[11px] top-6 w-px bg-line" />
             {steps.map((s) => (
               <li key={s.title} className="reveal relative pb-16 last:pb-0">
@@ -46,30 +54,49 @@ export default function JakPracujemePage() {
               </li>
             ))}
           </ol>
+          <aside className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <div className="sd-parallax relative aspect-[4/3] overflow-clip rounded-md bg-mist">
+                <Image
+                  src="/foto/veselicko-1.webp"
+                  alt="Montážníci při stavbě ocelové konstrukce haly ve Veselíčku"
+                  fill
+                  sizes="(min-width: 1024px) 480px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <h2 className="mt-8 font-display text-[28px] leading-tight text-ink sm:text-[32px]">Společně vybereme, co má smysl.</h2>
+              <p className="mt-4 text-[17px] leading-relaxed text-dim">
+                Při výběru nemusíte znát všechny technické možnosti. Obchodní oddělení a projektanti vám pomohou propojit zamýšlený provoz s
+                konkrétním řešením haly.
+              </p>
+              <Link href="/kontakt" className={`${link} mt-5 inline-block`}>
+                Poznejte své kontakty
+              </Link>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section className="bg-mist">
-        <div className={`${container} grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center`}>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-md lg:col-span-6">
-            <Image
-              src="/foto/veselicko-1.webp"
-              alt="Montážníci při stavbě ocelové konstrukce haly ve Veselíčku"
-              fill
-              sizes="(min-width: 1024px) 600px, 100vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="reveal lg:col-span-5 lg:col-start-8">
-            <h2 className="font-display text-[34px] leading-[1.05] text-ink sm:text-[44px]">Společně vybereme, co má smysl.</h2>
-            <p className="mt-6 text-[17px] leading-relaxed text-dim">
-              Při výběru nemusíte znát všechny technické možnosti. Obchodní oddělení a projektanti vám pomohou propojit zamýšlený provoz s
-              konkrétním řešením haly.
+      <section className="bg-night text-white">
+        <div className={`${container} grid gap-12 py-20 md:py-24 lg:grid-cols-12`}>
+          <div className="reveal lg:col-span-5">
+            <h2 className="font-display text-[34px] leading-[1.05] sm:text-[42px]">Co od vás potřebujeme</h2>
+            <p className="mt-5 max-w-[44ch] text-[17px] leading-relaxed text-white/70">
+              Pro první nabídku nemusíte mít projekt. Stačí pár údajů, zbytek doladíme společně.
             </p>
-            <Link href="/kontakt" className={`${link} mt-6 inline-block`}>
-              Poznejte své kontakty
+            <Link href="/poptavka" className={`${btn.primary} mt-8`}>
+              Nezávazná poptávka
             </Link>
           </div>
+          <dl className="reveal grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:col-span-7">
+            {needs.map((n) => (
+              <div key={n.k} className="border-t border-line-dark pt-5">
+                <dt className="text-[18px] font-bold">{n.k}</dt>
+                <dd className="mt-2 text-[15px] leading-relaxed text-white/65">{n.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
