@@ -1,14 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HallCard, RealizationCard } from "@/components/Cards";
-import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { UseCaseSwitcher } from "@/components/UseCaseSwitcher";
 import { faq, getRealization, halls, realizations, steps } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
 const featured = ["skladova-hala-lhotka-nad-becvou", "sportovni-hala-brno", "skladove-haly-mosnov"].map((s) => getRealization(s)!);
 const rest = realizations.filter((r) => !featured.includes(r));
+
+const h2 = "font-display text-[36px] leading-[1.06] text-ink sm:text-[46px]";
+const lead = "mt-5 max-w-[60ch] text-[17px] leading-relaxed text-dim";
 
 export default function Home() {
   return (
@@ -17,14 +21,14 @@ export default function Home() {
       <section className="relative isolate overflow-hidden bg-night text-white">
         <HeroSlideshow />
 
-        <div className={`${container} flex min-h-[calc(100svh-72px-64px)] flex-col justify-center py-16 md:min-h-[640px] lg:min-h-[700px]`}>
-          <div className="max-w-[760px]">
-            <h1 className="font-serif">
-              <span className="hero-rise block text-[52px] leading-[1] sm:text-[76px] lg:text-[88px]">
-                Montované haly <br className="max-[379px]:hidden" />
+        <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>
+          <div className="max-w-[980px]">
+            <h1 className="font-display">
+              <span className="hero-rise block text-[44px] font-bold leading-[1.04] sm:text-[60px] lg:text-[70px]">
+                Montované haly <br className="max-[379px]:hidden lg:hidden" />
                 <span className="whitespace-nowrap">na míru.</span>
               </span>
-              <span className="hero-rise mt-2 block text-[34px] leading-[1.05] text-white/75 [animation-delay:120ms] sm:text-[48px] lg:text-[56px]">
+              <span className="hero-rise mt-2 block text-[28px] font-medium leading-[1.1] text-white/75 [animation-delay:120ms] sm:text-[38px] lg:text-[44px]">
                 Od návrhu po montáž.
               </span>
             </h1>
@@ -62,9 +66,9 @@ export default function Home() {
       {/* Typy hal */}
       <section className="py-20 md:py-28">
         <div className={container}>
-          <div className="reveal grid gap-6 md:grid-cols-12 md:items-end">
-            <h2 className="font-serif text-[44px] leading-[1.02] text-ink sm:text-[56px] md:col-span-7">Jakou halu potřebujete?</h2>
-            <p className="text-[17px] leading-relaxed text-dim md:col-span-5">
+          <div className="reveal">
+            <h2 className={h2}>Jakou halu potřebujete?</h2>
+            <p className={lead}>
               Vyberte typ haly a prohlédněte si možnosti. Konstrukci, opláštění a vybavení přizpůsobíme vašemu záměru a místu stavby.
             </p>
           </div>
@@ -81,7 +85,7 @@ export default function Home() {
       {/* Využití */}
       <section className="bg-mist py-20 md:py-28">
         <div className={container}>
-          <h2 className="reveal max-w-3xl font-serif text-[44px] leading-[1.02] text-ink sm:text-[56px]">
+          <h2 className={`reveal ${h2}`}>
             Jeden partner. <span className="text-brand">Mnoho možností.</span>
           </h2>
           <div className="reveal mt-12">
@@ -93,15 +97,9 @@ export default function Home() {
       {/* Realizace */}
       <section className="py-20 md:py-28">
         <div className={container}>
-          <div className="reveal flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h2 className="font-serif text-[44px] leading-[1.02] text-ink sm:text-[56px]">
-              Haly, které
-              <br />
-              už slouží.
-            </h2>
-            <p className="max-w-sm text-[17px] leading-relaxed text-dim">
-              Konkrétní místa, skutečné projekty. Každá realizace má rozměry, plochu a fotografie ze stavby.
-            </p>
+          <div className="reveal">
+            <h2 className={h2}>Haly, které už slouží.</h2>
+            <p className={lead}>Konkrétní místa, skutečné projekty. U každé realizace najdete rozměry, plochu a fotografie ze stavby.</p>
           </div>
 
           <div className="mt-12 grid gap-x-6 gap-y-12 lg:grid-cols-12">
@@ -117,64 +115,55 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="reveal mt-16">
-            <table className="w-full text-left text-[15px]">
-              <caption className="sr-only">Další realizace</caption>
-              <thead>
-                <tr className="border-b border-ink text-[12px] uppercase tracking-[0.1em] text-dim">
-                  <th scope="col" className="py-3 pr-4 font-semibold">Další realizace</th>
-                  <th scope="col" className="hidden py-3 pr-4 font-semibold sm:table-cell">Využití</th>
-                  <th scope="col" className="hidden py-3 pr-4 font-semibold md:table-cell">Rozměry</th>
-                  <th scope="col" className="py-3 text-right font-semibold">Plocha</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rest.map((r) => (
-                  <tr key={r.slug} className="group border-b border-line">
-                    <th scope="row" className="py-4 pr-4 font-normal">
-                      <Link href={`/realizace/${r.slug}`} className="font-serif text-[24px] text-ink transition-colors group-hover:text-brand">
-                        {r.place}
-                      </Link>
-                    </th>
-                    <td className="hidden py-4 pr-4 text-dim sm:table-cell">{r.kind}</td>
-                    <td className="hidden py-4 pr-4 tabular-nums text-dim md:table-cell">{r.dimensions}</td>
-                    <td className="py-4 text-right font-semibold tabular-nums">{r.area}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <Link href="/realizace" className={`${link} mt-8 inline-block`}>
-              Všechny realizace s fotografiemi
-            </Link>
-          </div>
+          <ul className="reveal mt-16 grid gap-x-10 gap-y-6 md:grid-cols-2">
+            {rest.map((r) => (
+              <li key={r.slug}>
+                <Link href={`/realizace/${r.slug}`} className="group flex items-center gap-5">
+                  <span className="relative aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-md bg-mist">
+                    <Image src={r.photos[0].src} alt="" fill sizes="112px" className="object-cover" />
+                    <span className="pointer-events-none absolute inset-0 rounded-md ring-0 ring-inset ring-azure transition-[box-shadow] group-hover:ring-4" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-display text-[21px] leading-tight text-ink transition-colors group-hover:text-brand">
+                      {r.place}
+                      {r.country === "SK" && <span className="ml-2 text-[14px] font-medium text-dim">SK</span>}
+                    </span>
+                    <span className="mt-1 block text-[14px] tabular-nums text-dim">
+                      {r.kind}, {r.area}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+            <li className="flex items-center">
+              <Link href="/realizace" className={link}>
+                Všechny realizace s fotografiemi
+              </Link>
+            </li>
+          </ul>
         </div>
       </section>
 
       {/* Postup */}
-      <section className="bg-night py-20 text-white md:py-28">
+      <section className="bg-mist py-20 md:py-28">
         <div className={container}>
-          <div className="reveal grid gap-6 md:grid-cols-12 md:items-end">
-            <h2 className="font-serif text-[44px] leading-[1.02] sm:text-[56px] md:col-span-7">
-              Dobrý výsledek.
-              <br />
-              <span className="text-white/60">Jasný postup.</span>
+          <div className="reveal">
+            <h2 className={h2}>
+              Dobrý výsledek. <span className="text-brand">Jasný postup.</span>
             </h2>
-            <p className="text-[17px] leading-relaxed text-white/70 md:col-span-5">
-              Od první konzultace k předání haly. V každé fázi společně upřesníme, co bude následovat.
-            </p>
+            <p className={lead}>Od první konzultace k předání haly. V každé fázi společně upřesníme, co bude následovat.</p>
           </div>
           <ol className="mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
             {steps.map((s, i) => (
               <li key={s.title} className="reveal relative pt-8" style={{ transitionDelay: `${i * 120}ms` }}>
-                <span aria-hidden className="draw-line absolute inset-x-0 top-0 h-px bg-line-dark" style={{ transitionDelay: `${150 + i * 120}ms` }} />
+                <span aria-hidden className="draw-line absolute inset-x-0 top-0 h-px bg-line" style={{ transitionDelay: `${150 + i * 120}ms` }} />
                 <span aria-hidden className="absolute -top-[4px] left-0 h-[9px] w-[9px] rounded-full bg-azure" />
-                <p className="text-[13px] font-semibold text-white/50">Krok {i + 1}</p>
-                <h3 className="mt-2 text-[19px] font-bold leading-snug">{s.short}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-white/65">{s.shortText}</p>
+                <h3 className="text-[19px] font-bold leading-snug text-ink">{s.short}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-dim">{s.shortText}</p>
               </li>
             ))}
           </ol>
-          <Link href="/jak-pracujeme" className={`${btn.ghostLight} reveal mt-14`}>
+          <Link href="/jak-pracujeme" className={`${btn.ghost} reveal mt-14`}>
             Jak spolupráce probíhá
           </Link>
         </div>
@@ -184,14 +173,8 @@ export default function Home() {
       <section className="py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
           <div className="reveal lg:col-span-5">
-            <h2 className="font-serif text-[44px] leading-[1.02] text-ink sm:text-[56px]">
-              Ještě než
-              <br />
-              začneme.
-            </h2>
-            <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-dim">
-              Nemusíte mít všechno vyřešené. Pro první rozhovor stačí váš záměr.
-            </p>
+            <h2 className={h2}>Ještě než začneme.</h2>
+            <p className={lead}>Nemusíte mít všechno vyřešené. Pro první rozhovor stačí váš záměr.</p>
             <Link href="/kontakt" className={`${link} mt-6 inline-block`}>
               Zeptejte se nás
             </Link>

@@ -117,7 +117,7 @@ export function Header() {
                 const active = item.href === "/" ? pathname === "/" : isActive(item.href);
                 return (
                   <li key={item.href}>
-                    <Link href={item.href} className={`block py-4 font-serif text-[30px] leading-tight ${active ? "text-brand" : "text-ink"}`}>
+                    <Link href={item.href} className={`block py-4 font-display text-[26px] leading-tight ${active ? "text-brand" : "text-ink"}`}>
                       {item.label}
                     </Link>
                   </li>

@@ -1,12 +1,12 @@
 export const btn = {
   primary:
-    "inline-flex items-center justify-center gap-2 rounded-md bg-azure px-6 py-3.5 text-[15px] font-semibold text-night transition-colors hover:bg-azure-soft",
+    "inline-flex items-center justify-center gap-2 rounded-md bg-azure px-6 py-3.5 text-[15px] font-semibold text-night transition-[color,background-color,transform] hover:bg-azure-soft active:translate-y-px",
   dark:
-    "inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-deep",
+    "inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-3.5 text-[15px] font-semibold text-white transition-[color,background-color,transform] hover:bg-deep active:translate-y-px",
   ghostLight:
-    "inline-flex items-center justify-center gap-2 rounded-md border border-white/35 px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:border-white hover:bg-white/5",
+    "inline-flex items-center justify-center gap-2 rounded-md border border-white/35 px-6 py-3.5 text-[15px] font-semibold text-white transition-[color,background-color,border-color,transform] hover:border-white hover:bg-white/5 active:translate-y-px",
   ghost:
-    "inline-flex items-center justify-center gap-2 rounded-md border border-line px-6 py-3.5 text-[15px] font-semibold text-ink transition-colors hover:border-brand",
+    "inline-flex items-center justify-center gap-2 rounded-md border border-line px-6 py-3.5 text-[15px] font-semibold text-ink transition-[color,border-color,transform] hover:border-brand active:translate-y-px",
 };
 
 export const link =

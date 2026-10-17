@@ -47,7 +47,7 @@ export default function OchranaPage() {
         <div className={`${container} max-w-3xl`}>
           {sections.map((s) => (
             <div key={s.h} className="border-b border-line py-8 first:pt-0">
-              <h2 className="font-serif text-[30px] leading-tight text-ink">{s.h}</h2>
+              <h2 className="font-display text-[26px] leading-tight text-ink">{s.h}</h2>
               <p className="mt-3 text-[17px] leading-relaxed text-dim">{s.p}</p>
             </div>
           ))}

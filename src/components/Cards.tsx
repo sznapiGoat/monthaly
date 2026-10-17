@@ -15,12 +15,11 @@ export function RealizationCard({ item, sizes, eager }: { item: Realization; siz
           className="object-cover"
         />
         <span className="pointer-events-none absolute inset-0 rounded-md ring-0 ring-inset ring-azure transition-[box-shadow] group-hover:ring-4" />
-        {item.country === "SK" && (
-          <span className="absolute left-3 top-3 rounded-sm bg-white px-2 py-1 text-[12px] font-semibold text-ink">Slovensko</span>
-        )}
       </div>
       <div className="mt-4 flex items-baseline justify-between gap-4">
-        <h3 className="font-serif text-[28px] leading-tight text-ink transition-colors group-hover:text-brand">{item.place}</h3>
+        <h3 className="font-display text-[24px] leading-tight text-ink transition-colors group-hover:text-brand">{item.place}
+          {item.country === "SK" && <span className="ml-2 text-[14px] font-medium text-dim">SK</span>}
+        </h3>
         {item.area && <span className="shrink-0 text-[14px] font-semibold tabular-nums text-ink">{item.area}</span>}
       </div>
       <p className="mt-1 text-[14px] text-dim">

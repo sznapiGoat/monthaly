@@ -65,7 +65,7 @@ export function UseCaseSwitcher() {
               aria-selected={i === active}
               aria-controls="use-panel"
               onClick={() => setActive(i)}
-              className={`group flex w-full items-center justify-between gap-4 border-b border-line py-5 text-left font-serif text-[26px] leading-tight transition-colors sm:text-[30px] ${
+              className={`group flex w-full items-center justify-between gap-4 border-b border-line py-5 text-left font-display text-[23px] leading-tight transition-colors sm:text-[26px] ${
                 i === active ? "text-brand" : "text-ink/65 hover:text-ink"
               }`}
             >
@@ -99,7 +99,7 @@ export function UseCaseSwitcher() {
             />
           ))}
         </div>
-        <h3 className="mt-8 font-serif text-[34px] leading-tight text-ink sm:text-[40px]">{c.title}</h3>
+        <h3 className="mt-8 font-display text-[30px] leading-tight text-ink sm:text-[34px]">{c.title}</h3>
         <p className="mt-3 max-w-xl text-[17px] leading-relaxed text-dim">{c.text}</p>
         <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
           {c.links.map((l) => (

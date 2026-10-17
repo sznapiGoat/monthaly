@@ -28,7 +28,7 @@ export default function KontaktPage() {
             {leads.map((c, i) => (
               <div key={c.name} className={i === 0 ? "md:pr-12" : "md:pl-12"}>
                 <p className="text-[15px] font-semibold text-link">{c.role}</p>
-                <h2 className="mt-2 font-serif text-[40px] leading-tight text-ink sm:text-[48px]">{c.name}</h2>
+                <h2 className="mt-2 font-display text-[34px] leading-tight text-ink sm:text-[40px]">{c.name}</h2>
                 <a href={`tel:${c.phone}`} className="mt-6 block text-[26px] font-semibold tabular-nums text-ink hover:text-brand">
                   {c.phoneLabel}
                 </a>
@@ -40,7 +40,7 @@ export default function KontaktPage() {
           </div>
 
           <table className="mt-20 w-full text-left text-[16px]">
-            <caption className="mb-4 text-left font-serif text-[30px] text-ink">Projekce a kancelář</caption>
+            <caption className="mb-4 text-left font-display text-[26px] text-ink">Projekce a kancelář</caption>
             <tbody className="border-t border-ink">
               {team.map((c) => (
                 <tr key={c.name} className="border-b border-line">
@@ -64,7 +64,7 @@ export default function KontaktPage() {
       <section className="bg-mist">
         <div className={`${container} grid gap-12 py-20 md:py-24 lg:grid-cols-12`}>
           <div className="lg:col-span-6">
-            <h2 className="font-serif text-[40px] leading-tight text-ink sm:text-[48px]">{company.name}</h2>
+            <h2 className="font-display text-[34px] leading-tight text-ink sm:text-[40px]">{company.name}</h2>
             <dl className="mt-8 grid gap-x-8 gap-y-6 text-[16px] sm:grid-cols-2">
               <div>
                 <dt className="text-[13px] text-dim">Sídlo</dt>
@@ -91,12 +91,12 @@ export default function KontaktPage() {
             </dl>
           </div>
           <div className="border-t-[3px] border-azure pt-8 lg:col-span-5 lg:col-start-8">
-            <h2 className="font-serif text-[34px] leading-tight text-ink">Raději všechno sepíšete?</h2>
+            <h2 className="font-display text-[30px] leading-tight text-ink">Raději všechno sepíšete?</h2>
             <p className="mt-4 text-[17px] leading-relaxed text-dim">
               Poptávka vás provede třemi kroky: využití, orientační rozměry a kontakt. Na jejím základě připravíme kalkulaci.
             </p>
             <Link href="/poptavka" className={`${btn.dark} mt-8`}>
-              Připravit poptávku
+              Nezávazná poptávka
             </Link>
           </div>
         </div>

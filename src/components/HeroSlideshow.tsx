@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { SeasonalEffect } from "@/components/SeasonalEffect";
 
 const slides = [
   { src: "/foto/litvinov.webp", alt: "Bílá montovaná skladová hala v Litvínově pod zataženou oblohou", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 60%" },
@@ -69,6 +70,7 @@ export function HeroSlideshow() {
           </div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-r from-night/95 via-night/60 to-night/0 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
+        <SeasonalEffect running={running} />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-4 z-20 md:top-auto md:bottom-[84px]">

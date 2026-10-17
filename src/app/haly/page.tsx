@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HallsGrid } from "@/components/FilterGrid";
 import { PageIntro } from "@/components/PageIntro";
 import { faq } from "@/lib/data";
-import { btn, container } from "@/lib/ui";
+import { container } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Montované haly: sklady, výroba, sport, zemědělství",
@@ -32,15 +31,12 @@ export default function HalyPage() {
       <section className="border-t border-line py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
           <div className="reveal lg:col-span-5">
-            <h2 className="font-serif text-[44px] leading-[1.02] text-ink sm:text-[52px]">
+            <h2 className="font-display text-[38px] leading-[1.02] text-ink sm:text-[44px]">
               Ještě nevíte, která je ta pravá?
             </h2>
             <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-dim">
               Popište, co chcete zastřešit. Probereme vhodnou velikost, varianty opláštění a přípravu místa.
             </p>
-            <Link href="/poptavka" className={`${btn.dark} mt-8`}>
-              Probrat možnosti
-            </Link>
           </div>
           <div className="reveal lg:col-span-7">
             <Faq items={faq.slice(2)} />

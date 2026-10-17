@@ -49,8 +49,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
           <Breadcrumbs items={[{ href: "/realizace", label: "Realizace" }, { label: item.place }]} />
         </div>
         <div className={`${container} pb-12 pt-10 md:pt-14`}>
-          <p className="text-[15px] font-semibold text-link">Realizace · {item.kind}</p>
-          <h1 className="mt-3 max-w-4xl font-serif text-[46px] leading-[1] text-ink sm:text-[64px] lg:text-[76px]">{item.title}</h1>
+          <h1 className="max-w-4xl font-display text-[40px] leading-[1.04] text-ink sm:text-[54px] lg:text-[64px]">{item.title}</h1>
           <dl className="mt-10 grid grid-cols-2 border-t border-ink md:grid-cols-4">
             {specs.map((s) => (
               <div key={s.k} className="border-b border-line py-4 pr-4">
@@ -69,7 +68,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
 
         <div className={`${container} mt-16 grid gap-12 lg:grid-cols-12`}>
           <div className="reveal lg:col-span-6">
-            <h2 className="font-serif text-[40px] leading-[1.05] text-ink sm:text-[48px]">O realizaci</h2>
+            <h2 className="font-display text-[34px] leading-[1.05] text-ink sm:text-[40px]">O realizaci</h2>
             <p className="mt-6 text-[18px] leading-relaxed text-ink">{item.summary}</p>
             <p className="mt-4 text-[15px] leading-relaxed text-dim">
               Uvedené rozměry vycházejí z prezentace realizace. Světlé rozměry, vybavení a rozsah nové dodávky se stanovují pro každý projekt samostatně.
@@ -85,8 +84,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
           </div>
           <ul className="reveal self-end border-t border-line lg:col-span-5 lg:col-start-8">
             {item.notes.map((n) => (
-              <li key={n} className="flex items-center gap-4 border-b border-line py-4 text-[17px] text-ink">
-                <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-azure" />
+              <li key={n} className="border-b border-line py-4 text-[17px] text-ink">
                 {n}
               </li>
             ))}
@@ -94,7 +92,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
         </div>
 
         <div className={`${container} mt-20`}>
-          <h2 className="reveal font-serif text-[40px] leading-[1.05] text-ink sm:text-[48px]">Podívejte se blíž</h2>
+          <h2 className="reveal font-display text-[34px] leading-[1.05] text-ink sm:text-[40px]">Podívejte se blíž</h2>
           <div className="reveal mt-10">
             <Gallery photos={item.photos.slice(1)} layout="two" />
           </div>
@@ -104,7 +102,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
       <section className="bg-night text-white">
         <div className={`${container} grid gap-8 py-16 md:grid-cols-12 md:items-center md:py-20`}>
           <div className="md:col-span-8">
-            <h2 className="font-serif text-[34px] leading-tight sm:text-[42px]">Podobný prostor pro váš záměr?</h2>
+            <h2 className="font-display text-[30px] leading-tight sm:text-[36px]">Podobný prostor pro váš záměr?</h2>
             <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/70">
               Napište nám, co vás na této realizaci zaujalo. Navrhneme řešení pro vaše podmínky.
             </p>
@@ -125,7 +123,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
           <Link href={`/realizace/${next.slug}`} className="group flex items-center gap-6 sm:text-right">
             <span>
               <span className="block text-[14px] text-dim">Další realizace</span>
-              <span className="mt-1 block font-serif text-[30px] leading-tight text-ink transition-colors group-hover:text-brand">{next.place}</span>
+              <span className="mt-1 block font-display text-[26px] leading-tight text-ink transition-colors group-hover:text-brand">{next.place}</span>
             </span>
             <span aria-hidden className="h-[2px] w-12 bg-azure transition-all group-hover:w-20" />
           </Link>

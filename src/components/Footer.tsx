@@ -60,7 +60,7 @@ export function Footer() {
           <h2 className={heading}>Jsme vám k dispozici</h2>
           <a
             href={`tel:${company.phone}`}
-            className="mt-5 block font-serif text-[30px] leading-none tabular-nums text-white hover:text-azure-soft"
+            className="mt-5 block font-display text-[26px] leading-none tabular-nums text-white hover:text-azure-soft"
           >
             {company.phoneIntl}
           </a>

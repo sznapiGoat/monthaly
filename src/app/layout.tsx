@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Libre_Caslon_Display, Manrope } from "next/font/google";
+import { Manrope, Red_Hat_Display } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { RevealObserver } from "@/components/Reveal";
@@ -7,12 +7,11 @@ import { company } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-// Cormorant z původního konceptu má v Chromu odtržené háčky (š, ě, ž) i z Google Fonts.
-// Libre Caslon Display má podobný kontrastní řez a české znaky vykresluje správně.
-const serif = Libre_Caslon_Display({
+// Nadpisy: geometrický řez ladí s logem MontHaly. latin-ext kvůli českým znakům.
+const display = Red_Hat_Display({
   subsets: ["latin", "latin-ext"],
-  weight: "400",
-  variable: "--font-serif-display",
+  weight: ["500", "600", "700"],
+  variable: "--font-display-face",
   display: "swap",
 });
 
@@ -70,7 +69,7 @@ const revealBoot =
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="cs" className={`${serif.variable} ${manrope.variable}`} suppressHydrationWarning>
+    <html lang="cs" className={`${display.variable} ${manrope.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: revealBoot }} />
       </head>

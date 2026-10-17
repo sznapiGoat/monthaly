@@ -27,11 +27,10 @@ export default function RealizacePage() {
       <CtaBand
         title={
           <>
-            Podobný prostor <span className="text-azure-soft">pro vás?</span>
+            Podobný prostor <span className="text-white/55">pro vás?</span>
           </>
         }
         text="Napište, která realizace se vám líbí a co potřebujete vy. Navrhneme řešení pro vaše místo a provoz."
-        cta="Chci podobnou halu"
       />
     </>
   );

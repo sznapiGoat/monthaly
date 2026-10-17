@@ -31,16 +31,15 @@ export default function JakPracujemePage() {
 
       <section className="py-20 md:py-28">
         <div className={container}>
-          <ol className="relative mx-auto max-w-4xl">
-            <span aria-hidden className="absolute bottom-6 left-[11px] top-6 w-px bg-line md:left-[calc(30%+11px)]" />
-            {steps.map((s, i) => (
-              <li key={s.title} className="reveal relative grid gap-4 pb-16 last:pb-0 md:grid-cols-[30%_1fr] md:gap-0">
-                <p className="pl-12 text-[15px] font-semibold text-dim md:pl-0 md:pr-10 md:pt-2 md:text-right">Krok {i + 1}</p>
-                <div className="relative pl-12">
+          <ol className="relative max-w-3xl">
+            <span aria-hidden className="absolute bottom-6 left-[11px] top-6 w-px bg-line" />
+            {steps.map((s) => (
+              <li key={s.title} className="reveal relative pb-16 last:pb-0">
+                <div className="relative pl-14">
                   <span aria-hidden className="absolute left-0 top-2 flex h-[23px] w-[23px] items-center justify-center rounded-full border-2 border-azure bg-white">
                     <span className="h-[7px] w-[7px] rounded-full bg-azure" />
                   </span>
-                  <h2 className="font-serif text-[36px] leading-tight text-ink sm:text-[44px]">{s.title}</h2>
+                  <h2 className="font-display text-[30px] leading-tight text-ink sm:text-[38px]">{s.title}</h2>
                   <p className="mt-4 text-[17px] leading-relaxed text-dim">{s.text}</p>
                   <p className="mt-5 border-l-[3px] border-azure pl-4 text-[15px] font-semibold text-ink">{s.note}</p>
                 </div>
@@ -62,7 +61,7 @@ export default function JakPracujemePage() {
             />
           </div>
           <div className="reveal lg:col-span-5 lg:col-start-8">
-            <h2 className="font-serif text-[40px] leading-[1.05] text-ink sm:text-[52px]">Společně vybereme, co má smysl.</h2>
+            <h2 className="font-display text-[34px] leading-[1.05] text-ink sm:text-[44px]">Společně vybereme, co má smysl.</h2>
             <p className="mt-6 text-[17px] leading-relaxed text-dim">
               Při výběru nemusíte znát všechny technické možnosti. Obchodní oddělení a projektanti vám pomohou propojit zamýšlený provoz s
               konkrétním řešením haly.
@@ -77,7 +76,7 @@ export default function JakPracujemePage() {
       <section className="py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
           <div className="reveal lg:col-span-5">
-            <h2 className="font-serif text-[44px] leading-[1.02] text-ink sm:text-[52px]">Na co se často ptáte</h2>
+            <h2 className="font-display text-[38px] leading-[1.02] text-ink sm:text-[44px]">Na co se často ptáte</h2>
             <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-dim">
               Cena, termíny i příprava pozemku mají souvislosti. Probereme je s vámi předem.
             </p>
