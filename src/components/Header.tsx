@@ -44,7 +44,17 @@ export function Header() {
     <>
       <header className="sticky top-0 z-40 border-b border-line bg-white">
         <div className={`${container} flex h-[72px] items-center justify-between gap-6`}>
-          <Link href="/" aria-label="MontHaly, úvodní stránka" className="shrink-0">
+          <Link
+            href="/"
+            aria-label="MontHaly, úvodní stránka"
+            className="shrink-0"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+              }
+            }}
+          >
             <Image src="/logo.svg" alt="MontHaly s.r.o." width={192} height={40} loading="eager" className="h-8 w-auto sm:h-10" />
           </Link>
 

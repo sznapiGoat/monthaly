@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { HallCard, RealizationCard } from "@/components/Cards";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { UseCaseSwitcher } from "@/components/UseCaseSwitcher";
@@ -15,27 +15,18 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-night text-white">
-        <Image
-          src="/foto/litvinov.webp"
-          alt="Bílá montovaná skladová hala v Litvínově pod zataženou oblohou"
-          fill
-          loading="eager"
-          fetchPriority="high"
-          sizes="100vw"
-          className="-z-20 object-cover object-[70%_60%]"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-night/95 via-night/60 to-night/0 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
+        <HeroSlideshow />
 
         <div className={`${container} flex min-h-[calc(100svh-72px-64px)] flex-col justify-center py-16 md:min-h-[640px] lg:min-h-[700px]`}>
           <div className="max-w-[720px]">
             <h1 className="font-serif">
-              <span className="block text-[28px] leading-tight text-white/85 sm:text-[34px]">Naše haly jsou stavěné pro</span>
-              <span className="mt-1 block text-[54px] leading-[0.98] sm:text-[78px] lg:text-[96px]">vysokou sněhovou zátěž.</span>
+              <span className="hero-rise block text-[28px] leading-tight text-white/85 sm:text-[34px]">Naše haly jsou stavěné pro</span>
+              <span className="hero-rise mt-1 block text-[54px] leading-[0.98] [animation-delay:120ms] sm:text-[78px] lg:text-[96px]">vysokou sněhovou zátěž.</span>
             </h1>
-            <p className="mt-7 max-w-[520px] text-[18px] leading-relaxed text-white/80">
+            <p className="hero-rise mt-7 max-w-[520px] text-[18px] leading-relaxed text-white/80 [animation-delay:280ms]">
               Lehké montované haly s opláštěním z plachty nebo trapézového plechu pro skladování, výrobu, sport i letadla. Prodej i pronájem.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="hero-rise mt-9 flex flex-col gap-3 [animation-delay:400ms] sm:flex-row">
               <Link href="/poptavka" className={btn.primary}>
                 Probrat můj projekt
               </Link>
@@ -45,7 +36,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-14 flex items-end gap-4 self-start rounded-md bg-night/80 py-4 pl-4 pr-6 md:absolute md:bottom-28 md:right-8 md:mt-0 lg:right-[max(2rem,calc((100vw-1240px)/2+2rem))]">
+          <div className="hero-rise mt-14 flex items-end gap-4 self-start [animation-delay:600ms] rounded-md bg-night/80 py-4 pl-4 pr-6 md:absolute md:bottom-28 md:right-8 md:mt-0 lg:right-[max(2rem,calc((100vw-1240px)/2+2rem))]">
             <span className="h-14 w-[3px] bg-azure" aria-hidden />
             <p className="leading-none">
               <span className="block text-[14px] text-white/90">Záruka až</span>
@@ -176,8 +167,9 @@ export default function Home() {
           </div>
           <ol className="mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
             {steps.map((s, i) => (
-              <li key={s.title} className="reveal relative border-t border-line-dark pt-8">
-                <span aria-hidden className="absolute -top-[5px] left-0 h-[9px] w-[9px] rounded-full bg-azure" />
+              <li key={s.title} className="reveal relative pt-8" style={{ transitionDelay: `${i * 120}ms` }}>
+                <span aria-hidden className="draw-line absolute inset-x-0 top-0 h-px bg-line-dark" style={{ transitionDelay: `${150 + i * 120}ms` }} />
+                <span aria-hidden className="absolute -top-[4px] left-0 h-[9px] w-[9px] rounded-full bg-azure" />
                 <p className="text-[13px] font-semibold text-white/50">Krok {i + 1}</p>
                 <h3 className="mt-2 text-[19px] font-bold leading-snug">{s.short}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-white/65">{s.shortText}</p>

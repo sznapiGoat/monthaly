@@ -10,7 +10,9 @@ export function Footer() {
     <footer className="bg-night text-white/75">
       <div className={`${container} grid gap-12 py-16 md:grid-cols-12 md:py-20`}>
         <div className="md:col-span-4">
-          <Image src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
+          <Link href="/" aria-label="MontHaly, úvodní stránka" className="inline-block">
+            <Image src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
+          </Link>
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">
             Montované haly na míru. Od prvního návrhu po montáž. Prodej, pronájem a projektování.
           </p>
