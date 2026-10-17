@@ -50,7 +50,7 @@ export function HeroSlideshow() {
 
   return (
     <>
-      <div ref={root} className="absolute inset-0 -z-10">
+      <div ref={root} className="sd-hero-media absolute inset-0 -z-10">
         {slides.map((sl, i) => (
           <div
             key={sl.src}

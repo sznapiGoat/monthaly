@@ -5,7 +5,7 @@ import type { Hall, Realization } from "@/lib/data";
 export function RealizationCard({ item, sizes, eager }: { item: Realization; sizes?: string; eager?: boolean }) {
   return (
     <Link href={`/realizace/${item.slug}`} className="group block">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-mist">
+      <div className="sd-reveal relative aspect-[4/3] overflow-clip rounded-md bg-mist">
         <Image
           src={item.photos[0].src}
           alt={item.photos[0].alt}
@@ -33,7 +33,7 @@ export function RealizationCard({ item, sizes, eager }: { item: Realization; siz
 export function HallCard({ hall, sizes }: { hall: Hall; sizes?: string }) {
   return (
     <Link href={`/haly/${hall.slug}`} className="group block">
-      <div className="relative aspect-[3/2] overflow-hidden rounded-md bg-mist">
+      <div className="sd-reveal relative aspect-[3/2] overflow-clip rounded-md bg-mist">
         <Image
           src={hall.photos[0].src}
           alt={hall.photos[0].alt}

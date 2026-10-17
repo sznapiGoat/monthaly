@@ -44,7 +44,7 @@ export function Gallery({ photos, layout = "three" }: { photos: Photo[]; layout?
               <button
                 type="button"
                 onClick={(e) => open(i, e.currentTarget)}
-                className="group relative block aspect-[4/3] h-full w-full overflow-hidden rounded-md bg-mist outline-offset-4"
+                className="sd-reveal group relative block aspect-[4/3] h-full w-full overflow-clip rounded-md bg-mist outline-offset-4"
                 aria-label={`Zvětšit fotografii: ${ph.alt}`}
               >
                 <Image

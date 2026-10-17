@@ -18,11 +18,11 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-night text-white">
+      <section className="relative isolate overflow-clip bg-night text-white">
         <HeroSlideshow />
 
         <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>
-          <div className="max-w-[980px]">
+          <div className="sd-hero-exit max-w-[980px]">
             <h1 className="font-display">
               <span className="hero-rise block text-[44px] font-bold leading-[1.04] sm:text-[60px] lg:text-[70px]">
                 Montované haly <br className="max-[379px]:hidden lg:hidden" />
@@ -73,8 +73,8 @@ export default function Home() {
             </p>
           </div>
           <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {halls.map((h) => (
-              <li key={h.slug} className="reveal">
+            {halls.map((h, i) => (
+              <li key={h.slug} className="reveal" style={{ transitionDelay: `${(i % 4) * 90}ms` }}>
                 <HallCard hall={h} />
               </li>
             ))}

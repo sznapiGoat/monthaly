@@ -59,7 +59,7 @@ export default async function HallPage({ params }: PageProps<"/haly/[slug]">) {
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-md lg:col-span-7">
+          <div className="sd-parallax relative aspect-[4/3] overflow-clip rounded-md lg:col-span-7">
             <Image src={hero.src} alt={hero.alt} fill loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 700px, 100vw" className="object-cover" />
           </div>
         </div>

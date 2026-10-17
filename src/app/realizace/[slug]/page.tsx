@@ -62,7 +62,7 @@ export default async function RealizationPage({ params }: PageProps<"/realizace/
       </section>
 
       <section className="pb-20 md:pb-28">
-        <div className="relative aspect-[16/9] max-h-[78vh] w-full overflow-hidden bg-night md:aspect-[21/9]">
+        <div className="sd-parallax relative aspect-[16/9] max-h-[78vh] w-full overflow-clip bg-night md:aspect-[21/9]">
           <Image src={item.photos[0].src} alt={item.photos[0].alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" />
         </div>
 

@@ -86,7 +86,7 @@ export function UseCaseSwitcher() {
       </div>
 
       <div id="use-panel" role="tabpanel" aria-labelledby={`use-tab-${active}`} className="lg:col-span-7">
-        <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-line">
+        <div className="sd-parallax relative aspect-[16/10] overflow-clip rounded-md bg-line">
           {cases.map((item, i) => (
             <Image
               key={item.photo.src}
