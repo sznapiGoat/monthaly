@@ -31,11 +31,7 @@ export default function RealizacePage() {
         </div>
       </section>
       <CtaBand
-        title={
-          <>
-            Podobný prostor <span className="text-white/55">pro vás?</span>
-          </>
-        }
+        title="Podobný prostor pro vás?"
         text="Napište, která realizace se vám líbí a co potřebujete vy. Navrhneme řešení pro vaše místo a provoz."
       />
     </>

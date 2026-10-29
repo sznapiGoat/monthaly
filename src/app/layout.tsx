@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Manrope, Red_Hat_Display } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { RevealObserver } from "@/components/Reveal";
 import { company } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -64,15 +63,9 @@ const jsonLd = {
   areaServed: ["CZ", "SK"],
 };
 
-const revealBoot =
-  "document.documentElement.classList.add('js');setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('is-visible')})},4000);";
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="cs" className={`${display.variable} ${manrope.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: revealBoot }} />
-      </head>
       <body>
         <a
           href="#obsah"
@@ -83,7 +76,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main id="obsah">{children}</main>
         <Footer />
-        <RevealObserver />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

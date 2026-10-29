@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { SeasonalEffect } from "@/components/SeasonalEffect";
 
 const slides = [
   { src: "/foto/litvinov.webp", alt: "Bílá montovaná skladová hala v Litvínově pod zataženou oblohou", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 60%" },
@@ -52,7 +51,7 @@ export function HeroSlideshow() {
 
   return (
     <>
-      <div ref={root} className="sd-hero-media absolute inset-0 -z-10">
+      <div ref={root} className="absolute inset-0 -z-10">
         {slides.map((sl, i) => (
           <div
             key={i === index ? `${sl.src}-${index}-${prev}` : sl.src}
@@ -69,14 +68,13 @@ export function HeroSlideshow() {
               loading="eager"
               fetchPriority={i === 0 ? "high" : "low"}
               style={{ objectPosition: sl.focus }}
-              className={`object-cover ${!reduced ? (i === index ? "hero-zoom" : i === prev ? "scale-[1.075]" : "") : ""} ${userPaused ? "[animation-play-state:paused]" : ""}`}
+              className="object-cover"
             />
           </div>
         ))}
         <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/95 via-night/70 to-night/10 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
         {/* Horní přechod, aby byla průhledná hlavička čitelná i nad světlou oblohou. */}
         <div className="absolute inset-x-0 top-0 z-[3] h-48 bg-gradient-to-b from-night/80 to-transparent" />
-        <SeasonalEffect running={running} />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-[88px] z-20 md:top-auto md:bottom-[84px]">

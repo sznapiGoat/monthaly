@@ -30,7 +30,7 @@ export default function HalyPage() {
 
       <section className="border-t border-line py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
-          <div className="reveal lg:col-span-5">
+          <div className="lg:col-span-5">
             <h2 className="font-display text-[38px] leading-[1.02] text-ink sm:text-[44px]">
               Ještě nevíte, která je ta pravá?
             </h2>
@@ -38,7 +38,7 @@ export default function HalyPage() {
               Popište, co chcete zastřešit. Probereme vhodnou velikost, varianty opláštění a přípravu místa.
             </p>
           </div>
-          <div className="reveal lg:col-span-7">
+          <div className="lg:col-span-7">
             <Faq items={faq.slice(2)} />
           </div>
         </div>

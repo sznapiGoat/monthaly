@@ -44,7 +44,7 @@ export type Hall = {
   name: string;
   short: string;
   group: HallGroup;
-  title: [string, string];
+  tagline: string;
   lead: string;
   features: { title: string; text: string }[];
   uses: string[];
@@ -59,7 +59,7 @@ export const halls: Hall[] = [
     name: "Skladové haly",
     short: "Zboží, materiál a logistika.",
     group: "skladovani-vyroba",
-    title: ["Místo pro zásoby.", "Prostor pro růst."],
+    tagline: "Sklad navržený podle zboží, techniky a manipulace.",
     lead: "Sklad má usnadňovat každý pracovní den. Společně navrhneme rozměry, vjezdy a opláštění podle toho, co ukládáte a jak s materiálem manipulujete.",
     features: [
       { title: "Plynulý pohyb", text: "Poloha a rozměry vrat se odvíjejí od vaší manipulační techniky a provozu." },
@@ -83,7 +83,7 @@ export const halls: Hall[] = [
     name: "Sportovní haly",
     short: "Trénink, zápasy a volný čas.",
     group: "sport",
-    title: ["Více prostoru", "pro každou hru."],
+    tagline: "Hala postavená kolem konkrétního hřiště a jeho výšky.",
     lead: "Pro trénink, zápasy i volný čas. Sportovní halu připravíme kolem konkrétního sportu, potřebné světlé výšky a podmínek celoročního nebo sezónního provozu.",
     features: [
       { title: "Volná hrací plocha", text: "Dispozice bez vnitřních podpěr podle zvoleného konstrukčního systému." },
@@ -107,7 +107,7 @@ export const halls: Hall[] = [
     name: "Jezdecké haly",
     short: "Kryté jízdárny a tréninkové areály.",
     group: "zemedelstvi-jezdectvi",
-    title: ["Jezděte podle sebe.", "Ne podle počasí."],
+    tagline: "Krytá jízdárna pro trénink za každého počasí.",
     lead: "Krytá jízdárna vytváří prostor pro pravidelný trénink. Návrh přizpůsobíme rozměrům jízdní plochy, přístupu do areálu a požadavkům na světlo a větrání.",
     features: [
       { title: "Přehledná plocha", text: "Volný prostor s konstrukcí navrženou pro konkrétní jízdárnu." },
@@ -131,12 +131,12 @@ export const halls: Hall[] = [
     name: "Letecké hangáry",
     short: "Letadla, ultralighty a zázemí.",
     group: "dalsi",
-    title: ["Dobré zázemí", "pro vaše letadlo."],
+    tagline: "Hangár s vraty podle rozpětí křídel a výšky letadla.",
     lead: "U hangáru rozhoduje každý průjezd a každý metr. Konstrukci a vrata navrhneme podle rozpětí křídel, výšky letadla a způsobu manipulace na ploše.",
     features: [
       { title: "Velkorysý vjezd", text: "Typ vrat a jejich světlé rozměry podle konkrétní letecké techniky." },
       { title: "Promyšlená dispozice", text: "Prostor pro parkování, pohyb techniky i přístup obsluhy." },
-      { title: "Vybavení na míru", text: "Personální vstupy, osvětlení, větrání a další prvky podle provozu." },
+      { title: "Vstupy a vybavení", text: "Personální vstupy, osvětlení, větrání a další prvky podle provozu." },
     ],
     uses: ["Soukromá letadla a ultralighty", "Aerokluby", "Servisní a skladovací zázemí"],
     prompt: {
@@ -155,7 +155,7 @@ export const halls: Hall[] = [
     name: "Výrobní haly",
     short: "Dílny, montáž a výroba.",
     group: "skladovani-vyroba",
-    title: ["Prostor, který", "pracuje s vámi."],
+    tagline: "Hala navržená podle výrobního toku a technologií.",
     lead: "Výrobní hala má navazovat na váš provoz. Při návrhu vycházíme z rozmístění technologií, pohybu materiálu a požadavků na pracovní prostředí.",
     features: [
       { title: "Provoz na prvním místě", text: "Rozměry, vjezdy a vstupy s ohledem na výrobní tok." },
@@ -179,7 +179,7 @@ export const halls: Hall[] = [
     name: "Zemědělské haly",
     short: "Technika, sklizeň a zásoby.",
     group: "zemedelstvi-jezdectvi",
-    title: ["Poctivé zázemí", "pro každou sezónu."],
+    tagline: "Zázemí pro techniku, sklizeň a uskladnění plodin.",
     lead: "Pro techniku, sklizeň i každodenní práci. Zemědělské haly připravujeme s důrazem na praktické vjezdy, větrání a návaznost na hospodářský areál.",
     features: [
       { title: "Průjezd pro techniku", text: "Rozměry vrat a výška haly podle používaných strojů." },
@@ -203,7 +203,7 @@ export const halls: Hall[] = [
     name: "Párty stany",
     short: "Společenské akce i dlouhodobé využití.",
     group: "dalsi",
-    title: ["Zázemí pro chvíle,", "na kterých záleží."],
+    tagline: "Stany pro svatby, firemní a společenské akce.",
     lead: "Profesionální zastřešení pro společenské akce i dlouhodobé využití. Velikost a vybavení sladíme s počtem hostů, programem a charakterem místa.",
     features: [
       { title: "Přizpůsobitelný prostor", text: "Modulové rozměry a varianty bočních stěn." },
@@ -227,7 +227,7 @@ export const halls: Hall[] = [
     name: "Membránová zastřešení",
     short: "Terasy, amfiteátry a veřejná prostranství.",
     group: "dalsi",
-    title: ["Lehkost, která", "dává místu tvar."],
+    tagline: "Zastřešení teras, amfiteátrů a veřejných prostranství.",
     lead: "Zastřešení technickou tkaninou propojuje funkci a architekturu. Tvar, konstrukce i způsob kotvení vznikají podle prostoru, který má zastřešení doplnit.",
     features: [
       { title: "Tvar podle místa", text: "Individuální řešení návaznosti na okolní objekty." },

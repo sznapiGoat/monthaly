@@ -16,7 +16,7 @@ const offers = [
   {
     title: "Pořízení haly",
     text: "Hala zůstane vaše. Navrhneme ji podle provozu a místa stavby, připravíme dokumentaci a postavíme ji.",
-    points: ["Návrh na míru a projektová dokumentace", "Dodávka a montáž", "Záruka až 6 let u vybraných řešení"],
+    points: ["Návrh podle provozu a projektová dokumentace", "Dodávka a montáž", "Záruka až 6 let u vybraných řešení"],
     photo: { src: "/foto/vyrobni-haly.webp", alt: "Zateplená výrobní hala z tmavých sendvičových panelů" },
     href: "/poptavka",
     cta: "Poptat pořízení",
@@ -47,24 +47,24 @@ export default function Home() {
         <HeroSlideshow />
 
         <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>
-          <div className="sd-hero-exit max-w-[980px]">
+          <div className="max-w-[980px]">
             <h1 className="font-display">
-              <span className="hero-rise block text-[44px] font-bold leading-[1.04] sm:text-[60px] lg:text-[70px]">
+              <span className="block text-[44px] font-bold leading-[1.04] sm:text-[60px] lg:text-[70px]">
                 Montované haly <br className="max-[379px]:hidden lg:hidden" />
                 <span className="whitespace-nowrap">na míru.</span>
               </span>
-              <span className="hero-rise mt-2 block text-[28px] font-medium leading-[1.1] text-white/75 [animation-delay:120ms] sm:text-[38px] lg:text-[44px]">
+              <span className="mt-2 block text-[28px] font-medium leading-[1.1] text-white/75 sm:text-[38px] lg:text-[44px]">
                 Od návrhu po montáž.
               </span>
             </h1>
-            <p className="hero-rise mt-7 max-w-[540px] text-[18px] leading-relaxed text-white/85 [animation-delay:280ms]">
+            <p className="mt-7 max-w-[540px] text-[18px] leading-relaxed text-white/85">
               Sklady, výroba, sport i zemědělství. Vlastní projektanti, prodej i pronájem. Kalkulaci pošleme do několika dnů.
             </p>
-            <div className="hero-rise mt-9 flex flex-col gap-3 [animation-delay:400ms] sm:flex-row">
+            <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
               <Link href="/poptavka" className={btn.primary}>
                 Nezávazná poptávka
               </Link>
-              <Link href="/realizace" className={btn.ghostLight}>
+              <Link href="/realizace" className="py-2 text-[15px] font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white">
                 Prohlédnout realizace
               </Link>
             </div>
@@ -91,7 +91,7 @@ export default function Home() {
       {/* Typy hal */}
       <section className="py-20 md:py-28">
         <div className={container}>
-          <div className="reveal">
+          <div>
             <h2 className={h2}>Jakou halu potřebujete?</h2>
             <p className={lead}>
               Vyberte typ haly a prohlédněte si možnosti. Konstrukci, opláštění a vybavení přizpůsobíme vašemu záměru a místu stavby.
@@ -101,7 +101,7 @@ export default function Home() {
             {mosaic.map((h, i) => {
               const large = i < 2 || i > 5;
               return (
-                <li key={h.slug} className={`reveal ${large ? "sm:col-span-2" : ""}`} style={{ transitionDelay: `${(i % 2) * 90}ms` }}>
+                <li key={h.slug} className={large ? "sm:col-span-2" : undefined}>
                   <HallCard hall={h} large={large} sizes={large ? "(min-width: 1024px) 600px, 100vw" : "(min-width: 1024px) 290px, 50vw"} />
                 </li>
               );
@@ -113,13 +113,13 @@ export default function Home() {
       {/* Koupě a pronájem */}
       <section className="bg-mist py-20 md:py-28">
         <div className={container}>
-          <div className="reveal">
+          <div>
             <h2 className={h2}>Koupit, nebo pronajmout?</h2>
             <p className={lead}>Halu můžete pořídit natrvalo, nebo si ji pronajmout na dobu, kdy ji potřebujete.</p>
           </div>
           <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-8">
             {offers.map((o) => (
-              <article key={o.title} className="reveal flex flex-col">
+              <article key={o.title} className="flex flex-col">
                 <div className="sd-reveal relative aspect-[16/10] overflow-clip rounded-md bg-line">
                   <Image src={o.photo.src} alt={o.photo.alt} fill sizes="(min-width: 768px) 600px, 100vw" className="object-cover" />
                 </div>
@@ -146,25 +146,25 @@ export default function Home() {
       {/* Realizace */}
       <section className="py-20 md:py-28">
         <div className={container}>
-          <div className="reveal">
+          <div>
             <h2 className={h2}>Haly, které už slouží.</h2>
             <p className={lead}>Konkrétní místa, skutečné projekty. U každé realizace najdete rozměry, plochu a fotografie ze stavby.</p>
           </div>
 
           <div className="mt-12 grid gap-x-6 gap-y-12 lg:grid-cols-12">
-            <div className="reveal lg:col-span-7">
+            <div className="lg:col-span-7">
               <RealizationCard item={featured[0]} sizes="(min-width: 1024px) 700px, 100vw" />
             </div>
             <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
               {featured.slice(1).map((r) => (
-                <div key={r.slug} className="reveal">
+                <div key={r.slug}>
                   <RealizationCard item={r} sizes="(min-width: 1024px) 480px, 50vw" />
                 </div>
               ))}
             </div>
           </div>
 
-          <ul className="reveal mt-16 grid gap-x-10 gap-y-6 md:grid-cols-2">
+          <ul className="mt-16 grid gap-x-10 gap-y-6 md:grid-cols-2">
             {rest.map((r) => (
               <li key={r.slug}>
                 <Link href={`/realizace/${r.slug}`} className="group flex items-center gap-5">
@@ -196,23 +196,23 @@ export default function Home() {
       {/* Postup */}
       <section className="bg-mist py-20 md:py-28">
         <div className={container}>
-          <div className="reveal">
+          <div>
             <h2 className={h2}>
-              Dobrý výsledek. <span className="text-brand">Jasný postup.</span>
+              Jak stavba probíhá
             </h2>
             <p className={lead}>Od první konzultace k předání haly. V každé fázi společně upřesníme, co bude následovat.</p>
           </div>
           <ol className="mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
-            {steps.map((s, i) => (
-              <li key={s.title} className="reveal relative pt-8" style={{ transitionDelay: `${i * 120}ms` }}>
-                <span aria-hidden className="draw-line absolute inset-x-0 top-0 h-px bg-line" style={{ transitionDelay: `${150 + i * 120}ms` }} />
+            {steps.map((s) => (
+              <li key={s.title} className="relative pt-8">
+                <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-line" />
                 <span aria-hidden className="absolute -top-[4px] left-0 h-[9px] w-[9px] rounded-full bg-azure" />
                 <h3 className="text-[19px] font-bold leading-snug text-ink">{s.short}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-dim">{s.shortText}</p>
               </li>
             ))}
           </ol>
-          <Link href="/jak-pracujeme" className={`${btn.ghost} reveal mt-14`}>
+          <Link href="/jak-pracujeme" className={`${btn.ghost} mt-14`}>
             Jak spolupráce probíhá
           </Link>
         </div>
@@ -221,14 +221,14 @@ export default function Home() {
       {/* FAQ */}
       <section className="py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
-          <div className="reveal lg:col-span-5">
+          <div className="lg:col-span-5">
             <h2 className={h2}>Ještě než začneme.</h2>
             <p className={lead}>Nemusíte mít všechno vyřešené. Pro první rozhovor stačí váš záměr.</p>
             <Link href="/kontakt" className={`${link} mt-6 inline-block`}>
               Zeptejte se nás
             </Link>
           </div>
-          <div className="reveal lg:col-span-7">
+          <div className="lg:col-span-7">
             <Faq items={faq.slice(0, 4)} />
           </div>
         </div>

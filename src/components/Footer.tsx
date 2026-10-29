@@ -14,7 +14,7 @@ export function Footer() {
             <Image src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
           </Link>
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">
-            Montované haly na míru. Od prvního návrhu po montáž. Prodej, pronájem a projektování.
+            Montované haly od prvního návrhu po montáž. Prodej, pronájem a projektování.
           </p>
           <address className="mt-6 text-[14px] not-italic leading-relaxed text-white/60">
             {company.name}

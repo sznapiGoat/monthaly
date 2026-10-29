@@ -42,7 +42,7 @@ export default function JakPracujemePage() {
           <ol className="relative lg:col-span-7">
             <span aria-hidden className="absolute bottom-6 left-[11px] top-6 w-px bg-line" />
             {steps.map((s) => (
-              <li key={s.title} className="reveal relative pb-16 last:pb-0">
+              <li key={s.title} className="relative pb-16 last:pb-0">
                 <div className="relative pl-14">
                   <span aria-hidden className="absolute left-0 top-2 flex h-[23px] w-[23px] items-center justify-center rounded-full border-2 border-azure bg-white">
                     <span className="h-[7px] w-[7px] rounded-full bg-azure" />
@@ -56,7 +56,7 @@ export default function JakPracujemePage() {
           </ol>
           <aside className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
-              <div className="sd-parallax relative aspect-[4/3] overflow-clip rounded-md bg-mist">
+              <div className="relative aspect-[4/3] overflow-clip rounded-md bg-mist">
                 <Image
                   src="/foto/veselicko-1.webp"
                   alt="Montážníci při stavbě ocelové konstrukce haly ve Veselíčku"
@@ -80,7 +80,7 @@ export default function JakPracujemePage() {
 
       <section className="bg-night text-white">
         <div className={`${container} grid gap-12 py-20 md:py-24 lg:grid-cols-12`}>
-          <div className="reveal lg:col-span-5">
+          <div className="lg:col-span-5">
             <h2 className="font-display text-[34px] leading-[1.05] sm:text-[42px]">Co od vás potřebujeme</h2>
             <p className="mt-5 max-w-[44ch] text-[17px] leading-relaxed text-white/70">
               Pro první nabídku nemusíte mít projekt. Stačí pár údajů, zbytek doladíme společně.
@@ -89,7 +89,7 @@ export default function JakPracujemePage() {
               Nezávazná poptávka
             </Link>
           </div>
-          <dl className="reveal grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:col-span-7">
+          <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:col-span-7">
             {needs.map((n) => (
               <div key={n.k} className="border-t border-line-dark pt-5">
                 <dt className="text-[18px] font-bold">{n.k}</dt>
@@ -102,13 +102,13 @@ export default function JakPracujemePage() {
 
       <section className="py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
-          <div className="reveal lg:col-span-5">
+          <div className="lg:col-span-5">
             <h2 className="font-display text-[38px] leading-[1.02] text-ink sm:text-[44px]">Na co se často ptáte</h2>
             <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-dim">
               Cena, termíny i příprava pozemku mají souvislosti. Probereme je s vámi předem.
             </p>
           </div>
-          <div className="reveal lg:col-span-7">
+          <div className="lg:col-span-7">
             <Faq />
           </div>
         </div>

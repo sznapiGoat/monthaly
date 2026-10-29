@@ -50,38 +50,13 @@ body {
   outline-offset: 3px;
 }
 
-/* Reveal jen s JS. Bez skriptu zůstává obsah vidět. */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.js .reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .js .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }
 
-/* Hero: pomalé přiblížení fotky, průběh snímku a nástup nadpisu. */
-@keyframes hero-zoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
-}
-.hero-zoom {
-  animation: hero-zoom 8.6s ease-out both;
-}
-/* Nová fotka přejede přes předchozí zprava doleva. */
+/* Hero: nová fotka přejede přes předchozí zprava doleva, pod ní běží průběh snímku. */
 @keyframes hero-wipe {
   from { clip-path: inset(0 0 0 100%); }
   to { clip-path: inset(0 0 0 0); }
@@ -101,85 +76,21 @@ body {
   animation-timing-function: linear;
   animation-fill-mode: both;
 }
-@keyframes hero-rise {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: none; }
-}
-.hero-rise {
-  animation: hero-rise 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-zoom,
-  .hero-rise {
-    animation: none;
-  }
-}
 
-/* Časová osa postupu se vykreslí, když sekce vjede do obrazu. */
-.js .reveal .draw-line {
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s;
-}
-.js .reveal.is-visible .draw-line {
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .js .reveal .draw-line { transform: none; transition: none; }
-}
-
-
-/* Scroll animace přes CSS scroll-driven timeline. Bez JS; kde prohlížeč timeline nezná
-   (Firefox), nebo je zapnuté omezení pohybu, zůstává vše statické. */
+/* Fotka se při vjetí do obrazu odkryje zdola. Přes CSS scroll-driven timeline, bez JS;
+   kde prohlížeč timeline nezná (Firefox), nebo je zapnuté omezení pohybu, zůstává statická. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* Fotka se při vjetí do obrazu odkryje zdola a zmenší z mírného přiblížení. */
     .sd-reveal {
       animation: sd-reveal-clip linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 90%;
-    }
-    .sd-reveal img {
-      animation: sd-reveal-zoom linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 45%;
-    }
-    /* Jemná paralaxa velkých fotek. Fotka je o kus větší, aby při posunu nebyly vidět okraje. */
-    .sd-parallax img {
-      animation: sd-parallax linear both;
-      animation-timeline: view();
-      animation-range: cover;
-    }
-    /* Hero při odjezdu: text vybledne a odjede, fotka se přiblíží. */
-    .sd-hero-exit {
-      animation: sd-hero-exit linear both;
-      animation-timeline: view();
-      animation-range: exit 0% exit 100%;
-    }
-    .sd-hero-media {
-      animation: sd-hero-media linear both;
-      animation-timeline: view();
-      animation-range: exit 0% exit 100%;
     }
   }
 }
 @keyframes sd-reveal-clip {
   from { clip-path: inset(18% 0 0 0 round 6px); }
   to { clip-path: inset(0 0 0 0 round 6px); }
-}
-@keyframes sd-reveal-zoom {
-  from { transform: scale(1.12); }
-  to { transform: scale(1); }
-}
-@keyframes sd-parallax {
-  from { transform: translateY(-5%) scale(1.12); }
-  to { transform: translateY(5%) scale(1.12); }
-}
-@keyframes sd-hero-exit {
-  to { opacity: 0.15; transform: translateY(-60px); }
-}
-@keyframes sd-hero-media {
-  to { transform: scale(1.08); }
 }
 
 details > summary {

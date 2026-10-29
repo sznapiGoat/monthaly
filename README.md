@@ -25,14 +25,6 @@ Formulář posílá data na `/api/poptavka`. Bez nastavených proměnných běž
 
 Po úspěšném odeslání se do `window.dataLayer` zapíše událost `generate_lead`, na kterou jde navázat konverze v Google Ads přes GTM.
 
-## Sezónní efekt v hero
-
-Fotky v hero jsou vždy skutečné realizace. Sezóna přidává jen jemnou animaci kreslenou kódem (`src/components/SeasonalEffect.tsx`, logika v `src/lib/season.ts`).
-
-- Výchozí je teď zimní verze (`DEFAULT_SETTING` v `src/lib/season.ts`). Po zimě přepnout na `"auto"`, pak se sezóna řídí datem (prosinec až únor zima). Jaro, léto a podzim zatím efekt nemají, mají připravené místo.
-- Pro screenshoty: `/?sezona=zima` nebo `/?sezona=normal`.
-- Pro celý web: `NEXT_PUBLIC_SEZONA=zima|jaro|leto|podzim|normal`.
-
 ## Spuštění na ostré doméně
 
 | Proměnná | K čemu |
