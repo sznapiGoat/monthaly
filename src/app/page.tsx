@@ -4,7 +4,7 @@ import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { faq, getRealization, halls, realizations, steps } from "@/lib/data";
+import { contacts, faq, getRealization, halls, realizations, steps } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
 // Mozaika: hlavní obory nahoře, vizuálně nejsilnější fotky na konci.
@@ -20,15 +20,17 @@ const offers = [
     photo: { src: "/foto/vyrobni-haly.webp", alt: "Zateplená výrobní hala z tmavých sendvičových panelů" },
     href: "/poptavka",
     cta: "Poptat pořízení",
+    contact: contacts[0],
     primary: true,
   },
   {
     title: "Pronájem",
-    text: "Když halu potřebujete jen na čas, třeba na sezónu nebo na akci. Možnosti pronájmu ověříme podle typu haly a termínu.",
-    points: ["Dočasné zastřešení bez pořízení haly", "Možnosti ověříme podle typu a termínu", "Pronájem: Ing. Romana Chalupková, +420 724 323 672"],
+    text: "Když halu potřebujete jen na čas, třeba na sezónu nebo na akci.",
+    points: ["Dočasné zastřešení bez pořízení haly", "Dostupnost ověříme podle typu haly a termínu"],
     photo: { src: "/foto/party-stany-1.webp", alt: "Bílý párty stan s obloukovými okny na trávníku" },
     href: "/poptavka?zamer=pronajem",
     cta: "Poptat pronájem",
+    contact: contacts[1],
     primary: false,
   },
 ];
@@ -75,7 +77,7 @@ export default function Home() {
           <ul className={`${container} grid text-[14px] sm:grid-cols-3 sm:text-[15px]`}>
             {[
               { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru v místě stavby" },
-              { href: "/jak-pracujeme", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
+              { href: "#otazky", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
               { href: "/realizace", strong: "Realizace v ČR", rest: "i na Slovensku" },
             ].map((t, i) => (
               <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
@@ -132,10 +134,14 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto pt-8">
+                <div className="mt-auto flex flex-col items-start gap-x-6 gap-y-3 pt-8 sm:flex-row sm:items-center">
                   <Link href={o.href} className={o.primary ? btn.dark : btn.ghost}>
                     {o.cta}
                   </Link>
+                  <a href={`tel:${o.contact.phone}`} className="text-[15px] leading-snug text-dim hover:text-brand">
+                    <span className="font-semibold tabular-nums text-ink">{o.contact.phoneLabel}</span>
+                    <span className="block text-[14px]">{o.contact.name}</span>
+                  </a>
                 </div>
               </article>
             ))}
@@ -177,7 +183,7 @@ export default function Home() {
                       {r.place}
                       {r.country === "SK" && <span className="ml-2 text-[14px] font-medium text-dim">SK</span>}
                     </span>
-                    <span className="mt-1 block text-[14px] tabular-nums text-dim">
+                    <span className="mt-1 block text-[15px] tabular-nums text-dim">
                       {r.kind}, {r.area}
                     </span>
                   </span>
@@ -219,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28">
+      <section id="otazky" className="scroll-mt-[72px] py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
           <div className="lg:col-span-5">
             <h2 className={h2}>Ještě než začneme.</h2>
@@ -229,7 +235,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="lg:col-span-7">
-            <Faq items={faq.slice(0, 4)} />
+            <Faq items={[0, 1, 2, 6].map((i) => faq[i])} />
           </div>
         </div>
       </section>

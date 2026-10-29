@@ -45,9 +45,12 @@ body {
   color: var(--color-night);
 }
 
-:focus-visible {
-  outline: 2px solid var(--color-azure);
-  outline-offset: 3px;
+/* V base vrstvě, aby šel u nadpisů s tabIndex={-1} přepsat utilitou outline-none. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-azure);
+    outline-offset: 3px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

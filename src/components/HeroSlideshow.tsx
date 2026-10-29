@@ -72,7 +72,7 @@ export function HeroSlideshow() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/95 via-night/70 to-night/10 max-md:bg-gradient-to-b max-md:from-night/90 max-md:via-night/70 max-md:to-night/45" />
+        <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/85 via-night/55 to-night/5 max-md:bg-gradient-to-b max-md:from-night/85 max-md:via-night/65 max-md:to-night/40" />
         {/* Horní přechod, aby byla průhledná hlavička čitelná i nad světlou oblohou. */}
         <div className="absolute inset-x-0 top-0 z-[3] h-48 bg-gradient-to-b from-night/80 to-transparent" />
       </div>

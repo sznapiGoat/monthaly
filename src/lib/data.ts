@@ -62,8 +62,8 @@ export const halls: Hall[] = [
     tagline: "Sklad navržený podle zboží, techniky a manipulace.",
     lead: "Sklad má usnadňovat každý pracovní den. Společně navrhneme rozměry, vjezdy a opláštění podle toho, co ukládáte a jak s materiálem manipulujete.",
     features: [
-      { title: "Plynulý pohyb", text: "Poloha a rozměry vrat se odvíjejí od vaší manipulační techniky a provozu." },
-      { title: "Vhodné prostředí", text: "Plachta, plech nebo zateplené opláštění podle požadavků skladovaného zboží." },
+      { title: "Vrata podle manipulační techniky", text: "Poloha a rozměry vrat se odvíjejí od vaší manipulační techniky a provozu." },
+      { title: "Opláštění podle zboží", text: "Plachta, plech nebo zateplené opláštění podle požadavků skladovaného zboží." },
       { title: "Možnost rozšíření", text: "Při návrhu můžeme počítat s budoucím prodloužením modulové konstrukce." },
     ],
     uses: ["Skladování zboží a materiálu", "Logistika a expedice", "Kryté parkování techniky"],
@@ -87,7 +87,7 @@ export const halls: Hall[] = [
     lead: "Pro trénink, zápasy i volný čas. Sportovní halu připravíme kolem konkrétního sportu, potřebné světlé výšky a podmínek celoročního nebo sezónního provozu.",
     features: [
       { title: "Volná hrací plocha", text: "Dispozice bez vnitřních podpěr podle zvoleného konstrukčního systému." },
-      { title: "Světlo a vzduch", text: "Řešení prosvětlení, větrání a případného otevírání bočních stěn." },
+      { title: "Prosvětlení a větrání", text: "Řešení prosvětlení, větrání a případného otevírání bočních stěn." },
       { title: "Zázemí podle provozu", text: "Návrh vstupů, vytápění a návaznosti na stávající sportovní areál." },
     ],
     uses: ["Tenis a padel", "Volejbal a beachvolejbal", "Víceúčelová sportoviště"],
@@ -112,7 +112,7 @@ export const halls: Hall[] = [
     features: [
       { title: "Přehledná plocha", text: "Volný prostor s konstrukcí navrženou pro konkrétní jízdárnu." },
       { title: "Přirozené světlo", text: "Světlopropustné opláštění může omezit potřebu denního svícení." },
-      { title: "Příjemné větrání", text: "Možnost otevřených nebo částečně otevíratelných bočních stěn." },
+      { title: "Otevíratelné boční stěny", text: "Možnost otevřených nebo částečně otevíratelných bočních stěn." },
     ],
     uses: ["Kryté jízdárny", "Tréninkové areály", "Zastřešení jízdních ploch"],
     prompt: {
@@ -134,8 +134,8 @@ export const halls: Hall[] = [
     tagline: "Hangár s vraty podle rozpětí křídel a výšky letadla.",
     lead: "U hangáru rozhoduje každý průjezd a každý metr. Konstrukci a vrata navrhneme podle rozpětí křídel, výšky letadla a způsobu manipulace na ploše.",
     features: [
-      { title: "Velkorysý vjezd", text: "Typ vrat a jejich světlé rozměry podle konkrétní letecké techniky." },
-      { title: "Promyšlená dispozice", text: "Prostor pro parkování, pohyb techniky i přístup obsluhy." },
+      { title: "Vrata podle letecké techniky", text: "Typ vrat a jejich světlé rozměry podle konkrétní letecké techniky." },
+      { title: "Parkování a pohyb techniky", text: "Prostor pro parkování, pohyb techniky i přístup obsluhy." },
       { title: "Vstupy a vybavení", text: "Personální vstupy, osvětlení, větrání a další prvky podle provozu." },
     ],
     uses: ["Soukromá letadla a ultralighty", "Aerokluby", "Servisní a skladovací zázemí"],
@@ -158,9 +158,9 @@ export const halls: Hall[] = [
     tagline: "Hala navržená podle výrobního toku a technologií.",
     lead: "Výrobní hala má navazovat na váš provoz. Při návrhu vycházíme z rozmístění technologií, pohybu materiálu a požadavků na pracovní prostředí.",
     features: [
-      { title: "Provoz na prvním místě", text: "Rozměry, vjezdy a vstupy s ohledem na výrobní tok." },
+      { title: "Vjezdy podle výrobního toku", text: "Rozměry, vjezdy a vstupy s ohledem na výrobní tok." },
       { title: "Opláštění podle potřeb", text: "Možnosti zateplení, prosvětlení a větrání podle charakteru výroby." },
-      { title: "Prostor pro vybavení", text: "Koordinace stavební části s osvětlením, vytápěním a dalšími profesemi." },
+      { title: "Koordinace s dalšími profesemi", text: "Koordinace stavební části s osvětlením, vytápěním a dalšími profesemi." },
     ],
     uses: ["Montáž a kompletace", "Výrobní provozy", "Dílny a technické zázemí"],
     prompt: {
@@ -184,7 +184,7 @@ export const halls: Hall[] = [
     features: [
       { title: "Průjezd pro techniku", text: "Rozměry vrat a výška haly podle používaných strojů." },
       { title: "Větrání podle využití", text: "Opláštění a otevřené části přizpůsobené ukládanému materiálu." },
-      { title: "Praktická konstrukce", text: "Návrh konstrukce, kotvení a podkladu pro konkrétní místo." },
+      { title: "Kotvení a podklad", text: "Návrh konstrukce, kotvení a podkladu pro konkrétní místo." },
     ],
     uses: ["Garážování zemědělské techniky", "Skladování plodin a materiálu", "Zastřešené hospodářské prostory"],
     prompt: {
@@ -206,9 +206,9 @@ export const halls: Hall[] = [
     tagline: "Stany pro svatby, firemní a společenské akce.",
     lead: "Profesionální zastřešení pro společenské akce i dlouhodobé využití. Velikost a vybavení sladíme s počtem hostů, programem a charakterem místa.",
     features: [
-      { title: "Přizpůsobitelný prostor", text: "Modulové rozměry a varianty bočních stěn." },
-      { title: "Atmosféra i praktičnost", text: "Možnosti transparentních částí, podlahy a osvětlení." },
-      { title: "Vybavení podle sezóny", text: "Řešení vstupů, větrání a případného vytápění." },
+      { title: "Velikost podle akce", text: "Modulové rozměry a varianty bočních stěn." },
+      { title: "Okna, podlaha a osvětlení", text: "Možnosti transparentních částí, podlahy a osvětlení." },
+      { title: "Vstupy, větrání a vytápění", text: "Řešení vstupů, větrání a případného vytápění." },
     ],
     uses: ["Hotely a gastronomické provozy", "Obecní a firemní akce", "Společenské a kulturní události"],
     prompt: {
@@ -232,7 +232,7 @@ export const halls: Hall[] = [
     features: [
       { title: "Tvar podle místa", text: "Individuální řešení návaznosti na okolní objekty." },
       { title: "Světlo pod střechou", text: "Výběr materiálu podle požadovaného prosvětlení a využití." },
-      { title: "Celek i detaily", text: "Společný návrh nosné konstrukce, napnutí a odvodu vody." },
+      { title: "Konstrukce, napnutí a odvod vody", text: "Společný návrh nosné konstrukce, napnutí a odvodu vody." },
     ],
     uses: ["Terasy a veřejná prostranství", "Amfiteátry a kulturní areály", "Odpočinkové a sportovní plochy"],
     prompt: {

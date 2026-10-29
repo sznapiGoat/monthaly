@@ -49,13 +49,12 @@ export function QuoteForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [demo, setDemo] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
-  const firstRender = useRef(true);
+  // Fokus na nadpis jen při změně kroku, ne při načtení. Porovnání místo příznaku vydrží i dvojí běh efektu ve Strict Mode.
+  const shown = useRef({ step, status });
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
+    if (shown.current.step === step && shown.current.status === status) return;
+    shown.current = { step, status };
     const el = heading.current;
     if (!el) return;
     el.focus({ preventScroll: true });

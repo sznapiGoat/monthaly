@@ -3,7 +3,7 @@ import Link from "next/link";
 import { company, halls } from "@/lib/data";
 import { container } from "@/lib/ui";
 
-const heading = "text-[13px] font-semibold uppercase tracking-[0.12em] text-white";
+const heading = "text-[16px] font-semibold text-white";
 
 export function Footer() {
   return (
@@ -72,7 +72,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-line-dark">
-        <div className={`${container} flex flex-col gap-3 py-6 text-[13px] text-white/50 sm:flex-row sm:items-center sm:justify-between`}>
+        <div className={`${container} flex flex-col gap-3 py-6 text-[14px] text-white/60 sm:flex-row sm:items-center sm:justify-between`}>
           <p>
             © {new Date().getFullYear()} {company.name}
           </p>

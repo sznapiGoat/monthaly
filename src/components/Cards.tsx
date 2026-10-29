@@ -22,7 +22,7 @@ export function RealizationCard({ item, sizes, eager }: { item: Realization; siz
         </h3>
         {item.area && <span className="shrink-0 text-[14px] font-semibold tabular-nums text-ink">{item.area}</span>}
       </div>
-      <p className="mt-1 text-[14px] text-dim">
+      <p className="mt-1 text-[15px] text-dim">
         {item.kind}
         {item.dimensions ? ` · ${item.dimensions}` : item.notes[0] ? ` · ${item.notes[0]}` : ""}
       </p>
