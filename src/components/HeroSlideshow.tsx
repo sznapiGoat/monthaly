@@ -112,7 +112,7 @@ export function HeroSlideshow() {
                 <span className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 overflow-hidden rounded-full bg-white/25 group-hover:bg-white/45">
                   <span
                     key={`${index}-${userPaused}-${visible}`}
-                    className={`absolute inset-y-0 left-0 bg-azure ${i < index ? "w-full" : i === index ? (reduced ? "w-full" : "hero-progress") : "w-0"}`}
+                    className={`absolute inset-0 origin-left bg-azure ${i < index ? "" : i === index ? (reduced ? "" : "hero-progress") : "scale-x-0"}`}
                     style={i === index && !reduced ? { animationDuration: `${SLIDE_MS}ms`, animationPlayState: running ? "running" : "paused" } : undefined}
                   />
                 </span>

@@ -72,9 +72,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-wipe { animation: none; }
 }
+/* Průběh přes transform, ne width: běží na kompozitoru a nepřepočítává layout v každém snímku. */
 @keyframes hero-progress {
-  from { width: 0; }
-  to { width: 100%; }
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 .hero-progress {
   animation-name: hero-progress;
