@@ -46,7 +46,7 @@ export default async function HallPage({ params }: PageProps<"/haly/[slug]">) {
         <div className={`${container} grid gap-10 pb-14 pt-10 md:pb-20 lg:grid-cols-12 lg:items-center lg:gap-14 lg:pt-14`}>
           <div className="lg:col-span-5">
             <h1 className="font-display text-[40px] leading-[1.04] text-ink sm:text-[50px] lg:text-[54px]">{hall.name}</h1>
-            <p className="mt-3 font-display text-[22px] font-medium leading-snug text-ink sm:text-[26px]">{hall.tagline}</p>
+            <p className="mt-3 font-display text-[22px] leading-snug text-ink sm:text-[26px]">{hall.tagline}</p>
             <p className="mt-6 text-[18px] leading-relaxed text-dim">{hall.lead}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href={`/poptavka?typ=${hall.slug}`} className={btn.dark}>

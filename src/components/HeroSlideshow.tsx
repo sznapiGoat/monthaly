@@ -23,6 +23,22 @@ export function HeroSlideshow() {
   const root = useRef<HTMLDivElement>(null);
 
   const running = !userPaused && !reduced && visible;
+  // Další fotka se začne stahovat až po načtení stránky, aby nebrzdila první vykreslení.
+  const [preloadNext, setPreloadNext] = useState(false);
+  useEffect(() => {
+    const start = () => setTimeout(() => setPreloadNext(true), 1500);
+    if (document.readyState === "complete") {
+      const t = start();
+      return () => clearTimeout(t);
+    }
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const onLoad = () => (t = start());
+    window.addEventListener("load", onLoad, { once: true });
+    return () => {
+      window.removeEventListener("load", onLoad);
+      clearTimeout(t);
+    };
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -53,8 +69,8 @@ export function HeroSlideshow() {
     <>
       <div ref={root} className="absolute inset-0 -z-10">
         {slides.map((sl, i) => {
-          // Ve stránce je jen aktuální, předchozí a další fotka, ostatní se nestahují hned při načtení.
-          if (i !== index && i !== prev && i !== (index + 1) % slides.length) return null;
+          // Ve stránce je jen aktuální, předchozí a (po načtení stránky) další fotka.
+          if (i !== index && i !== prev && !(preloadNext && i === (index + 1) % slides.length)) return null;
           return (
             <div
               key={i === index ? `${sl.src}-${index}-${prev}` : sl.src}

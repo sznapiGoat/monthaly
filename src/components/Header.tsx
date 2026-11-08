@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { company } from "@/lib/data";
+import { company } from "@/lib/company";
 import { btn, container } from "@/lib/ui";
 
 const nav = [

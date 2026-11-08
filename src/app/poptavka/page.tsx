@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { QuoteForm } from "@/components/QuoteForm";
+import { halls } from "@/lib/data";
 import { container } from "@/lib/ui";
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function PoptavkaPage() {
       <section className="py-14 md:py-20">
         <div className={container}>
           <Suspense fallback={<div className="min-h-[600px]" />}>
-            <QuoteForm />
+            <QuoteForm halls={halls.map(({ slug, name }) => ({ slug, name }))} />
           </Suspense>
         </div>
       </section>

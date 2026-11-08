@@ -51,11 +51,11 @@ export default function Home() {
         <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>
           <div className="max-w-[980px]">
             <h1 className="font-display">
-              <span className="block text-[44px] font-bold leading-[1.04] sm:text-[60px] lg:text-[70px]">
+              <span className="block text-[44px] leading-[1.04] sm:text-[60px] lg:text-[70px]">
                 Montované haly <br className="max-[379px]:hidden lg:hidden" />
                 <span className="whitespace-nowrap">na míru.</span>
               </span>
-              <span className="mt-2 block text-[28px] font-medium leading-[1.1] text-white/75 sm:text-[38px] lg:text-[44px]">
+              <span className="mt-2 block text-[28px] leading-[1.1] text-white/75 sm:text-[38px] lg:text-[44px]">
                 Od návrhu po montáž.
               </span>
             </h1>

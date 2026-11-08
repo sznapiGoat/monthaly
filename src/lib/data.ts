@@ -7,20 +7,8 @@ const p = (file: string, alt: string, w = 1600, h = 900): Photo => ({
   h,
 });
 
-export const company = {
-  name: "MontHaly s.r.o.",
-  street: "Pavlovská 21",
-  city: "623 00 Brno",
-  country: "Česká republika",
-  ico: "24015903",
-  dic: "CZ24015903",
-  register: "Krajský soud v Brně, oddíl C, vložka 148626",
-  dataBox: "7uc4fw3",
-  phone: "+420727882623",
-  phoneLabel: "727 882 623",
-  phoneIntl: "+420 727 882 623",
-  email: "info@mont-haly.cz",
-};
+// Kontakty jsou zvlášť, aby klientské komponenty nestahovaly celý obsah webu.
+export { company } from "./company";
 
 export const contacts = [
   { name: "Roman Chalupka", role: "Prodej hal", phone: "+420727882623", phoneLabel: "+420 727 882 623", lead: true },

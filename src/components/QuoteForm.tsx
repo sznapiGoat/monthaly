@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { company, getHall, halls } from "@/lib/data";
+import { company } from "@/lib/company";
 import {
   area,
   claddingOptions,
@@ -33,7 +33,9 @@ const input =
 
 const label = "block text-[15px] font-semibold text-ink";
 
-export function QuoteForm() {
+// Jen názvy hal ze serveru, celý obsah webu do prohlížeče nepatří.
+export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }) {
+  const getHall = (slug: string) => halls.find((h) => h.slug === slug);
   const params = useSearchParams();
   const [q, setQ] = useState<QuoteInput>(() => {
     const typ = params.get("typ");
