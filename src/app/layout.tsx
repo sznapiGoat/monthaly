@@ -9,8 +9,8 @@ import "./globals.css";
 
 // Nadpisy: patkový řez podle konceptu klienta. Cormorant z konceptu má v češtině vadné háčky (ž, ě), EB Garamond je kreslí správně.
 const display = EB_Garamond({
+  // Variabilní řez: jeden soubor na sadu znaků místo tří, nadpis (LCP) se vykreslí dřív.
   subsets: ["latin", "latin-ext"],
-  weight: ["500", "600", "700"],
   variable: "--font-display-face",
   display: "swap",
 });
@@ -19,6 +19,8 @@ const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
   variable: "--font-manrope",
   display: "swap",
+  // Text těla se vykreslí náhradním písmem s upravenými metrikami, stahování nesmí brzdit písmo nadpisu.
+  preload: false,
 });
 
 export const metadata: Metadata = {
