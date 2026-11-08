@@ -49,6 +49,9 @@ export function Footer() {
               <Link href="/jak-pracujeme" className="hover:text-white">Jak pracujeme</Link>
             </li>
             <li>
+              <Link href="/cena-montovane-haly" className="hover:text-white">Co ovlivňuje cenu</Link>
+            </li>
+            <li>
               <Link href="/kontakt" className="hover:text-white">Kontakt</Link>
             </li>
             <li>
