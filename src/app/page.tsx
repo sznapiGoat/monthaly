@@ -77,7 +77,7 @@ export default function Home() {
           <ul className={`${container} grid text-[14px] sm:grid-cols-3 sm:text-[15px]`}>
             {[
               { href: "/jak-pracujeme", strong: "Hala na klíč", rest: "v termínech již od 4 týdnů" },
-              { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru v místě stavby" },
+              { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru" },
               { href: "#otazky", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
             ].map((t, i) => (
               <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
