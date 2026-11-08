@@ -47,7 +47,7 @@ export default function OchranaPage() {
         <div className={`${container} max-w-3xl`}>
           {sections.map((s) => (
             <div key={s.h} id={s.h === "Cookies" ? "cookies" : undefined} className="scroll-mt-28 border-b border-line py-8 first:pt-0">
-              <h2 className="font-display text-[26px] leading-tight text-ink">{s.h}</h2>
+              <h2 className="font-display text-[29px] leading-[1.12] text-ink">{s.h}</h2>
               <p className="mt-3 text-[17px] leading-relaxed text-dim">{s.p}</p>
             </div>
           ))}

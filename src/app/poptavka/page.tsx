@@ -19,7 +19,7 @@ export default function PoptavkaPage() {
         <div className={`${container} pb-12 pt-8 md:pb-16`}>
           <Breadcrumbs items={[{ label: "Nezávazná poptávka" }]} />
           <div className="mt-10 md:mt-14">
-            <h1 className="font-display text-[40px] leading-[1.04] text-ink sm:text-[54px] lg:text-[60px]">
+            <h1 className="font-display text-[45px] leading-[0.93] text-ink sm:text-[60px] lg:text-[67px]">
               Jakou halu máte v plánu?
             </h1>
             <p className="mt-5 max-w-[60ch] text-[18px] leading-relaxed text-dim">

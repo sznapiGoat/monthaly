@@ -31,7 +31,7 @@ export default function HalyPage() {
       <section className="border-t border-line py-20 md:py-28">
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
           <div className="lg:col-span-5">
-            <h2 className="font-display text-[38px] leading-[1.02] text-ink sm:text-[44px]">
+            <h2 className="font-display text-[42px] leading-[0.92] text-ink sm:text-[49px]">
               Ještě nevíte, která je ta pravá?
             </h2>
             <p className="mt-6 max-w-sm text-[17px] leading-relaxed text-dim">

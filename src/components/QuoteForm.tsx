@@ -114,7 +114,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
   if (status === "done") {
     return (
       <div className="border-t-[3px] border-azure pt-10" role="status">
-        <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[38px] leading-[1.02] text-ink outline-none sm:text-[46px]">
+        <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[42px] leading-[0.92] text-ink outline-none sm:text-[51px]">
           Děkujeme, poptávka je u nás.
         </h2>
         <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-dim">
@@ -162,7 +162,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
           {step === 0 && (
             <fieldset>
               <legend className="contents">
-                <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[30px] leading-tight text-ink outline-none sm:text-[38px]">
+                <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[33px] leading-[1.12] text-ink outline-none sm:text-[42px]">
                   K čemu má hala sloužit?
                 </h2>
               </legend>
@@ -191,7 +191,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
 
           {step === 1 && (
             <div>
-              <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[30px] leading-tight text-ink outline-none sm:text-[38px]">
+              <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[33px] leading-[1.12] text-ink outline-none sm:text-[42px]">
                 Jak má váš prostor vypadat?
               </h2>
               <p className="mt-3 text-[16px] text-dim">Vyplňte, co už víte. Všechna pole v tomto kroku jsou volitelná.</p>
@@ -275,7 +275,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
 
           {step === 2 && (
             <div>
-              <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[30px] leading-tight text-ink outline-none sm:text-[38px]">
+              <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[33px] leading-[1.12] text-ink outline-none sm:text-[42px]">
                 Jak se vám můžeme ozvat?
               </h2>
               <p className="mt-3 text-[16px] text-dim">Vyplňte jméno a alespoň jeden kontakt: e-mail nebo telefon.</p>
@@ -400,7 +400,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
 
       <aside className="lg:col-span-4" aria-label="Shrnutí poptávky">
         <div className="lg:sticky lg:top-24">
-          <h2 className="font-display text-[26px] leading-tight text-ink">Vaše hala</h2>
+          <h2 className="font-display text-[29px] leading-[1.12] text-ink">Vaše hala</h2>
           <dl className="mt-5 border-t border-ink text-[15px]">
             <div className="border-b border-line py-3.5">
               <dt className="text-[13px] text-dim">Využití</dt>
@@ -424,7 +424,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
           </dl>
           {plocha ? (
             <>
-              <p className="mt-6 font-display text-[44px] leading-none tabular-nums text-brand">
+              <p className="mt-6 font-display text-[49px] leading-[0.9] tabular-nums text-brand">
                 {plocha.toLocaleString("cs-CZ")} <span className="text-[24px]">m²</span>
               </p>
               <p className="mt-2 text-[13px] text-dim">Orientační půdorysná plocha</p>
@@ -435,7 +435,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
 
           <div className="mt-10 border-t border-line pt-6">
             <p className="text-[14px] text-dim">Raději zavoláte?</p>
-            <a href={`tel:${company.phone}`} className="mt-1 block font-display text-[26px] leading-tight tabular-nums text-ink hover:text-brand">
+            <a href={`tel:${company.phone}`} className="mt-1 block font-display text-[29px] leading-[1.12] tabular-nums text-ink hover:text-brand">
               {company.phoneIntl}
             </a>
             <p className="text-[14px] text-dim">Roman Chalupka, prodej hal</p>

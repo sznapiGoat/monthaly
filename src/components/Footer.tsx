@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Img } from "@/components/Img";
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieConsent";
 import { company, halls } from "@/lib/data";
@@ -12,7 +12,7 @@ export function Footer() {
       <div className={`${container} grid gap-12 py-16 md:grid-cols-12 md:py-20`}>
         <div className="md:col-span-4">
           <Link href="/" aria-label="MontHaly, úvodní stránka" className="inline-block">
-            <Image src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
+            <Img src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
           </Link>
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">
             Montované haly od prvního návrhu po montáž. Prodej, pronájem a projektování.
@@ -61,7 +61,7 @@ export function Footer() {
           <h2 className={heading}>Jsme vám k dispozici</h2>
           <a
             href={`tel:${company.phone}`}
-            className="mt-5 block font-display text-[26px] leading-none tabular-nums text-white hover:text-azure-soft"
+            className="mt-5 block font-display text-[29px] leading-[0.9] tabular-nums text-white hover:text-azure-soft"
           >
             {company.phoneIntl}
           </a>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Img } from "@/components/Img";
 import Link from "next/link";
 import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
@@ -38,7 +38,7 @@ const offers = [
 const featured = ["skladova-hala-lhotka-nad-becvou", "sportovni-hala-brno", "skladove-haly-mosnov"].map((s) => getRealization(s)!);
 const rest = realizations.filter((r) => !featured.includes(r));
 
-const h2 = "font-display text-[36px] leading-[1.06] text-ink sm:text-[46px]";
+const h2 = "font-display text-[40px] leading-[0.95] text-ink sm:text-[51px]";
 const lead = "mt-5 max-w-[60ch] text-[17px] leading-relaxed text-dim";
 
 export default function Home() {
@@ -51,11 +51,11 @@ export default function Home() {
         <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>
           <div className="max-w-[980px]">
             <h1 className="font-display">
-              <span className="block text-[44px] leading-[1.04] sm:text-[60px] lg:text-[70px]">
+              <span className="block text-[49px] leading-[0.93] sm:text-[67px] lg:text-[78px]">
                 Montované haly <br className="max-[379px]:hidden lg:hidden" />
                 <span className="whitespace-nowrap">na míru.</span>
               </span>
-              <span className="mt-2 block text-[28px] leading-[1.1] text-white/75 sm:text-[38px] lg:text-[44px]">
+              <span className="mt-2 block text-[31px] leading-[0.99] text-white/75 sm:text-[42px] lg:text-[49px]">
                 Od návrhu po montáž.
               </span>
             </h1>
@@ -123,9 +123,9 @@ export default function Home() {
             {offers.map((o) => (
               <article key={o.title} className="flex flex-col">
                 <div className="sd-reveal relative aspect-[16/10] overflow-clip rounded-md bg-line">
-                  <Image src={o.photo.src} alt={o.photo.alt} fill sizes="(min-width: 768px) 600px, 100vw" className="object-cover" />
+                  <Img src={o.photo.src} alt={o.photo.alt} fill sizes="(min-width: 768px) 600px, 100vw" className="object-cover" />
                 </div>
-                <h3 className="mt-7 font-display text-[28px] leading-tight text-ink sm:text-[32px]">{o.title}</h3>
+                <h3 className="mt-7 font-display text-[31px] leading-[1.12] text-ink sm:text-[36px]">{o.title}</h3>
                 <p className="mt-3 max-w-[52ch] text-[17px] leading-relaxed text-dim">{o.text}</p>
                 <ul className="mt-6 border-t border-line text-[16px] text-ink">
                   {o.points.map((pt) => (
@@ -175,11 +175,11 @@ export default function Home() {
               <li key={r.slug}>
                 <Link href={`/realizace/${r.slug}`} className="group flex items-center gap-5">
                   <span className="relative aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-md bg-mist">
-                    <Image src={r.photos[0].src} alt="" fill sizes="112px" className="object-cover" />
+                    <Img src={r.photos[0].src} alt="" fill sizes="112px" className="object-cover" />
                     <span className="pointer-events-none absolute inset-0 rounded-md ring-0 ring-inset ring-azure transition-[box-shadow] group-hover:ring-4" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-display text-[21px] leading-tight text-ink transition-colors group-hover:text-brand">
+                    <span className="block font-display text-[23px] leading-[1.12] text-ink transition-colors group-hover:text-brand">
                       {r.place}
                       {r.country === "SK" && <span className="ml-2 text-[14px] font-medium text-dim">SK</span>}
                     </span>
@@ -202,13 +202,13 @@ export default function Home() {
       {/* Zákazníci */}
       <section aria-labelledby="zakaznici" className="border-t border-line py-16 md:py-20">
         <div className={container}>
-          <h2 id="zakaznici" className="font-display text-[28px] leading-tight text-ink sm:text-[34px]">
+          <h2 id="zakaznici" className="font-display text-[31px] leading-[1.12] text-ink sm:text-[38px]">
             Haly stavíme pro firmy i instituce.
           </h2>
           <ul className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-4 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-8">
             {clients.map((c) => (
               <li key={c.name} className="flex justify-center">
-                <Image src={c.logo} alt={c.name} width={200} height={133} className="h-auto w-[120px] opacity-80 sm:w-[150px]" />
+                <Img src={c.logo} alt={c.name} width={200} height={133} className="h-auto w-[120px] opacity-80 sm:w-[150px]" />
               </li>
             ))}
           </ul>

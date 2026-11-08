@@ -16,7 +16,7 @@ export function CtaBand({
   return (
     <section className="bg-deep text-white">
       <div className={`${container} grid gap-10 py-20 md:grid-cols-12 md:items-end md:py-24`}>
-        <h2 className="font-display text-[38px] leading-[1.02] sm:text-[50px] md:col-span-7 lg:text-[60px]">{title}</h2>
+        <h2 className="font-display text-[42px] leading-[0.92] sm:text-[56px] md:col-span-7 lg:text-[67px]">{title}</h2>
         <div className="md:col-span-5 md:pb-2">
           <p className="max-w-md text-[17px] leading-relaxed text-white/75">{text}</p>
           <div className="mt-8 flex flex-col items-start gap-2">
