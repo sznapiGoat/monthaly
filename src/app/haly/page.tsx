@@ -9,7 +9,7 @@ import { container } from "@/lib/ui";
 export const metadata: Metadata = {
   title: "Montované haly: sklady, výroba, sport, zemědělství",
   description:
-    "Osm typů montovaných hal od skladových a výrobních po jízdárny, hangáry, párty stany a membránová zastřešení. Návrh na míru podle využití a místa stavby.",
+    "Osm typů montovaných hal od skladových a výrobních po jízdárny, hangáry, párty stany a membránová zastřešení. Návrh na míru podle využití a místa stavby.",
   alternates: { canonical: "/haly" },
 };
 
@@ -19,7 +19,7 @@ export default function HalyPage() {
       <PageIntro
         crumbs={[{ label: "Naše haly" }]}
         title="Jaký prostor potřebujete?"
-        lead="Vyberte podle využití. Konkrétní konstrukci, opláštění a vybavení přizpůsobíme vašemu záměru a místu stavby."
+        lead="Vyberte podle využití. Konkrétní konstrukci, opláštění a vybavení přizpůsobíme vašemu záměru a místu stavby."
       />
 
       <section className="py-14 md:py-20">

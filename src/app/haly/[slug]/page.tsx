@@ -103,7 +103,7 @@ export default async function HallPage({ params }: PageProps<"/haly/[slug]">) {
           <div className="mt-10">
             <Gallery photos={more} layout="two" />
           </div>
-          <p className="mt-4 text-[13px] text-dim">Fotografie z nabídky MontHaly. Konkrétní provedení se řídí návrhem a nabídkou.</p>
+          <p className="mt-4 text-[13px] text-dim">Fotografie z nabídky MontHaly. Konkrétní provedení se řídí návrhem a nabídkou.</p>
         </div>
       </section>
 

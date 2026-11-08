@@ -18,7 +18,7 @@ export default function KontaktPage() {
     <>
       <PageIntro
         crumbs={[{ label: "Kontakt" }]}
-        title="Promluvme si o vaší hale."
+        title="Promluvme si o vaší hale."
         lead="Ozvěte se přímo. Pro první rozhovor nepotřebujete hotový projekt."
       />
 
@@ -40,7 +40,7 @@ export default function KontaktPage() {
           </div>
 
           <table className="mt-20 w-full text-left text-[16px]">
-            <caption className="mb-4 text-left font-display text-[26px] text-ink">Projekce a kancelář</caption>
+            <caption className="mb-4 text-left font-display text-[26px] text-ink">Projekce a kancelář</caption>
             <tbody className="border-t border-ink">
               {team.map((c) => (
                 <tr key={c.name} className="border-b border-line">

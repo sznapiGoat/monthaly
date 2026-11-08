@@ -71,7 +71,7 @@ export function CookieConsent() {
     <div
       role="region"
       aria-label="Souhlas s cookies"
-      className="fixed inset-x-3 bottom-3 z-50 rounded-md border border-line bg-white p-5 text-ink shadow-[0_8px_30px_rgb(7_26_48/0.18)] sm:inset-x-auto sm:left-5 sm:bottom-5 sm:max-w-[420px]"
+      className="fixed inset-x-3 bottom-3 z-50 rounded-md border border-line bg-white p-5 text-ink shadow-[0_8px_30px_rgb(22_26_45/0.18)] sm:inset-x-auto sm:left-5 sm:bottom-5 sm:max-w-[420px]"
     >
       <p className="text-[15px] leading-relaxed text-dim">
         Nezbytné cookies potřebuje web ke svému fungování. Analytické a reklamní použijeme jen s vaším souhlasem.{" "}

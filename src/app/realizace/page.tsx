@@ -13,7 +13,7 @@ const fmt = (n: number) => n.toLocaleString("cs-CZ");
 export const metadata: Metadata = {
   title: "Realizace montovaných hal",
   description:
-    "Skladové, sportovní i víceúčelové montované haly, které už stojí. Rozměry, plocha a fotografie ze stavby i hotových hal.",
+    "Skladové, sportovní i víceúčelové montované haly, které už stojí. Rozměry, plocha a fotografie ze stavby i hotových hal.",
   alternates: { canonical: "/realizace" },
 };
 
@@ -32,7 +32,7 @@ export default function RealizacePage() {
       </section>
       <CtaBand
         title="Podobný prostor pro vás?"
-        text="Napište, která realizace se vám líbí a co potřebujete vy. Navrhneme řešení pro vaše místo a provoz."
+        text="Napište, která realizace se vám líbí a co potřebujete vy. Navrhneme řešení pro vaše místo a provoz."
       />
     </>
   );

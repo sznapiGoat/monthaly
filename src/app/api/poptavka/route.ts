@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, errors }, { status: 422 });
   }
 
-  const typLabel = getHall(q.typ)?.name ?? "Potřebuje poradit s výběrem";
+  const typLabel = getHall(q.typ)?.name ?? "Potřebuje poradit s výběrem";
   const plocha = area(q.sirka, q.delka);
   const rows: [string, string][] = [
     ["Typ haly", typLabel],
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
     return Response.json({ ok: true, demo: true });
   }
 
-  const html = `<h2 style="font-family:sans-serif">Nová poptávka z webu</h2><table style="font-family:sans-serif;border-collapse:collapse">${rows
+  const html = `<h2 style="font-family:sans-serif">Nová poptávka z webu</h2><table style="font-family:sans-serif;border-collapse:collapse">${rows
     .map(
       ([k, v]) =>
         `<tr><td style="padding:6px 16px 6px 0;color:#4f5f6f;vertical-align:top">${escape(k)}</td><td style="padding:6px 0;white-space:pre-wrap">${escape(v)}</td></tr>`,

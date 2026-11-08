@@ -50,7 +50,7 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function validateContact(q: Pick<QuoteInput, "jmeno" | "email" | "telefon">) {
   const errors: Partial<Record<"jmeno" | "kontakt" | "email", string>> = {};
-  if (q.jmeno.trim().length < 2) errors.jmeno = "Vyplňte prosím jméno a příjmení.";
+  if (q.jmeno.trim().length < 2) errors.jmeno = "Vyplňte prosím jméno a příjmení.";
   if (!q.email.trim() && !q.telefon.trim()) errors.kontakt = "Vyplňte e-mail nebo telefon, ať se vám můžeme ozvat.";
   if (q.email.trim() && !EMAIL.test(q.email.trim())) errors.email = "E-mail nemá správný tvar.";
   return errors;

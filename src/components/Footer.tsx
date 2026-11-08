@@ -58,7 +58,7 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <h2 className={heading}>Jsme vám k dispozici</h2>
+          <h2 className={heading}>Jsme vám k dispozici</h2>
           <a
             href={`tel:${company.phone}`}
             className="mt-5 block font-display text-[26px] leading-none tabular-nums text-white hover:text-azure-soft"

@@ -9,10 +9,10 @@ import { btn, container, link } from "@/lib/ui";
 
 // Shrnuto z textů MontHaly: co pomůže k první nabídce.
 const needs = [
-  { k: "Účel haly", v: "Co v ní bude a jak se bude prostor používat. Podle toho volíme konstrukci a opláštění." },
-  { k: "Přibližná velikost", v: "Orientační rozměry, nebo jen co se má dovnitř vejít. S přesnými rozměry pomůžeme." },
-  { k: "Obec, kde má hala stát", v: "Místo ovlivňuje zatížení sněhem a větrem, kotvení i dopravu." },
-  { k: "Fotky nebo nákres pozemku", v: "Pomohou s přístupem techniky, podkladem a umístěním vjezdů." },
+  { k: "Účel haly", v: "Co v ní bude a jak se bude prostor používat. Podle toho volíme konstrukci a opláštění." },
+  { k: "Přibližná velikost", v: "Orientační rozměry, nebo jen co se má dovnitř vejít. S přesnými rozměry pomůžeme." },
+  { k: "Obec, kde má hala stát", v: "Místo ovlivňuje zatížení sněhem a větrem, kotvení i dopravu." },
+  { k: "Fotky nebo nákres pozemku", v: "Pomohou s přístupem techniky, podkladem a umístěním vjezdů." },
 ];
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function JakPracujemePage() {
             má jasný postup.
           </>
         }
-        lead="Od první představy k hotové hale. V každé fázi společně vyjasníme rozhodnutí, která ovlivní její využití, cenu i přípravu."
+        lead="Od první představy k hotové hale. V každé fázi společně vyjasníme rozhodnutí, která ovlivní její využití, cenu i přípravu."
       />
 
       <section className="py-20 md:py-28">

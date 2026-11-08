@@ -15,9 +15,9 @@ const mosaic = ["skladove-haly", "vyrobni-haly", "sportovni-haly", "zemedelske-h
 const offers = [
   {
     title: "Pořízení haly",
-    text: "Hala zůstane vaše. Navrhneme ji podle provozu a místa stavby, připravíme dokumentaci a postavíme ji.",
-    points: ["Návrh podle provozu a projektová dokumentace", "Dodávka a montáž", "Záruka až 6 let u vybraných řešení"],
-    photo: { src: "/foto/vyrobni-haly.webp", alt: "Zateplená výrobní hala z tmavých sendvičových panelů" },
+    text: "Hala zůstane vaše. Navrhneme ji podle provozu a místa stavby, připravíme dokumentaci a postavíme ji.",
+    points: ["Návrh podle provozu a projektová dokumentace", "Dodávka a montáž", "Záruka až 6 let u vybraných řešení"],
+    photo: { src: "/foto/vyrobni-haly.webp", alt: "Zateplená výrobní hala z tmavých sendvičových panelů" },
     href: "/poptavka",
     cta: "Poptat pořízení",
     contact: contacts[0],
@@ -26,8 +26,8 @@ const offers = [
   {
     title: "Pronájem",
     text: "Když halu potřebujete jen na čas, třeba na sezónu nebo na akci.",
-    points: ["Dočasné zastřešení bez pořízení haly", "Dostupnost ověříme podle typu haly a termínu"],
-    photo: { src: "/foto/party-stany-1.webp", alt: "Bílý párty stan s obloukovými okny na trávníku" },
+    points: ["Dočasné zastřešení bez pořízení haly", "Dostupnost ověříme podle typu haly a termínu"],
+    photo: { src: "/foto/party-stany-1.webp", alt: "Bílý párty stan s obloukovými okny na trávníku" },
     href: "/poptavka?zamer=pronajem",
     cta: "Poptat pronájem",
     contact: contacts[1],
@@ -77,7 +77,7 @@ export default function Home() {
           <ul className={`${container} grid text-[14px] sm:grid-cols-3 sm:text-[15px]`}>
             {[
               { href: "/jak-pracujeme", strong: "Hala na klíč", rest: "v termínech již od 4 týdnů" },
-              { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru" },
+              { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru" },
               { href: "#otazky", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
             ].map((t, i) => (
               <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
@@ -154,7 +154,7 @@ export default function Home() {
         <div className={container}>
           <div>
             <h2 className={h2}>Haly, které už slouží.</h2>
-            <p className={lead}>Konkrétní místa, skutečné projekty. U každé realizace najdete rozměry, plochu a fotografie ze stavby.</p>
+            <p className={lead}>Konkrétní místa, skutečné projekty. U každé realizace najdete rozměry, plochu a fotografie ze stavby.</p>
           </div>
 
           <div className="mt-12 grid gap-x-6 gap-y-12 lg:grid-cols-12">
@@ -205,10 +205,10 @@ export default function Home() {
           <h2 id="zakaznici" className="font-display text-[28px] leading-tight text-ink sm:text-[34px]">
             Haly stavíme pro firmy i instituce.
           </h2>
-          <ul className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-4">
+          <ul className="mt-10 grid grid-cols-2 items-center gap-x-6 gap-y-4 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-8">
             {clients.map((c) => (
               <li key={c.name} className="flex justify-center">
-                <Image src={c.logo} alt={c.name} width={200} height={133} className="h-auto w-[150px] opacity-80" />
+                <Image src={c.logo} alt={c.name} width={200} height={133} className="h-auto w-[120px] opacity-80 sm:w-[150px]" />
               </li>
             ))}
           </ul>
@@ -222,7 +222,7 @@ export default function Home() {
             <h2 className={h2}>
               Jak stavba probíhá
             </h2>
-            <p className={lead}>Od první konzultace k předání haly. V každé fázi společně upřesníme, co bude následovat.</p>
+            <p className={lead}>Od první konzultace k předání haly. V každé fázi společně upřesníme, co bude následovat.</p>
           </div>
           <ol className="mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
             {steps.map((s) => (

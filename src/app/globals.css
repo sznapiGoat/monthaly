@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Barvy podle logo manuálu: navy #0E326B a azurová #1BAFFF. */
-  --color-night: #071a30;
-  --color-deep: #0b2545;
-  --color-brand: #0e326b;
+  /* Barvy podle logomanuálu 2025: tmavě modrá #2B3254 a světle modrá #1BAFFF. Night a deep jsou tmavší odstíny téže modré. */
+  --color-night: #161a2d;
+  --color-deep: #20253f;
+  --color-brand: #2b3254;
   --color-azure: #1bafff;
   --color-azure-soft: #8fd6ff;
   --color-link: #00679a;
@@ -12,7 +12,7 @@
   --color-dim: #4f5f6f;
   --color-mist: #f1f5f8;
   --color-line: #d6dfe7;
-  --color-line-dark: #24405f;
+  --color-line-dark: #343b5c;
 
   --font-display: var(--font-display-face), Georgia, serif;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
@@ -106,5 +106,5 @@ details > summary::-webkit-details-marker {
 }
 
 dialog::backdrop {
-  background: rgb(7 26 48 / 0.92);
+  background: rgb(22 26 45 / 0.92);
 }

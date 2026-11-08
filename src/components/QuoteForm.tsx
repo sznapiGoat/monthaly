@@ -66,7 +66,7 @@ export function QuoteForm() {
   const toggleEquip = (v: string) =>
     set("vybaveni", q.vybaveni.includes(v) ? q.vybaveni.filter((x) => x !== v) : [...q.vybaveni, v]);
 
-  const hallName = getHall(q.typ)?.name ?? "Potřebuji poradit s výběrem";
+  const hallName = getHall(q.typ)?.name ?? "Potřebuji poradit s výběrem";
   const plocha = area(q.sirka, q.delka);
   const dims = [q.sirka && `${q.sirka} m`, q.delka && `${q.delka} m`, q.vyska && `${q.vyska} m`].filter(Boolean).join(" × ");
 
@@ -192,7 +192,7 @@ export function QuoteForm() {
               <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[30px] leading-tight text-ink outline-none sm:text-[38px]">
                 Jak má váš prostor vypadat?
               </h2>
-              <p className="mt-3 text-[16px] text-dim">Vyplňte, co už víte. Všechna pole v tomto kroku jsou volitelná.</p>
+              <p className="mt-3 text-[16px] text-dim">Vyplňte, co už víte. Všechna pole v tomto kroku jsou volitelná.</p>
 
               <fieldset className="mt-8">
                 <legend className={label}>Orientační rozměry</legend>
@@ -233,11 +233,11 @@ export function QuoteForm() {
                   maxLength={160}
                   className={input}
                 />
-                <span className="mt-2 block text-[14px] font-normal text-dim">Místo ovlivňuje sněhovou a větrnou zátěž i přípravu dodávky.</span>
+                <span className="mt-2 block text-[14px] font-normal text-dim">Místo ovlivňuje sněhovou a větrnou zátěž i přípravu dodávky.</span>
               </label>
 
               <fieldset className="mt-8">
-                <legend className={label}>Představa o opláštění</legend>
+                <legend className={label}>Představa o opláštění</legend>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {claddingOptions.map((o) => (
                     <label key={o} className={pill(q.oplasteni === o)}>
@@ -276,7 +276,7 @@ export function QuoteForm() {
               <h2 ref={heading} tabIndex={-1} className="scroll-mt-28 font-display text-[30px] leading-tight text-ink outline-none sm:text-[38px]">
                 Jak se vám můžeme ozvat?
               </h2>
-              <p className="mt-3 text-[16px] text-dim">Vyplňte jméno a alespoň jeden kontakt: e-mail nebo telefon.</p>
+              <p className="mt-3 text-[16px] text-dim">Vyplňte jméno a alespoň jeden kontakt: e-mail nebo telefon.</p>
 
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
                 <label className={label}>
@@ -351,7 +351,7 @@ export function QuoteForm() {
                   value={q.zprava}
                   onChange={(e) => set("zprava", e.target.value)}
                   maxLength={1500}
-                  placeholder="Co budete v hale dělat, co je pro vás důležité nebo jaké máte otázky."
+                  placeholder="Co budete v hale dělat, co je pro vás důležité nebo jaké máte otázky."
                   className={`${input} resize-y`}
                 />
               </label>
@@ -428,7 +428,7 @@ export function QuoteForm() {
               <p className="mt-2 text-[13px] text-dim">Orientační půdorysná plocha</p>
             </>
           ) : (
-            <p className="mt-6 text-[14px] text-dim">Plocha se spočítá po zadání šířky a délky.</p>
+            <p className="mt-6 text-[14px] text-dim">Plocha se spočítá po zadání šířky a délky.</p>
           )}
 
           <div className="mt-10 border-t border-line pt-6">

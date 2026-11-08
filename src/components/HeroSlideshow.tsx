@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const slides = [
-  { src: "/foto/litvinov.webp", alt: "Bílá montovaná skladová hala v Litvínově pod zataženou oblohou", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 60%" },
-  { src: "/foto/lhotka.webp", alt: "Skladová hala s tmavým plechovým opláštěním v Lhotce nad Bečvou při západu slunce", place: "Lhotka nad Bečvou", info: "Skladová hala · 450 m²", href: "/realizace/skladova-hala-lhotka-nad-becvou", focus: "62% 55%" },
-  { src: "/foto/mosnov.webp", alt: "Dvě bílé skladové haly v Mošnově", place: "Mošnov", info: "Dvě skladové haly · 2 × 960 m²", href: "/realizace/skladove-haly-mosnov", focus: "60% 55%" },
-  { src: "/foto/opatovice.webp", alt: "Skladová hala v Opatovicích nad Labem", place: "Opatovice nad Labem", info: "Skladová hala · 800 m²", href: "/realizace/skladova-hala-opatovice", focus: "60% 55%" },
+  { src: "/foto/litvinov.webp", alt: "Bílá montovaná skladová hala v Litvínově pod zataženou oblohou", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 60%" },
+  { src: "/foto/lhotka.webp", alt: "Skladová hala s tmavým plechovým opláštěním v Lhotce nad Bečvou při západu slunce", place: "Lhotka nad Bečvou", info: "Skladová hala · 450 m²", href: "/realizace/skladova-hala-lhotka-nad-becvou", focus: "62% 55%" },
+  { src: "/foto/mosnov.webp", alt: "Dvě bílé skladové haly v Mošnově", place: "Mošnov", info: "Dvě skladové haly · 2 × 960 m²", href: "/realizace/skladove-haly-mosnov", focus: "60% 55%" },
+  { src: "/foto/opatovice.webp", alt: "Skladová hala v Opatovicích nad Labem", place: "Opatovice nad Labem", info: "Skladová hala · 800 m²", href: "/realizace/skladova-hala-opatovice", focus: "60% 55%" },
 ];
 
 const SLIDE_MS = 7000;
@@ -52,26 +52,30 @@ export function HeroSlideshow() {
   return (
     <>
       <div ref={root} className="absolute inset-0 -z-10">
-        {slides.map((sl, i) => (
-          <div
-            key={i === index ? `${sl.src}-${index}-${prev}` : sl.src}
-            aria-hidden={i !== index}
-            className={`absolute inset-0 overflow-hidden ${
-              i === index ? `z-[2] ${prev >= 0 && !reduced ? "hero-wipe" : ""}` : i === prev ? "z-[1]" : "invisible"
-            }`}
-          >
-            <Image
-              src={sl.src}
-              alt={i === index ? sl.alt : ""}
-              fill
-              sizes="100vw"
-              loading="eager"
-              fetchPriority={i === 0 ? "high" : "low"}
-              style={{ objectPosition: sl.focus }}
-              className="object-cover"
-            />
-          </div>
-        ))}
+        {slides.map((sl, i) => {
+          // Ve stránce je jen aktuální, předchozí a další fotka, ostatní se nestahují hned při načtení.
+          if (i !== index && i !== prev && i !== (index + 1) % slides.length) return null;
+          return (
+            <div
+              key={i === index ? `${sl.src}-${index}-${prev}` : sl.src}
+              aria-hidden={i !== index}
+              className={`absolute inset-0 overflow-hidden ${
+                i === index ? `z-[2] ${prev >= 0 && !reduced ? "hero-wipe" : ""}` : i === prev ? "z-[1]" : "invisible"
+              }`}
+            >
+              <Image
+                src={sl.src}
+                alt={i === index ? sl.alt : ""}
+                fill
+                sizes="100vw"
+                loading="eager"
+                fetchPriority={i === index && prev < 0 ? "high" : "low"}
+                style={{ objectPosition: sl.focus }}
+                className="object-cover"
+              />
+            </div>
+          );
+        })}
         <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/80 via-night/45 to-night/0 max-md:bg-gradient-to-b max-md:from-night/80 max-md:via-night/55 max-md:to-night/30" />
         {/* Horní přechod, aby byla průhledná hlavička čitelná i nad světlou oblohou. */}
         <div className="absolute inset-x-0 top-0 z-[3] h-48 bg-gradient-to-b from-night/80 to-transparent" />

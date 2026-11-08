@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | MontHaly",
   },
   description:
-    "Montované haly pro sklady, výrobu, sport i zemědělství. Prodej i pronájem, návrh na míru, dokumentace a montáž. Prohlédněte si skutečné realizace.",
+    "Montované haly pro sklady, výrobu, sport i zemědělství. Prodej i pronájem, návrh na míru, dokumentace a montáž. Prohlédněte si skutečné realizace.",
   applicationName: "MontHaly",
   appleWebApp: { title: "MontHaly" },
   openGraph: {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e326b",
+  themeColor: "#2b3254",
 };
 
 const jsonLd = {
