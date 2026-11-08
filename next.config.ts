@@ -19,8 +19,23 @@ const legacy: [string, string][] = [
   ["/nova-stranka", "/"],
 ];
 
+// Základní bezpečnostní hlavičky. Plná CSP pro skripty zatím ne: kolidovala by s inline skripty Next.js a s GTM.
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+];
+
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
+  poweredByHeader: false,
+  // AVIF je o pětinu až třetinu menší než WebP; prohlížeče bez podpory dostanou WebP.
+  images: { formats: ["image/avif", "image/webp"] },
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
   async redirects() {
     return legacy.map(([source, destination]) => ({ source, destination, permanent: true }));
   },
