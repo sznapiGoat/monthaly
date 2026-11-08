@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Red_Hat_Display } from "next/font/google";
+import { EB_Garamond, Manrope } from "next/font/google";
+import { CookieConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { company } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-// Nadpisy: geometrický řez ladí s logem MontHaly. latin-ext kvůli českým znakům.
-const display = Red_Hat_Display({
+// Nadpisy: patkový řez podle konceptu klienta. Cormorant z konceptu má v češtině vadné háčky (ž, ě), EB Garamond je kreslí správně.
+const display = EB_Garamond({
   subsets: ["latin", "latin-ext"],
   weight: ["500", "600", "700"],
   variable: "--font-display-face",
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main id="obsah">{children}</main>
         <Footer />
+        <CookieConsent />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

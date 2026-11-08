@@ -31,7 +31,7 @@ const sections = [
   },
   {
     h: "Cookies",
-    p: "Tato ukázková verze nepoužívá analytické ani reklamní cookies. Před jejich zapnutím na ostrém webu se zobrazí lišta se souhlasem a tato informace se doplní.",
+    p: "Nezbytné úložiště v prohlížeči používáme jen k zapamatování vaší volby ohledně cookies. Analytické a reklamní nástroje (Google Tag Manager, Google Analytics, Google Ads) se načtou pouze s vaším souhlasem. Volbu můžete kdykoli změnit odkazem Nastavení cookies v patičce webu.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function OchranaPage() {
       <section className="py-16 md:py-24">
         <div className={`${container} max-w-3xl`}>
           {sections.map((s) => (
-            <div key={s.h} className="border-b border-line py-8 first:pt-0">
+            <div key={s.h} id={s.h === "Cookies" ? "cookies" : undefined} className="scroll-mt-28 border-b border-line py-8 first:pt-0">
               <h2 className="font-display text-[26px] leading-tight text-ink">{s.h}</h2>
               <p className="mt-3 text-[17px] leading-relaxed text-dim">{s.p}</p>
             </div>

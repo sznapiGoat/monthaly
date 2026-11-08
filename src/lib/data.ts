@@ -30,6 +30,18 @@ export const contacts = [
   { name: "Ing. Ilona Divišová", role: "Účetní", phone: "+420777876727", phoneLabel: "+420 777 876 727" },
 ];
 
+// Loga ze současného webu mont-haly.cz, šedá na průhledném pozadí.
+export const clients = [
+  { name: "Alza.cz", logo: "/loga/alza.png" },
+  { name: "ČD DPOV", logo: "/loga/cddpov.png" },
+  { name: "Mondi", logo: "/loga/mondi.png" },
+  { name: "Ministerstvo vnitra ČR", logo: "/loga/mv.png" },
+  { name: "Dafe Plast", logo: "/loga/dafeplast.png" },
+  { name: "Huhn Group", logo: "/loga/huhn.png" },
+  { name: "Zahradnictví Líbeznice", logo: "/loga/libeznice.png" },
+  { name: "Rybníkářství Pohořelice", logo: "/loga/pohokapr.png" },
+];
+
 export type HallGroup = "skladovani-vyroba" | "sport" | "zemedelstvi-jezdectvi" | "dalsi";
 
 export const hallGroups: { id: HallGroup; label: string }[] = [
@@ -469,7 +481,7 @@ export const faq = [
   },
   {
     q: "Jak dlouho trvá dodání a montáž?",
-    a: "Termín se odvíjí od typu haly, rozsahu dodávky, připravenosti podkladu a potřebné dokumentace. Dobu přípravy, dodání a vlastní montáže vám rozlišíme v konkrétní nabídce.",
+    a: "Halu na klíč stavíme v termínech již od čtyř týdnů. Přesný termín se odvíjí od typu haly, rozsahu dodávky, připravenosti podkladu a potřebné dokumentace. Dobu přípravy, dodání a vlastní montáže vám rozlišíme v konkrétní nabídce.",
   },
   {
     q: "Musím znát přesné rozměry?",

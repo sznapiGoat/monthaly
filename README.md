@@ -25,6 +25,10 @@ Formulář posílá data na `/api/poptavka`. Bez nastavených proměnných běž
 
 Po úspěšném odeslání se do `window.dataLayer` zapíše událost `generate_lead`, na kterou jde navázat konverze v Google Ads přes GTM.
 
+## Cookies a měření
+
+Lišta se souhlasem je v `src/components/CookieConsent.tsx`. Google Tag Manager se načte jen po kliknutí na „Přijmout vše“ a jen když je nastavené `NEXT_PUBLIC_GTM_ID` (např. `GTM-XXXXXXX`). Volbu jde změnit odkazem „Nastavení cookies“ v patičce.
+
 ## Spuštění na ostré doméně
 
 | Proměnná | K čemu |

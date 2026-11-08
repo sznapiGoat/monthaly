@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 import { company, halls } from "@/lib/data";
 import { container } from "@/lib/ui";
 
@@ -83,6 +84,7 @@ export function Footer() {
             <Link href="/mimosoudni-reseni-spotrebitelskych-sporu" className="hover:text-white">
               Spotřebitelské spory
             </Link>
+            <CookieSettingsButton className="text-left hover:text-white" />
             <span>Ukázková verze webu</span>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { contacts, faq, getRealization, halls, realizations, steps } from "@/lib/data";
+import { clients, contacts, faq, getRealization, halls, realizations, steps } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
 // Mozaika: hlavní obory nahoře, vizuálně nejsilnější fotky na konci.
@@ -76,9 +76,9 @@ export default function Home() {
         <div className="border-t border-white/15 bg-night/80">
           <ul className={`${container} grid text-[14px] sm:grid-cols-3 sm:text-[15px]`}>
             {[
+              { href: "/jak-pracujeme", strong: "Hala na klíč", rest: "v termínech již od 4 týdnů" },
               { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru v místě stavby" },
               { href: "#otazky", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
-              { href: "/realizace", strong: "Realizace v ČR", rest: "i na Slovensku" },
             ].map((t, i) => (
               <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
                 <Link href={t.href} className={`block py-4 text-white/70 hover:text-white sm:py-5 ${i === 0 ? "sm:pr-6" : "sm:px-6"}`}>
@@ -195,6 +195,22 @@ export default function Home() {
                 Všechny realizace s fotografiemi
               </Link>
             </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Zákazníci */}
+      <section aria-labelledby="zakaznici" className="border-t border-line py-16 md:py-20">
+        <div className={container}>
+          <h2 id="zakaznici" className="font-display text-[28px] leading-tight text-ink sm:text-[34px]">
+            Haly stavíme pro firmy i instituce.
+          </h2>
+          <ul className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-4">
+            {clients.map((c) => (
+              <li key={c.name} className="flex justify-center">
+                <Image src={c.logo} alt={c.name} width={200} height={133} className="h-auto w-[150px] opacity-80" />
+              </li>
+            ))}
           </ul>
         </div>
       </section>
