@@ -85,10 +85,16 @@ export function HeroSlideshow() {
                 alt={i === index ? sl.alt : ""}
                 fill
                 sizes="100vw"
+                quality={85}
                 loading="eager"
                 fetchPriority={i === index && prev < 0 ? "high" : "low"}
-                style={{ objectPosition: sl.focus }}
-                className="object-cover"
+                style={{
+                  objectPosition: sl.focus,
+                  transformOrigin: sl.focus,
+                  animationPlayState: i === index && !running ? "paused" : undefined,
+                }}
+                // Aktuální fotka se pomalu přibližuje, předchozí zůstává přiblížená, ať pod přejezdem neposkočí.
+                className={`object-cover ${i === index ? "hero-zoom" : i === prev ? "hero-zoomed" : ""}`}
               />
             </div>
           );

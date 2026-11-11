@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   poweredByHeader: false,
   // AVIF je o pětinu až třetinu menší než WebP; prohlížeče bez podpory dostanou WebP.
-  images: { formats: ["image/avif", "image/webp"] },
+  images: { formats: ["image/avif", "image/webp"], qualities: [75, 85] },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
