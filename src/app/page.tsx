@@ -49,18 +49,18 @@ export default function Home() {
         <HeroSlideshow />
 
         <div className={`${container} flex min-h-[calc(100dvh-72px-64px)] flex-col justify-center py-16 md:min-h-[620px] lg:min-h-[680px]`}>
-          <div className="max-w-[980px]">
+          <div className="max-w-[980px] [text-shadow:0_1px_2px_rgb(22_26_45/0.35),0_2px_28px_rgb(22_26_45/0.6)]">
             <h1 className="font-display">
               <span className="block text-[49px] leading-[0.93] sm:text-[67px] lg:text-[78px]">
                 Montované haly <br className="max-[379px]:hidden lg:hidden" />
                 <span className="whitespace-nowrap">na míru.</span>
               </span>
-              <span className="mt-2 block text-[31px] leading-[0.99] text-white/75 sm:text-[42px] lg:text-[49px]">
+              <span className="mt-2 block text-[31px] leading-[0.99] text-white/90 sm:text-[42px] lg:text-[49px]">
                 Od návrhu po montáž.
               </span>
             </h1>
             <p className="mt-7 max-w-[540px] text-[18px] leading-relaxed text-white/85">
-              Sklady, výroba, sport i zemědělství. Vlastní projektanti, prodej i pronájem. Kalkulaci pošleme do několika dnů.
+              Sklady, výroba, sport i zemědělství. Vlastní projektanti a montáž. Kalkulaci pošleme do několika dnů.
             </p>
             <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
               <Link href="/poptavka" className={btn.primary}>

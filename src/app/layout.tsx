@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "cs_CZ",
     siteName: "MontHaly",
-    images: [{ url: "/foto/litvinov.webp", width: 1600, height: 1200 }],
+    images: [{ url: "/foto/hero/steti.webp", width: 1600, height: 1200 }],
   },
   // Ukázková verze se nesmí dostat do vyhledávačů vedle ostrého webu.
   robots: process.env.SITE_LIVE === "1" ? { index: true, follow: true } : { index: false, follow: false },
@@ -55,7 +55,7 @@ const jsonLd = {
   url: siteUrl,
   telephone: company.phoneIntl,
   email: company.email,
-  image: `${siteUrl}/foto/litvinov.webp`,
+  image: `${siteUrl}/foto/hero/steti.webp`,
   address: {
     "@type": "PostalAddress",
     streetAddress: company.street,

@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const slides = [
-  { src: "/foto/litvinov.webp", alt: "Bílá montovaná skladová hala v Litvínově pod zataženou oblohou", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 60%" },
-  { src: "/foto/lhotka.webp", alt: "Skladová hala s tmavým plechovým opláštěním v Lhotce nad Bečvou při západu slunce", place: "Lhotka nad Bečvou", info: "Skladová hala · 450 m²", href: "/realizace/skladova-hala-lhotka-nad-becvou", focus: "62% 55%" },
-  { src: "/foto/mosnov.webp", alt: "Dvě bílé skladové haly v Mošnově", place: "Mošnov", info: "Dvě skladové haly · 2 × 960 m²", href: "/realizace/skladove-haly-mosnov", focus: "60% 55%" },
-  { src: "/foto/opatovice.webp", alt: "Skladová hala v Opatovicích nad Labem", place: "Opatovice nad Labem", info: "Skladová hala · 800 m²", href: "/realizace/skladova-hala-opatovice", focus: "60% 55%" },
+  // Zesvětlené kopie (public/foto/hero): zvednuté stíny a víc světla na obloze.
+  { src: "/foto/hero/steti.webp", alt: "Skladová hala ve Štětí podél železniční vlečky", place: "Štětí", info: "Skladová hala · 1 125 m²", href: "/realizace/skladova-hala-steti", focus: "60% 55%" },
+  { src: "/foto/hero/zemedelske-haly-2.webp", alt: "Zemědělská hala se žlutým opláštěním a otevřenou stájí", place: "Zemědělské haly", info: "Hala s otevřenou stájí", href: "/haly/zemedelske-haly", focus: "55% 50%" },
+  { src: "/foto/hero/litvinov.webp", alt: "Bílá skladová hala v Litvínově na mokrém asfaltu", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 55%" },
+  { src: "/foto/hero/jezdecke-haly.webp", alt: "Jezdecká hala s obloukovými okny v čelní stěně", place: "Jezdecké haly", info: "Hala s obloukovými okny", href: "/haly/jezdecke-haly", focus: "45% 50%" },
 ];
 
 const SLIDE_MS = 7000;
@@ -92,9 +93,10 @@ export function HeroSlideshow() {
             </div>
           );
         })}
-        <div className="absolute inset-0 z-[3] bg-gradient-to-r from-night/80 via-night/45 to-night/0 max-md:bg-gradient-to-b max-md:from-night/80 max-md:via-night/55 max-md:to-night/30" />
+        {/* Měkký ovál za textem: text je čitelný, okraje fotky a obloha zůstávají světlé. */}
+        <div className="absolute inset-0 z-[3] bg-[radial-gradient(ellipse_62%_58%_at_28%_56%,rgb(22_26_45/0.62),rgb(22_26_45/0.28)_55%,transparent_100%)] max-md:bg-[radial-gradient(ellipse_95%_60%_at_40%_52%,rgb(22_26_45/0.62),rgb(22_26_45/0.3)_60%,transparent_100%)]" />
         {/* Horní přechod, aby byla průhledná hlavička čitelná i nad světlou oblohou. */}
-        <div className="absolute inset-x-0 top-0 z-[3] h-48 bg-gradient-to-b from-night/80 to-transparent" />
+        <div className="absolute inset-x-0 top-0 z-[3] h-32 bg-gradient-to-b from-night/45 to-transparent" />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-[88px] z-20 md:top-auto md:bottom-[84px]">
@@ -107,7 +109,7 @@ export function HeroSlideshow() {
                 onClick={() => go(i)}
                 aria-label={`Zobrazit ${sl.place}`}
                 aria-current={i === index}
-                className="group relative h-6 w-7 md:w-12"
+                className="group relative h-11 w-11 md:h-6 md:w-12"
               >
                 <span className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 overflow-hidden rounded-full bg-white/25 group-hover:bg-white/45">
                   <span
