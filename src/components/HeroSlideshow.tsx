@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { SeasonalEffect } from "@/components/SeasonalEffect";
 
 const slides = [
   // Zesvětlené kopie (public/foto/hero): zvednuté stíny a víc světla na obloze.
@@ -103,6 +104,8 @@ export function HeroSlideshow() {
         <div className="absolute inset-0 z-[3] bg-[radial-gradient(ellipse_62%_58%_at_28%_56%,rgb(22_26_45/0.62),rgb(22_26_45/0.28)_55%,transparent_100%)] max-md:bg-[radial-gradient(ellipse_95%_60%_at_40%_52%,rgb(22_26_45/0.62),rgb(22_26_45/0.3)_60%,transparent_100%)]" />
         {/* Horní přechod, aby byla průhledná hlavička čitelná i nad světlou oblohou. */}
         <div className="absolute inset-x-0 top-0 z-[3] h-32 bg-gradient-to-b from-night/45 to-transparent" />
+        {/* Roční období: zima sníh, jaro lístky, léto odlesky, podzim listí. Při pauze a omezení pohybu stojí. */}
+        <SeasonalEffect running={running} />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-[88px] z-20 md:top-auto md:bottom-[84px]">

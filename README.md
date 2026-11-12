@@ -29,6 +29,15 @@ Po úspěšném odeslání se do `window.dataLayer` zapíše událost `generate_
 
 Lišta se souhlasem je v `src/components/CookieConsent.tsx`. Google Tag Manager se načte jen po kliknutí na „Přijmout vše“ a jen když je nastavené `NEXT_PUBLIC_GTM_ID` (např. `GTM-XXXXXXX`). Volbu jde změnit odkazem „Nastavení cookies“ v patičce.
 
+## Sezónní efekt v hero
+
+Fotky v hero jsou vždy skutečné realizace. Sezóna přidává jen jemnou animaci kreslenou kódem (`src/components/SeasonalEffect.tsx`, logika v `src/lib/season.ts`).
+
+- Podle data: prosinec až únor zima (sníh), březen až květen jaro (okvětní lístky), červen až srpen léto (světelné odlesky), září až listopad podzim (listí).
+- Pro náhled jiné sezóny: `/?sezona=zima|jaro|leto|podzim|normal`.
+- Pro celý web: `NEXT_PUBLIC_SEZONA=zima|jaro|leto|podzim|normal` (`normal` efekt vypne).
+- Při pauze animací a při omezení pohybu v systému efekt neběží.
+
 ## Spuštění na ostré doméně
 
 | Proměnná | K čemu |
