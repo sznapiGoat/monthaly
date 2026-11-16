@@ -36,8 +36,28 @@ export const emptyQuote: QuoteInput = {
   web: "",
 };
 
-export const claddingOptions = ["Potřebuji poradit", "Plachtové", "Plechové", "Zateplené", "Kombinované"];
-export const equipmentOptions = ["Vrata", "Personální dveře", "Prosvětlení", "Větrání", "Vytápění", "Zateplení"];
+// Technické provedení podle zadání (11/2026): nezateplené a zateplené haly. Stejné dělení je na /haly.
+export const claddingGroups = [
+  {
+    label: "Nezateplené",
+    items: [
+      { name: "Plachtové", text: "Opláštění z technické plachty. Lehká a rychle postavená varianta." },
+      { name: "Plechové", text: "Opláštění z trapézového plechu. Pevné a odolné." },
+    ],
+  },
+  {
+    label: "Zateplené",
+    items: [
+      { name: "Sendvičové panely", text: "Pro vytápěné provozy, výrobu a zázemí." },
+      { name: "Thermo plachty", text: "Plachtová hala se zateplením." },
+      { name: "Nafukovací dvouplášťové", text: "Dvě vrstvy plachty a mezi nimi izolující vzduch." },
+    ],
+  },
+];
+
+// Do e-mailu jde hodnota i se skupinou, třeba „Zateplené: Sendvičové panely“ (sestavuje QuoteForm).
+export const claddingAdvice = "Potřebuji poradit";
+export const equipmentOptions = ["Vrata", "Personální dveře", "Okna a prosvětlení", "Osvětlení", "Větrání", "Vytápění", "Podlaha"];
 export const timeOptions = [
   "Zatím bez konkrétního termínu",
   "Co nejdříve",

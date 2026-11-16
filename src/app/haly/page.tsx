@@ -4,6 +4,7 @@ import { Faq } from "@/components/Faq";
 import { HallCard } from "@/components/Cards";
 import { PageIntro } from "@/components/PageIntro";
 import { faq, hallGroups, halls, type HallGroup } from "@/lib/data";
+import { claddingGroups } from "@/lib/quote";
 import { container } from "@/lib/ui";
 
 export const metadata: Metadata = {
@@ -49,6 +50,33 @@ export default function HalyPage() {
               </ul>
             </section>
           ))}
+        </div>
+      </section>
+
+      {/* Technické provedení podle zadání: nezateplené / zateplené. */}
+      <section aria-labelledby="provedeni" className="bg-mist py-20 md:py-24">
+        <div className={container}>
+          <h2 id="provedeni" className="font-display text-[40px] leading-[0.95] text-ink sm:text-[51px]">
+            Zateplená, nebo bez zateplení?
+          </h2>
+          <p className="mt-5 max-w-[60ch] text-[17px] leading-relaxed text-dim">
+            Každý typ haly dodáme v provedení, které odpovídá provozu. Který se hodí právě vám, doporučíme při návrhu.
+          </p>
+          <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-8">
+            {claddingGroups.map((g) => (
+              <div key={g.label} className="rounded-md border border-line bg-white p-7 sm:p-8">
+                <h3 className="font-display text-[29px] leading-[1.12] text-ink sm:text-[33px]">{g.label} haly</h3>
+                <ul className="mt-5 border-t border-line">
+                  {g.items.map((i) => (
+                    <li key={i.name} className="border-b border-line py-4 last:border-b-0">
+                      <span className="block text-[17px] font-semibold text-ink">{i.name}</span>
+                      <span className="mt-1 block text-[15px] leading-relaxed text-dim">{i.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

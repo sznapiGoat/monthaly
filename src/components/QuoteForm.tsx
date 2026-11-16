@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { company } from "@/lib/company";
 import {
   area,
-  claddingOptions,
+  claddingAdvice,
+  claddingGroups,
   emptyQuote,
   equipmentOptions,
   timeOptions,
@@ -241,13 +242,27 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
               <fieldset className="mt-8">
                 <legend className={label}>Představa o opláštění</legend>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {claddingOptions.map((o) => (
-                    <label key={o} className={pill(q.oplasteni === o)}>
-                      <input type="radio" name="oplasteni" value={o} checked={q.oplasteni === o} onChange={() => set("oplasteni", o)} className="sr-only" />
-                      {o}
-                    </label>
-                  ))}
+                  <label className={pill(q.oplasteni === claddingAdvice)}>
+                    <input type="radio" name="oplasteni" value={claddingAdvice} checked={q.oplasteni === claddingAdvice} onChange={() => set("oplasteni", claddingAdvice)} className="sr-only" />
+                    {claddingAdvice}
+                  </label>
                 </div>
+                {claddingGroups.map((g) => (
+                  <div key={g.label} className="mt-4">
+                    <p className="text-[13px] font-semibold text-dim">{g.label}</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {g.items.map((i) => {
+                        const v = `${g.label}: ${i.name}`;
+                        return (
+                          <label key={v} className={pill(q.oplasteni === v)}>
+                            <input type="radio" name="oplasteni" value={v} checked={q.oplasteni === v} onChange={() => set("oplasteni", v)} className="sr-only" />
+                            {i.name}
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </fieldset>
 
               <fieldset className="mt-8">
