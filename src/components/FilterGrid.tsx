@@ -1,15 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { HallCard, RealizationCard } from "@/components/Cards";
-import {
-  hallGroups,
-  halls,
-  realizationCategories,
-  realizations,
-  type HallGroup,
-  type RealizationCategory,
-} from "@/lib/data";
+import { RealizationCard } from "@/components/Cards";
+import { realizationCategories, realizations, type RealizationCategory } from "@/lib/data";
 
 function Filters<T extends string>({
   options,
@@ -50,30 +43,6 @@ function Filters<T extends string>({
 }
 
 const plural = (n: number, one: string, few: string, many: string) => (n === 1 ? one : n >= 2 && n <= 4 ? few : many);
-
-export function HallsGrid() {
-  const [group, setGroup] = useState<HallGroup | "all">("all");
-  const list = group === "all" ? halls : halls.filter((h) => h.group === group);
-  return (
-    <>
-      <h2 className="sr-only">Typy hal</h2>
-      <Filters
-        options={hallGroups}
-        value={group}
-        onChange={setGroup}
-        allLabel="Všechny haly"
-        count={`${list.length} ${plural(list.length, "typ haly", "typy hal", "typů hal")}`}
-      />
-      <ul className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-        {list.map((h) => (
-          <li key={h.slug}>
-            <HallCard hall={h} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" />
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
 
 export function RealizationsGrid() {
   const [cat, setCat] = useState<RealizationCategory | "all">("all");

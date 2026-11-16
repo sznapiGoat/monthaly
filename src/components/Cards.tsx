@@ -30,10 +30,11 @@ export function RealizationCard({ item, sizes, eager }: { item: Realization; siz
   );
 }
 
-export function HallCard({ hall, sizes, large }: { hall: Hall; sizes?: string; large?: boolean }) {
+// wide: jediná hala ve skupině rozcestníku, přes celou šířku.
+export function HallCard({ hall, sizes, large, wide }: { hall: Hall; sizes?: string; large?: boolean; wide?: boolean }) {
   return (
     <Link href={`/haly/${hall.slug}`} className="group block">
-      <div className={`sd-reveal relative overflow-clip rounded-md bg-mist ${large ? "aspect-[3/2] lg:aspect-[16/9]" : "aspect-[3/2]"}`}>
+      <div className={`sd-reveal relative overflow-clip rounded-md bg-mist ${wide ? "aspect-[3/2] sm:aspect-[21/9]" : large ? "aspect-[3/2] lg:aspect-[16/9]" : "aspect-[3/2]"}`}>
         <Img
           src={hall.photos[0].src}
           alt={hall.photos[0].alt}
@@ -43,7 +44,7 @@ export function HallCard({ hall, sizes, large }: { hall: Hall; sizes?: string; l
         />
         <span className="pointer-events-none absolute inset-0 rounded-md ring-0 ring-inset ring-azure transition-[box-shadow] group-hover:ring-4" />
       </div>
-      <h3 className={`mt-4 font-bold text-ink transition-colors group-hover:text-brand ${large ? "text-[21px]" : "text-[18px]"}`}>{hall.name}</h3>
+      <h3 className={`mt-4 font-bold text-ink transition-colors group-hover:text-brand ${large || wide ? "text-[21px]" : "text-[18px]"}`}>{hall.name}</h3>
       <p className="mt-1 text-[15px] leading-snug text-dim">{hall.short}</p>
     </Link>
   );

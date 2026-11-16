@@ -10,7 +10,9 @@ const legacy: [string, string][] = [
   ["/montovane-haly-2/letecke-hangary", "/haly/letecke-hangary"],
   ["/montovane-haly-2/zemedelske-haly", "/haly/zemedelske-haly"],
   ["/montovane-haly-2/party-stany", "/haly/party-stany"],
-  ["/montovane-haly-2/membranova-zastreseni", "/haly/membranova-zastreseni"],
+  // Membránová zastřešení klient v zadání (11/2026) zrušil, stará i nová adresa vedou na rozcestník.
+  ["/montovane-haly-2/membranova-zastreseni", "/haly"],
+  ["/haly/membranova-zastreseni", "/haly"],
   ["/realizace/skladova-hala-zakamenne", "/realizace/hala-zakamenne"],
   ["/realizace/skladova-montovana-hala-25x35x6-m-brno", "/realizace/sportovni-hala-brno"],
   ["/realizace/skladova-montovana-hala-lhotka-nad-becvou", "/realizace/skladova-hala-lhotka-nad-becvou"],

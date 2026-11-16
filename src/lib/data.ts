@@ -30,13 +30,14 @@ export const clients = [
   { name: "Rybníkářství Pohořelice", logo: "/loga/pohokapr.png" },
 ];
 
-export type HallGroup = "skladovani-vyroba" | "sport" | "zemedelstvi-jezdectvi" | "dalsi";
+// Rozcestník podle účelu, jak ho chce klient v zadání (11/2026).
+export type HallGroup = "skladovani-vyroba" | "sport-jezdectvi" | "zemedelstvi" | "hangary-dalsi";
 
-export const hallGroups: { id: HallGroup; label: string }[] = [
-  { id: "skladovani-vyroba", label: "Skladování a výroba" },
-  { id: "sport", label: "Sport" },
-  { id: "zemedelstvi-jezdectvi", label: "Zemědělství a jezdectví" },
-  { id: "dalsi", label: "Další využití" },
+export const hallGroups: { id: HallGroup; label: string; text: string }[] = [
+  { id: "skladovani-vyroba", label: "Skladování a výroba", text: "Sklady, logistika a výrobní provozy." },
+  { id: "sport-jezdectvi", label: "Sport a jezdectví", text: "Sportoviště a kryté jízdárny." },
+  { id: "zemedelstvi", label: "Zemědělství", text: "Technika, sklizeň a chov." },
+  { id: "hangary-dalsi", label: "Hangáry a další", text: "Letecké hangáry a stany." },
 ];
 
 export type Hall = {
@@ -82,7 +83,7 @@ export const halls: Hall[] = [
     slug: "sportovni-haly",
     name: "Sportovní haly",
     short: "Trénink, zápasy a volný čas.",
-    group: "sport",
+    group: "sport-jezdectvi",
     tagline: "Hala postavená kolem konkrétního hřiště a jeho výšky.",
     lead: "Pro trénink, zápasy i volný čas. Sportovní halu připravíme kolem konkrétního sportu, potřebné světlé výšky a podmínek celoročního nebo sezónního provozu.",
     features: [
@@ -106,7 +107,7 @@ export const halls: Hall[] = [
     slug: "jezdecke-haly",
     name: "Jezdecké haly",
     short: "Kryté jízdárny a tréninkové areály.",
-    group: "zemedelstvi-jezdectvi",
+    group: "sport-jezdectvi",
     tagline: "Krytá jízdárna pro trénink za každého počasí.",
     lead: "Krytá jízdárna vytváří prostor pro pravidelný trénink. Návrh přizpůsobíme rozměrům jízdní plochy, přístupu do areálu a požadavkům na světlo a větrání.",
     features: [
@@ -130,7 +131,7 @@ export const halls: Hall[] = [
     slug: "letecke-hangary",
     name: "Letecké hangáry",
     short: "Letadla, ultralighty a zázemí.",
-    group: "dalsi",
+    group: "hangary-dalsi",
     tagline: "Hangár s vraty podle rozpětí křídel a výšky letadla.",
     lead: "U hangáru rozhoduje každý průjezd a každý metr. Konstrukci a vrata navrhneme podle rozpětí křídel, výšky letadla a způsobu manipulace na ploše.",
     features: [
@@ -178,7 +179,7 @@ export const halls: Hall[] = [
     slug: "zemedelske-haly",
     name: "Zemědělské haly",
     short: "Technika, sklizeň a zásoby.",
-    group: "zemedelstvi-jezdectvi",
+    group: "zemedelstvi",
     tagline: "Zázemí pro techniku, sklizeň a uskladnění plodin.",
     lead: "Pro techniku, sklizeň i každodenní práci. Zemědělské haly připravujeme s důrazem na praktické vjezdy, větrání a návaznost na hospodářský areál.",
     features: [
@@ -202,7 +203,7 @@ export const halls: Hall[] = [
     slug: "party-stany",
     name: "Párty stany",
     short: "Společenské akce i dlouhodobé využití.",
-    group: "dalsi",
+    group: "hangary-dalsi",
     tagline: "Stany pro svatby, firemní a společenské akce.",
     lead: "Profesionální zastřešení pro společenské akce i dlouhodobé využití. Velikost a vybavení sladíme s počtem hostů, programem a charakterem místa.",
     features: [
@@ -219,30 +220,6 @@ export const halls: Hall[] = [
       p("party-stany.webp", "Prosklený párty stan nasvícený při večerní akci"),
       p("party-stany-1.webp", "Bílý párty stan s obloukovými okny na trávníku"),
       p("party-stany-2.webp", "Párty stan u jezírka s fontánou", 1400, 788),
-    ],
-    related: [],
-  },
-  {
-    slug: "membranova-zastreseni",
-    name: "Membránová zastřešení",
-    short: "Terasy, amfiteátry a veřejná prostranství.",
-    group: "dalsi",
-    tagline: "Zastřešení teras, amfiteátrů a veřejných prostranství.",
-    lead: "Zastřešení technickou tkaninou propojuje funkci a architekturu. Tvar, konstrukce i způsob kotvení vznikají podle prostoru, který má zastřešení doplnit.",
-    features: [
-      { title: "Tvar podle místa", text: "Individuální řešení návaznosti na okolní objekty." },
-      { title: "Světlo pod střechou", text: "Výběr materiálu podle požadovaného prosvětlení a využití." },
-      { title: "Konstrukce, napnutí a odvod vody", text: "Společný návrh nosné konstrukce, napnutí a odvodu vody." },
-    ],
-    uses: ["Terasy a veřejná prostranství", "Amfiteátry a kulturní areály", "Odpočinkové a sportovní plochy"],
-    prompt: {
-      title: "Jak má zastřešení v místě fungovat?",
-      text: "Pomohou fotografie místa, rozměry plochy a představa o využití. Na jejich základě probereme vhodnou konstrukční variantu.",
-    },
-    photos: [
-      p("membranova-zastreseni-1.webp", "Kluziště pod velkým membránovým zastřešením se středovým stožárem", 1600, 1067),
-      p("membranova-zastreseni-2.webp", "Membránové zastřešení na stožárech nad venkovním prostranstvím", 1600, 1064),
-      p("membranova-zastreseni.webp", "Membránová střecha nad lezeckou stěnou", 1600, 1068),
     ],
     related: [],
   },
@@ -489,35 +466,35 @@ export const faq = [
   },
   {
     q: "Jaká je záruka?",
-    a: "U vybraných řešení nabízíme záruku až 6 let. Konkrétní délku, rozsah a podmínky pro konstrukci, opláštění a další části uvádíme v nabídce a smlouvě.",
+    a: "U vybraných řešení nabízíme záruku až  . Konkrétní délku, rozsah a podmínky pro konstrukci, opláštění a další části uvádíme v nabídce a smlouvě.",
   },
 ];
 
 export const steps = [
   {
     title: "Nejdřív vaše potřeby",
-    short: "Pochopíme vaše zadání.",
+    short: "Pochopíme zadání.",
     text: "Vaše zadání si projdeme společně. Zajímá nás využití, pohyb lidí a techniky, místo stavby i plánovaný rozvoj. Pokud přesné rozměry zatím neznáte, pomůžeme je určit.",
     shortText: "Využití, místo, rozměry a představa o provozu. Začínáme otázkami, které ovlivní celý návrh.",
     note: "Co pomůže: obec, orientační rozměry, fotografie nebo nákres místa.",
   },
   {
     title: "Návrh a nabídka",
-    short: "Připravíme konkrétní řešení.",
+    short: "Připravíme řešení.",
     text: "Probereme vhodnou konstrukci, opláštění, vstupy a potřebné vybavení. Nabídka vymezí rozsah dodávky, cenu a předpoklady termínu.",
     shortText: "Sladíme konstrukci, opláštění i vybavení. V nabídce vymezíme rozsah dodávky a cenu.",
     note: "Co budete mít: konkrétní návrh a jasně popsaný rozsah.",
   },
   {
     title: "Příprava a montáž",
-    short: "Navážeme přípravou a montáží.",
+    short: "Příprava a montáž.",
     text: "Podle dohody připravíme potřebnou dokumentaci a sladíme návaznosti. Před zahájením montáže ověříme připravenost staveniště, přístup techniky a podklad.",
     shortText: "Dokumentace, připravené staveniště a samotná hala. Vše podle dohodnutého rozsahu.",
     note: "Co si potvrdíme: dokumentaci, přípravu místa a harmonogram.",
   },
   {
     title: "Předání a další péče",
-    short: "Předáme prostor k používání.",
+    short: "Předání prostoru.",
     text: "Při předání projdeme hotové řešení a podmínky používání. Záruční podmínky, doporučená údržba i případný servis se vztahují ke konkrétní dodávce.",
     shortText: "Spolu s halou dostanete potřebné informace pro její provoz a údržbu.",
     note: "Co následuje: užívání haly a kontakt pro další potřeby.",

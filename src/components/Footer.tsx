@@ -1,7 +1,7 @@
 import { Img } from "@/components/Img";
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieConsent";
-import { company, halls } from "@/lib/data";
+import { company, hallGroups, halls } from "@/lib/data";
 import { container } from "@/lib/ui";
 
 const heading = "text-[16px] font-semibold text-white";
@@ -15,7 +15,7 @@ export function Footer() {
             <Img src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
           </Link>
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">
-            Montované haly od prvního návrhu po montáž. Prodej, pronájem a projektování.
+            Montované haly na míru od prvního návrhu po montáž.
           </p>
           <address className="mt-6 text-[14px] not-italic leading-relaxed text-white/60">
             {company.name}
@@ -29,7 +29,7 @@ export function Footer() {
         <div className="md:col-span-3">
           <h2 className={heading}>Naše haly</h2>
           <ul className="mt-5 space-y-2.5 text-[15px]">
-            {halls.map((h) => (
+            {hallGroups.flatMap((g) => halls.filter((h) => h.group === g.id)).map((h) => (
               <li key={h.slug}>
                 <Link href={`/haly/${h.slug}`} className="hover:text-white">
                   {h.name}

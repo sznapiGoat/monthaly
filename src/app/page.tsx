@@ -4,36 +4,25 @@ import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { clients, contacts, faq, getRealization, halls, realizations, steps } from "@/lib/data";
+import { clients, contacts, faq, getRealization, hallGroups, halls, realizations, steps } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
-// Mozaika: hlavní obory nahoře, vizuálně nejsilnější fotky na konci.
-const mosaic = ["skladove-haly", "vyrobni-haly", "sportovni-haly", "zemedelske-haly", "jezdecke-haly", "letecke-hangary", "party-stany", "membranova-zastreseni"].map(
-  (s) => halls.find((h) => h.slug === s)!,
-);
+// Mozaika v pořadí skupin z rozcestníku: dvě velké dlaždice nahoře, pod nimi řady po třech.
+// Když na poslední řadu zbydou dvě, jsou velké (7 typů: 2 + 3 + 2, s nůžkovými stany 2 + 3 + 3).
+const mosaic = hallGroups.flatMap((g) => halls.filter((h) => h.group === g.id));
+const isLarge = (i: number, n: number) => i < 2 || ((n - 2) % 3 === 2 && i >= n - 2);
 
-const offers = [
-  {
-    title: "Pořízení haly",
-    text: "Hala zůstane vaše. Navrhneme ji podle provozu a místa stavby, připravíme dokumentaci a postavíme ji.",
-    points: ["Návrh podle provozu a projektová dokumentace", "Dodávka a montáž", "Záruka až 6 let u vybraných řešení"],
-    photo: { src: "/foto/vyrobni-haly.webp", alt: "Zateplená výrobní hala z tmavých sendvičových panelů" },
-    href: "/poptavka",
-    cta: "Poptat pořízení",
-    contact: contacts[0],
-    primary: true,
-  },
-  {
-    title: "Pronájem",
-    text: "Když halu potřebujete jen na čas, třeba na sezónu nebo na akci.",
-    points: ["Dočasné zastřešení bez pořízení haly", "Dostupnost ověříme podle typu haly a termínu"],
-    photo: { src: "/foto/party-stany-1.webp", alt: "Bílý párty stan s obloukovými okny na trávníku" },
-    href: "/poptavka?zamer=pronajem",
-    cta: "Poptat pronájem",
-    contact: contacts[1],
-    primary: false,
-  },
+// Tři poutáky z klientova zadání (11/2026). Banner 1: „od  “ místo „za  “, domluveno s klientem.
+const banners = [
+  { label: "Čas", title: "Chybí vám prostor? Vaše hala na míru bude stát už od  .", text: "Rychlé navýšení kapacity bez zbytečného čekání. Reagujeme okamžitě tam, kde ostatní teprve plánují." },
+  { label: "Jednoduchost", title: "Nemusíte mít hotový projekt ani znát přesné rozměry.", text: "Stačí nám říct, co potřebujete zastřešit. Kompletní návrh, statické posouzení i projektovou dokumentaci vyřešíme za vás." },
+  { label: "Jistota", title: "Rychlost bez kompromisů. Jistota ověřená statickým výpočtem.", text: "Každou halu dimenzujeme na reálné sněhové a větrné zatížení vaší lokality. Proto si můžeme dovolit garantovat nadstandardní záruku až  ." },
 ];
+
+const purchase = {
+  points: ["Návrh podle provozu a projektová dokumentace", "Statický výpočet pro sníh a vítr v místě stavby", "Dodávka a montáž vlastními lidmi", "Záruka až   u vybraných řešení"],
+  photo: { src: "/foto/opatovice-2.webp", alt: "Montáž opláštění haly v Opatovicích nad Labem z pracovní plošiny" },
+};
 
 const featured = ["skladova-hala-lhotka-nad-becvou", "sportovni-hala-brno", "skladove-haly-mosnov"].map((s) => getRealization(s)!);
 const rest = realizations.filter((r) => !featured.includes(r));
@@ -60,7 +49,7 @@ export default function Home() {
               </span>
             </h1>
             <p className="mt-7 max-w-[540px] text-[18px] leading-relaxed text-white/85">
-              Sklady, výroba, sport i zemědělství. Vlastní projektanti a montáž. Kalkulaci pošleme do několika dnů.
+              Jakýkoli rozměr, přesně podle vašeho provozu a bez kompromisů. Vlastní projektanti a montáž, kalkulaci pošleme do několika dnů.
             </p>
             <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
               <Link href="/poptavka" className={btn.primary}>
@@ -76,9 +65,9 @@ export default function Home() {
         <div className="border-t border-white/15 bg-night/80">
           <ul className={`${container} grid text-[14px] sm:grid-cols-3 sm:text-[15px]`}>
             {[
-              { href: "/jak-pracujeme", strong: "Hala na klíč", rest: "v termínech již od 4 týdnů" },
-              { href: "/jak-pracujeme", strong: "Konstrukce na zátěž", rest: "sněhu a větru" },
-              { href: "#otazky", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
+              { href: "#otazky", strong: "Záruka až 6 let", rest: "u vybraných řešení" },
+              { href: "/jak-pracujeme", strong: "Hala na klíč", rest: "už od 4 týdnů" },
+              { href: "/jak-pracujeme", strong: "Počítané na sníh a vítr", rest: "ve vaší lokalitě" },
             ].map((t, i) => (
               <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
                 <Link href={t.href} className={`block py-4 text-white/70 hover:text-white sm:py-5 ${i === 0 ? "sm:pr-6" : "sm:px-6"}`}>
@@ -99,12 +88,15 @@ export default function Home() {
               Vyberte typ haly a prohlédněte si možnosti. Konstrukci, opláštění a vybavení přizpůsobíme vašemu záměru a místu stavby.
             </p>
           </div>
-          <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-6">
             {mosaic.map((h, i) => {
-              const large = i < 2 || i > 5;
+              const large = isLarge(i, mosaic.length);
+              // Na tabletu (2 sloupce) by lichá řada malých dlaždic nechala díru, poslední malá se roztáhne.
+              const small = mosaic.filter((_, j) => !isLarge(j, mosaic.length));
+              const lastOddSmall = !large && small.length % 2 === 1 && small.at(-1) === h;
               return (
-                <li key={h.slug} className={large ? "sm:col-span-2" : undefined}>
-                  <HallCard hall={h} large={large} sizes={large ? "(min-width: 1024px) 600px, 100vw" : "(min-width: 1024px) 290px, 50vw"} />
+                <li key={h.slug} className={large ? "sm:col-span-2 lg:col-span-3" : `lg:col-span-2 ${lastOddSmall ? "sm:col-span-2" : ""}`}>
+                  <HallCard hall={h} large={large} sizes={large ? "(min-width: 1024px) 600px, 100vw" : lastOddSmall ? "(min-width: 1024px) 390px, 100vw" : "(min-width: 1024px) 390px, 50vw"} />
                 </li>
               );
             })}
@@ -112,39 +104,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Koupě a pronájem */}
-      <section className="bg-mist py-20 md:py-28">
+      {/* Poutáky ze zadání */}
+      <section aria-labelledby="poutaky" className="bg-brand py-20 text-white md:py-28">
         <div className={container}>
-          <div>
-            <h2 className={h2}>Koupit, nebo pronajmout?</h2>
-            <p className={lead}>Halu můžete pořídit natrvalo, nebo si ji pronajmout na dobu, kdy ji potřebujete.</p>
-          </div>
-          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-8">
-            {offers.map((o) => (
-              <article key={o.title} className="flex flex-col">
-                <div className="sd-reveal relative aspect-[16/10] overflow-clip rounded-md bg-line">
-                  <Img src={o.photo.src} alt={o.photo.alt} fill sizes="(min-width: 768px) 600px, 100vw" className="object-cover" />
-                </div>
-                <h3 className="mt-7 font-display text-[31px] leading-[1.12] text-ink sm:text-[36px]">{o.title}</h3>
-                <p className="mt-3 max-w-[52ch] text-[17px] leading-relaxed text-dim">{o.text}</p>
-                <ul className="mt-6 border-t border-line text-[16px] text-ink">
-                  {o.points.map((pt) => (
-                    <li key={pt} className="border-b border-line py-3">
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto flex flex-col items-start gap-x-6 gap-y-3 pt-8 sm:flex-row sm:items-center">
-                  <Link href={o.href} className={o.primary ? btn.dark : btn.ghost}>
-                    {o.cta}
-                  </Link>
-                  <a href={`tel:${o.contact.phone}`} className="text-[15px] leading-snug text-dim hover:text-brand">
-                    <span className="font-semibold tabular-nums text-ink">{o.contact.phoneLabel}</span>
-                    <span className="block text-[14px]">{o.contact.name}</span>
-                  </a>
-                </div>
-              </article>
+          <h2 id="poutaky" className="font-display text-[40px] leading-[0.95] sm:text-[51px]">
+            Velké plány. <span className="text-azure-soft">Výjimečný prostor.</span>
+          </h2>
+          <ol className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-8">
+            {banners.map((b, i) => (
+              <li key={b.label} className="border-t-[3px] border-azure pt-7">
+                <p className="text-[13px] font-bold uppercase tracking-[0.08em] text-azure">
+                  <span className="tabular-nums">{String(i + 1).padStart(2, "0")}</span> · {b.label}
+                </p>
+                <h3 className="mt-4 font-display text-[29px] leading-[1.08] sm:text-[33px]">{b.title}</h3>
+                <p className="mt-4 text-[16px] leading-relaxed text-white/75">{b.text}</p>
+              </li>
             ))}
+          </ol>
+          <Link href="/poptavka" className={`${btn.primary} mt-14`}>
+            Popsat svůj záměr
+          </Link>
+        </div>
+      </section>
+
+      {/* Pořízení haly. Pronájem jen malým řádkem: primární je prodej (zadání 11/2026). */}
+      <section className="bg-mist py-20 md:py-28">
+        <div className={`${container} grid items-center gap-12 lg:grid-cols-12 lg:gap-16`}>
+          <div className="sd-reveal relative aspect-[4/3] overflow-clip rounded-md bg-line lg:col-span-6">
+            <Img src={purchase.photo.src} alt={purchase.photo.alt} fill sizes="(min-width: 1024px) 600px, 100vw" className="object-cover" />
+          </div>
+          <div className="lg:col-span-6">
+            <h2 className={h2}>Hala na míru, která zůstane vaše.</h2>
+            <p className={lead}>Navrhneme ji podle provozu a místa stavby, připravíme dokumentaci a postavíme ji. Rozměr přizpůsobíme vám, ne katalogu.</p>
+            <ul className="mt-7 border-t border-line text-[16px] text-ink">
+              {purchase.points.map((pt) => (
+                <li key={pt} className="border-b border-line py-3">
+                  {pt}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-col items-start gap-x-6 gap-y-3 sm:flex-row sm:items-center">
+              <Link href="/poptavka" className={btn.dark}>
+                Nezávazná poptávka
+              </Link>
+              <a href={`tel:${contacts[0].phone}`} className="text-[15px] leading-snug text-dim hover:text-brand">
+                <span className="font-semibold tabular-nums text-ink">{contacts[0].phoneLabel}</span>
+                <span className="block text-[14px]">{contacts[0].name}, prodej</span>
+              </a>
+            </div>
+            <p className="mt-8 text-[14px] leading-relaxed text-dim">
+              Halu potřebujete jen na čas? Zeptejte se na pronájem:{" "}
+              <a href={`tel:${contacts[1].phone}`} className="whitespace-nowrap font-semibold text-ink hover:text-brand">
+                {contacts[1].name}, <span className="tabular-nums">{contacts[1].phoneLabel}</span>
+              </a>
+            </p>
           </div>
         </div>
       </section>
@@ -219,10 +232,8 @@ export default function Home() {
       <section className="bg-mist py-20 md:py-28">
         <div className={container}>
           <div>
-            <h2 className={h2}>
-              Jak stavba probíhá
-            </h2>
-            <p className={lead}>Od první konzultace k předání haly. V každé fázi společně upřesníme, co bude následovat.</p>
+            <h2 className={h2}>Jak spolupráce probíhá</h2>
+            <p className={lead}>Na kvalitě záleží. Od prvního návrhu až po montáž, v každé fázi víte, co bude následovat.</p>
           </div>
           <ol className="mt-16 grid gap-10 md:grid-cols-4 md:gap-8">
             {steps.map((s) => (
@@ -235,7 +246,7 @@ export default function Home() {
             ))}
           </ol>
           <Link href="/jak-pracujeme" className={`${btn.ghost} mt-14`}>
-            Jak spolupráce probíhá
+            Celý postup podrobně
           </Link>
         </div>
       </section>

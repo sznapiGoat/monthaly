@@ -23,7 +23,7 @@ export default function PoptavkaPage() {
               Jakou halu máte v plánu?
             </h1>
             <p className="mt-5 max-w-[60ch] text-[18px] leading-relaxed text-dim">
-              Tři krátké kroky, rozměry stačí orientační. Přesnou kalkulaci vám pošleme do několika dnů podle složitosti haly.
+              Nemusíte znát přesné rozměry. Napište, co má být uvnitř. Tři krátké kroky a přesnou kalkulaci vám pošleme do několika dnů.
             </p>
           </div>
         </div>
