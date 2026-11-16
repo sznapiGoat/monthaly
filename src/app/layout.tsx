@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { EB_Garamond, Manrope } from "next/font/google";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
+import { MobileCta } from "@/components/MobileCta";
 import { Header } from "@/components/Header";
 import { company } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main id="obsah">{children}</main>
         <Footer />
+        <MobileCta />
         <CookieConsent />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
