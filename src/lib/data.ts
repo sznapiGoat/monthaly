@@ -10,15 +10,19 @@ const p = (file: string, alt: string, w = 1600, h = 900): Photo => ({
 // Kontakty jsou zvlášť, aby klientské komponenty nestahovaly celý obsah webu.
 export { company } from "./company";
 
+// Hlavní slovo má prodej, pronájem jen malým písmem (zadání 11/2026).
 export const contacts = [
-  { name: "Roman Chalupka", role: "Prodej hal", phone: "+420727882623", phoneLabel: "+420 727 882 623", lead: true },
-  { name: "Ing. Romana Chalupková", role: "Pronájem", phone: "+420724323672", phoneLabel: "+420 724 323 672", lead: true },
-  { name: "Ing. Samir Asfour", role: "Projektant", phone: "+420731506612", phoneLabel: "+420 731 506 612" },
-  { name: "Ing. Libor Švaříček", role: "Projektant", phone: "+420722720010", phoneLabel: "+420 722 720 010" },
-  { name: "Ing. Ilona Divišová", role: "Účetní", phone: "+420777876727", phoneLabel: "+420 777 876 727" },
+  { name: "Roman Chalupka", role: "Prodej hal", phone: "+420727882623", phoneLabel: "+420 727 882 623", kind: "sales" },
+  { name: "Ing. Romana Chalupková", role: "Pronájem", phone: "+420724323672", phoneLabel: "+420 724 323 672", kind: "rental" },
+  { name: "Ing. Samir Asfour", role: "Projektant", phone: "+420731506612", phoneLabel: "+420 731 506 612", kind: "team" },
+  { name: "Ing. Libor Švaříček", role: "Projektant", phone: "+420722720010", phoneLabel: "+420 722 720 010", kind: "team" },
+  { name: "Ing. Ilona Divišová", role: "Účetní", phone: "+420777876727", phoneLabel: "+420 777 876 727", kind: "team" },
 ];
 
 // Loga ze současného webu mont-haly.cz, šedá na průhledném pozadí.
+export const sales = contacts.find((c) => c.kind === "sales")!;
+export const rental = contacts.find((c) => c.kind === "rental")!;
+
 export const clients = [
   { name: "Alza.cz", logo: "/loga/alza.png" },
   { name: "ČD DPOV", logo: "/loga/cddpov.png" },

@@ -4,7 +4,7 @@ import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { clients, contacts, faq, getRealization, hallGroups, halls, realizations, steps } from "@/lib/data";
+import { clients, faq, getRealization, hallGroups, halls, realizations, rental, sales, steps } from "@/lib/data";
 import { btn, container, link } from "@/lib/ui";
 
 // Mozaika v pořadí skupin z rozcestníku: dvě velké dlaždice nahoře, pod nimi řady po třech.
@@ -147,15 +147,15 @@ export default function Home() {
               <Link href="/poptavka" className={btn.dark}>
                 Nezávazná poptávka
               </Link>
-              <a href={`tel:${contacts[0].phone}`} className="text-[15px] leading-snug text-dim hover:text-brand">
-                <span className="font-semibold tabular-nums text-ink">{contacts[0].phoneLabel}</span>
-                <span className="block text-[14px]">{contacts[0].name}, prodej</span>
+              <a href={`tel:${sales.phone}`} className="text-[15px] leading-snug text-dim hover:text-brand">
+                <span className="font-semibold tabular-nums text-ink">{sales.phoneLabel}</span>
+                <span className="block text-[14px]">{sales.name}, prodej</span>
               </a>
             </div>
             <p className="mt-8 text-[14px] leading-relaxed text-dim">
               Halu potřebujete jen na čas? Zeptejte se na pronájem:{" "}
-              <a href={`tel:${contacts[1].phone}`} className="whitespace-nowrap font-semibold text-ink hover:text-brand">
-                {contacts[1].name}, <span className="tabular-nums">{contacts[1].phoneLabel}</span>
+              <a href={`tel:${rental.phone}`} className="whitespace-nowrap font-semibold text-ink hover:text-brand">
+                {rental.name}, <span className="tabular-nums">{rental.phoneLabel}</span>
               </a>
             </p>
           </div>

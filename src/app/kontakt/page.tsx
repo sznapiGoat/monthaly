@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/PageIntro";
-import { company, contacts } from "@/lib/data";
+import { company, contacts, rental, sales } from "@/lib/data";
 import { btn, container } from "@/lib/ui";
 
 export const metadata: Metadata = {
   title: "Kontakt",
-  description: "Prodej a pronájem montovaných hal: Roman Chalupka, +420 727 882 623, info@mont-haly.cz. MontHaly s.r.o., Pavlovská 21, Brno.",
+  description: "Prodej montovaných hal na míru: Roman Chalupka, +420 727 882 623, info@mont-haly.cz. MontHaly s.r.o., Pavlovská 21, Brno.",
   alternates: { canonical: "/kontakt" },
 };
 
 export default function KontaktPage() {
-  const leads = contacts.filter((c) => c.lead);
-  const team = contacts.filter((c) => !c.lead);
+  const team = contacts.filter((c) => c.kind === "team");
 
   return (
     <>
@@ -24,19 +23,24 @@ export default function KontaktPage() {
 
       <section className="py-20 md:py-24">
         <div className={container}>
-          <div className="grid gap-12 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
-            {leads.map((c, i) => (
-              <div key={c.name} className={i === 0 ? "md:pr-12" : "md:pl-12"}>
-                <p className="text-[15px] font-semibold text-link">{c.role}</p>
-                <h2 className="mt-2 font-display text-[38px] leading-[1.12] text-ink sm:text-[45px]">{c.name}</h2>
-                <a href={`tel:${c.phone}`} className="mt-6 block text-[26px] font-semibold tabular-nums text-ink hover:text-brand">
-                  {c.phoneLabel}
-                </a>
-                <a href={`mailto:${company.email}`} className="mt-1 block text-[17px] text-dim hover:text-brand">
-                  {company.email}
-                </a>
-              </div>
-            ))}
+          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <p className="text-[15px] font-semibold text-link">{sales.role}</p>
+              <h2 className="mt-2 font-display text-[42px] leading-[1.05] text-ink sm:text-[54px]">{sales.name}</h2>
+              <a href={`tel:${sales.phone}`} className="mt-6 block text-[30px] font-semibold tabular-nums text-ink hover:text-brand sm:text-[34px]">
+                {sales.phoneLabel}
+              </a>
+              <a href={`mailto:${company.email}`} className="mt-1 block text-[18px] text-dim hover:text-brand">
+                {company.email}
+              </a>
+            </div>
+            <p className="text-[14px] leading-relaxed text-dim md:col-span-5 md:border-l md:border-line md:pl-8">
+              Halu potřebujete jen na čas? Pronájem:{" "}
+              <span className="whitespace-nowrap text-ink">{rental.name}</span>,{" "}
+              <a href={`tel:${rental.phone}`} className="whitespace-nowrap tabular-nums text-ink hover:text-brand">
+                {rental.phoneLabel}
+              </a>
+            </p>
           </div>
 
           <table className="mt-20 w-full text-left text-[16px]">
