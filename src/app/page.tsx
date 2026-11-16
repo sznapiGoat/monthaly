@@ -71,7 +71,7 @@ export default function Home() {
             ].map((t, i) => (
               <li key={t.strong} className={i > 0 ? "border-white/15 max-sm:border-t sm:border-l" : ""}>
                 <Link href={t.href} className={`block py-4 text-white/70 hover:text-white sm:py-5 ${i === 0 ? "sm:pr-6" : "sm:px-6"}`}>
-                  <span className="font-semibold text-white">{t.strong}</span> {t.rest}
+                  <span className="font-semibold text-azure">{t.strong}</span> {t.rest}
                 </Link>
               </li>
             ))}
@@ -142,7 +142,7 @@ export default function Home() {
               ))}
             </ul>
             <div className="mt-8 flex flex-col items-start gap-x-6 gap-y-3 sm:flex-row sm:items-center">
-              <Link href="/poptavka" className={btn.dark}>
+              <Link href="/poptavka" className={btn.primary}>
                 Nezávazná poptávka
               </Link>
               <a href={`tel:${sales.phone}`} className="text-[15px] leading-snug text-dim hover:text-brand">

@@ -105,7 +105,7 @@ export default function KontaktPage() {
             <p className="mt-4 text-[17px] leading-relaxed text-dim">
               Poptávka vás provede třemi kroky: využití, orientační rozměry a kontakt. Na jejím základě připravíme kalkulaci.
             </p>
-            <Link href="/poptavka" className={`${btn.dark} mt-8`}>
+            <Link href="/poptavka" className={`${btn.primary} mt-8`}>
               Nezávazná poptávka
             </Link>
           </div>

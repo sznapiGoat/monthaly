@@ -123,7 +123,7 @@ export function Header() {
             >
               {company.phoneIntl}
             </a>
-            <Link href="/poptavka" className={`${clear ? btn.primary : btn.dark} px-5 py-2.5 text-[14px]`}>
+            <Link href="/poptavka" className={`${btn.primary} px-5 py-2.5 text-[14px]`}>
               Nezávazná poptávka
             </Link>
           </div>
@@ -166,7 +166,7 @@ export function Header() {
               })}
             </ul>
             <div className="mt-auto space-y-3 pt-10">
-              <Link href="/poptavka" className={`${btn.dark} w-full`}>
+              <Link href="/poptavka" className={`${btn.primary} w-full`}>
                 Nezávazná poptávka
               </Link>
               <a href={`tel:${company.phone}`} className={`${btn.ghost} w-full tabular-nums`}>

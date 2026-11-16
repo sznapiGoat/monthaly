@@ -407,7 +407,7 @@ export function QuoteForm({ halls }: { halls: { slug: string; name: string }[] }
           ) : (
             <span />
           )}
-          <button type="submit" disabled={status === "sending"} className={`${btn.dark} min-w-[180px] disabled:opacity-60`}>
+          <button type="submit" disabled={status === "sending"} className={`${btn.primary} min-w-[180px] disabled:opacity-60`}>
             {step < 2 ? "Pokračovat" : status === "sending" ? "Odesílám…" : "Odeslat poptávku"}
           </button>
         </div>

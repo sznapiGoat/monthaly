@@ -49,7 +49,7 @@ export default async function HallPage({ params }: PageProps<"/haly/[slug]">) {
             <p className="mt-3 font-display text-[25px] leading-[1.23] text-ink sm:text-[29px]">{hall.tagline}</p>
             <p className="mt-6 text-[18px] leading-relaxed text-dim">{hall.lead}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href={`/poptavka?typ=${hall.slug}`} className={btn.dark}>
+              <Link href={`/poptavka?typ=${hall.slug}`} className={btn.primary}>
                 Poptat tuto halu
               </Link>
               <Link href="/kontakt" className={btn.ghost}>
