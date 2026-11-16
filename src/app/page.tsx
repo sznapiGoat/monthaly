@@ -12,15 +12,15 @@ import { btn, container, link } from "@/lib/ui";
 const mosaic = hallGroups.flatMap((g) => halls.filter((h) => h.group === g.id));
 const isLarge = (i: number, n: number) => i < 2 || ((n - 2) % 3 === 2 && i >= n - 2);
 
-// Tři poutáky z klientova zadání (11/2026). Banner 1: „od  “ místo „za  “, domluveno s klientem.
+// Tři poutáky z klientova zadání (11/2026). Banner 1: „od 4 týdnů“ místo „za 4 týdny“, domluveno s klientem.
 const banners = [
-  { label: "Čas", order: "", title: "Chybí vám prostor? Vaše hala na míru bude stát už od  .", text: "Rychlé navýšení kapacity bez zbytečného čekání. Reagujeme okamžitě tam, kde ostatní teprve plánují." },
+  { label: "Čas", order: "", title: "Chybí vám prostor? Vaše hala na míru bude stát už od 4 týdnů.", text: "Rychlé navýšení kapacity bez zbytečného čekání. Reagujeme okamžitě tam, kde ostatní teprve plánují." },
   { label: "Jednoduchost", order: "", title: "Nemusíte mít hotový projekt ani znát přesné rozměry.", text: "Stačí nám říct, co potřebujete zastřešit. Kompletní návrh, statické posouzení i projektovou dokumentaci vyřešíme za vás." },
-  { label: "Jistota", order: "[[data-sezona=zima]_&]:order-first", title: "Rychlost bez kompromisů. Jistota ověřená statickým výpočtem.", text: "Každou halu dimenzujeme na reálné sněhové a větrné zatížení vaší lokality. Proto si můžeme dovolit garantovat nadstandardní záruku až  ." },
+  { label: "Jistota", order: "[[data-sezona=zima]_&]:order-first", title: "Rychlost bez kompromisů. Jistota ověřená statickým výpočtem.", text: "Každou halu dimenzujeme na reálné sněhové a větrné zatížení vaší lokality. Proto si můžeme dovolit garantovat nadstandardní záruku až 6 let." },
 ];
 
 const purchase = {
-  points: ["Návrh podle provozu a projektová dokumentace", "Statický výpočet pro sníh a vítr v místě stavby", "Dodávka a montáž vlastními lidmi", "Záruka až   u vybraných řešení"],
+  points: ["Návrh podle provozu a projektová dokumentace", "Statický výpočet pro sníh a vítr v místě stavby", "Dodávka a montáž vlastními lidmi", "Záruka až 6 let u vybraných řešení"],
   photo: { src: "/foto/opatovice-2.webp", alt: "Montáž opláštění haly v Opatovicích nad Labem z pracovní plošiny" },
 };
 

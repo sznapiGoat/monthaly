@@ -470,7 +470,7 @@ export const faq = [
   },
   {
     q: "Jaká je záruka?",
-    a: "U vybraných řešení nabízíme záruku až  . Konkrétní délku, rozsah a podmínky pro konstrukci, opláštění a další části uvádíme v nabídce a smlouvě.",
+    a: "U vybraných řešení nabízíme záruku až 6 let. Konkrétní délku, rozsah a podmínky pro konstrukci, opláštění a další části uvádíme v nabídce a smlouvě.",
   },
 ];
 
