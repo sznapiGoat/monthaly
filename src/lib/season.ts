@@ -25,3 +25,11 @@ export function resolveSeason(search: string, now = new Date()): Season | null {
   const setting = isSetting(fromUrl) ? fromUrl : isSetting(fromEnv) ? fromEnv : seasonFromDate(now);
   return setting === "normal" ? null : setting;
 }
+
+/**
+ * Totéž jako resolveSeason, ale jako inline skript pro <body>: nastaví <html data-sezona="…"> dřív, než se stránka
+ * vykreslí. Úvodka je statická, takže pořadí obsahu podle sezóny (CSS `order`) nejde určit na serveru.
+ */
+export const seasonScript = `try{var v=${JSON.stringify(SETTINGS)},q=new URLSearchParams(location.search).get("sezona"),e=${JSON.stringify(
+  process.env.NEXT_PUBLIC_SEZONA ?? "",
+)},s=v.indexOf(q)>-1?q:v.indexOf(e)>-1?e:"",m=new Date().getMonth();if(!s)s=m==11||m<2?"zima":m<5?"jaro":m<8?"leto":"podzim";document.documentElement.dataset.sezona=s}catch(_){}`;

@@ -3,6 +3,7 @@ import { EB_Garamond, Manrope } from "next/font/google";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { MobileCta } from "@/components/MobileCta";
+import { seasonScript } from "@/lib/season";
 import { Header } from "@/components/Header";
 import { company } from "@/lib/data";
 import { siteUrl } from "@/lib/site";
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="cs" className={`${display.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: seasonScript }} />
         <a
           href="#obsah"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2"

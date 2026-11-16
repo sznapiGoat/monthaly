@@ -14,9 +14,9 @@ const isLarge = (i: number, n: number) => i < 2 || ((n - 2) % 3 === 2 && i >= n 
 
 // Tři poutáky z klientova zadání (11/2026). Banner 1: „od  “ místo „za  “, domluveno s klientem.
 const banners = [
-  { label: "Čas", title: "Chybí vám prostor? Vaše hala na míru bude stát už od  .", text: "Rychlé navýšení kapacity bez zbytečného čekání. Reagujeme okamžitě tam, kde ostatní teprve plánují." },
-  { label: "Jednoduchost", title: "Nemusíte mít hotový projekt ani znát přesné rozměry.", text: "Stačí nám říct, co potřebujete zastřešit. Kompletní návrh, statické posouzení i projektovou dokumentaci vyřešíme za vás." },
-  { label: "Jistota", title: "Rychlost bez kompromisů. Jistota ověřená statickým výpočtem.", text: "Každou halu dimenzujeme na reálné sněhové a větrné zatížení vaší lokality. Proto si můžeme dovolit garantovat nadstandardní záruku až  ." },
+  { label: "Čas", order: "", title: "Chybí vám prostor? Vaše hala na míru bude stát už od  .", text: "Rychlé navýšení kapacity bez zbytečného čekání. Reagujeme okamžitě tam, kde ostatní teprve plánují." },
+  { label: "Jednoduchost", order: "", title: "Nemusíte mít hotový projekt ani znát přesné rozměry.", text: "Stačí nám říct, co potřebujete zastřešit. Kompletní návrh, statické posouzení i projektovou dokumentaci vyřešíme za vás." },
+  { label: "Jistota", order: "[[data-sezona=zima]_&]:order-first", title: "Rychlost bez kompromisů. Jistota ověřená statickým výpočtem.", text: "Každou halu dimenzujeme na reálné sněhové a větrné zatížení vaší lokality. Proto si můžeme dovolit garantovat nadstandardní záruku až  ." },
 ];
 
 const purchase = {
@@ -111,11 +111,9 @@ export default function Home() {
             Velké plány. <span className="text-azure-soft">Výjimečný prostor.</span>
           </h2>
           <ol className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-8">
-            {banners.map((b, i) => (
-              <li key={b.label} className="border-t-[3px] border-azure pt-7">
-                <p className="text-[13px] font-bold uppercase tracking-[0.08em] text-azure">
-                  <span className="tabular-nums">{String(i + 1).padStart(2, "0")}</span> · {b.label}
-                </p>
+            {banners.map((b) => (
+              <li key={b.label} className={`border-t-[3px] border-azure pt-7 ${b.order}`}>
+                <p className="text-[13px] font-bold uppercase tracking-[0.08em] text-azure">{b.label}</p>
                 <h3 className="mt-4 font-display text-[29px] leading-[1.08] sm:text-[33px]">{b.title}</h3>
                 <p className="mt-4 text-[16px] leading-relaxed text-white/75">{b.text}</p>
               </li>
