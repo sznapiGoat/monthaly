@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/PageIntro";
+import { RealizationMap } from "@/components/RealizationMap";
 import { company, contacts, rental, sales } from "@/lib/data";
 import { btn, container } from "@/lib/ui";
 
@@ -62,6 +63,23 @@ export default function KontaktPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section className="border-t border-line py-20 md:py-24">
+        <div className={`${container} grid gap-10 lg:grid-cols-12`}>
+          <div className="lg:col-span-4">
+            <h2 className="font-display text-[38px] leading-[1.12] text-ink sm:text-[45px]">Kde už naše haly stojí.</h2>
+            <p className="mt-4 text-[17px] leading-relaxed text-dim">
+              Stavíme po celém Česku i na Slovensku, ze sídla v Brně. Kliknutím na místo otevřete detail realizace.
+            </p>
+            <Link href="/realizace" className="mt-6 inline-block text-[15px] font-semibold text-link underline decoration-link/30 underline-offset-4 hover:decoration-link">
+              Všechny realizace
+            </Link>
+          </div>
+          <div className="lg:col-span-8">
+            <RealizationMap />
+          </div>
         </div>
       </section>
 

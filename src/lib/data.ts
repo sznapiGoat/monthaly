@@ -251,6 +251,8 @@ export type Realization = {
   summary: string;
   notes: string[];
   country?: "SK";
+  /** Přibližná poloha obce [šířka, délka] pro mapu realizací. */
+  coords: [number, number];
   photos: Photo[];
 };
 
@@ -261,6 +263,7 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-steti",
     areaM2: 1125,
     place: "Štětí",
+    coords: [50.453, 14.374],
     title: "Skladová hala ve Štětí",
     kind: "Skladová hala",
     category: "skladove",
@@ -279,6 +282,7 @@ export const realizations: Realization[] = [
     slug: "skladove-haly-mosnov",
     areaM2: 1920,
     place: "Mošnov",
+    coords: [49.686, 18.120],
     title: "Dvě skladové haly v Mošnově",
     kind: "Skladové haly",
     category: "skladove",
@@ -297,6 +301,7 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-litvinov",
     areaM2: 900,
     place: "Litvínov",
+    coords: [50.600, 13.611],
     title: "Skladová hala v Litvínově",
     kind: "Skladová hala",
     category: "skladove",
@@ -315,6 +320,7 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-opatovice",
     areaM2: 800,
     place: "Opatovice nad Labem",
+    coords: [50.146, 15.790],
     title: "Skladová hala v Opatovicích",
     kind: "Skladová hala",
     category: "skladove",
@@ -333,6 +339,7 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-vamberk",
     areaM2: 375,
     place: "Vamberk",
+    coords: [50.118, 16.291],
     title: "Skladová hala ve Vamberku",
     kind: "Skladová hala",
     category: "skladove",
@@ -351,6 +358,8 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-veselicko",
     areaM2: 216,
     place: "Veselíčko",
+    // Veselíčko u Lipníka nad Bečvou (okres Přerov), druhé je u Písku. Ověřit u klienta.
+    coords: [49.531, 17.513],
     title: "Skladová hala ve Veselíčku",
     kind: "Skladová hala",
     category: "skladove",
@@ -369,6 +378,7 @@ export const realizations: Realization[] = [
     slug: "hala-zakamenne",
     areaM2: 288,
     place: "Zákamenné",
+    coords: [49.365, 19.300],
     title: "Víceúčelová hala v Zákamenném",
     kind: "Víceúčelová hala",
     category: "viceucelove",
@@ -388,6 +398,7 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-lhotka-nad-becvou",
     areaM2: 450,
     place: "Lhotka nad Bečvou",
+    coords: [49.454, 18.001],
     title: "Skladová hala v Lhotce nad Bečvou",
     kind: "Skladová hala",
     category: "skladove",
@@ -407,6 +418,7 @@ export const realizations: Realization[] = [
     slug: "skladova-hala-libeznice",
     areaM2: 600,
     place: "Líbeznice",
+    coords: [50.191, 14.494],
     title: "Skladová hala v Líbeznicích",
     kind: "Skladová hala",
     category: "skladove",
@@ -426,6 +438,7 @@ export const realizations: Realization[] = [
     slug: "sportovni-hala-brno",
     areaM2: 950,
     place: "Brno",
+    coords: [49.195, 16.608],
     title: "Sportovní hala v Brně",
     kind: "Sportovní hala",
     category: "sportovni",
