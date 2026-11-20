@@ -26,9 +26,9 @@ export function CtaBand({
   // Plná světle modrá z logomanuálu s tmavým textem (bílý by měl kontrast jen 2,4 : 1).
   return (
     <section className="bg-azure text-night">
-      <div className={`${container} grid gap-10 py-20 md:grid-cols-12 md:items-end md:py-24`}>
-        <h2 className="font-display text-[42px] leading-[0.92] sm:text-[56px] md:col-span-7 lg:text-[67px]">{title}</h2>
-        <div className="md:col-span-5 md:pb-2">
+      <div className={`${container} grid gap-8 py-16 md:grid-cols-12 md:items-center md:gap-10 md:py-20`}>
+        <h2 className="font-display text-[42px] leading-[0.92] sm:text-[56px] text-balance md:col-span-7 lg:text-[67px]">{title}</h2>
+        <div className="md:col-span-5">
           <p className="max-w-md text-[17px] leading-relaxed text-night/80">{text}</p>
           <div className="mt-8 flex flex-col items-start gap-2">
             <Link href={localize(lang, href)} className={`${btn.dark} whitespace-nowrap`}>
