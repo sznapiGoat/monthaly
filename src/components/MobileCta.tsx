@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { company } from "@/lib/company";
 import { localize, pick, type Lang } from "@/lib/i18n";
 import { btn } from "@/lib/ui";
@@ -14,18 +14,22 @@ export function MobileCta({ lang }: { lang: Lang }) {
   const quote = localize(lang, "/poptavka");
   const pathname = usePathname();
   const [shown, setShown] = useState(false);
+  const sentinel = useRef<HTMLDivElement>(null);
 
+  // Značka 480 px od začátku stránky: lišta se ukáže, až značka odjede nad okraj obrazovky. Bez posluchače scrollu.
   useEffect(() => {
-    const onScroll = () => setShown(window.scrollY > 480);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const el = sentinel.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setShown(!e.isIntersecting && e.boundingClientRect.top < 0));
+    io.observe(el);
+    return () => io.disconnect();
+  }, [pathname]);
 
   if (pathname.startsWith(quote)) return null;
 
   return (
     <>
+      <div ref={sentinel} aria-hidden className="pointer-events-none absolute left-0 top-[480px] h-px w-px" />
       {/* Místo pod patičkou, ať lišta nezakryje její konec. */}
       <div aria-hidden className="h-[calc(68px+env(safe-area-inset-bottom))] bg-night lg:hidden" />
       <div

@@ -155,19 +155,19 @@ export function Home({ lang }: { lang: Lang }) {
       <section aria-labelledby="poutaky" className="bg-brand py-20 text-white md:py-28">
         <div className={container}>
           <h2 id="poutaky" className="font-display text-[40px] leading-[0.95] sm:text-[51px]">
-            {t("Velké plány.", "Veľké plány.")} <span className="text-azure-soft">{t("Výjimečný prostor.", "Výnimočný priestor.")}</span>
+            {t("Velké plány. Výjimečný prostor.", "Veľké plány. Výnimočný priestor.")}
           </h2>
           <ol className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-8">
             {banners.map((b) => (
               <li key={b.label} className={`border-t-[3px] border-azure pt-7 ${b.order}`}>
-                <p className="text-[13px] font-bold uppercase tracking-[0.08em] text-azure">{b.label}</p>
+                <p className="text-[15px] font-semibold text-azure">{b.label}</p>
                 <h3 className="mt-4 font-display text-[29px] leading-[1.08] sm:text-[33px]">{b.title}</h3>
                 <p className="mt-4 text-[16px] leading-relaxed text-white/75">{b.text}</p>
               </li>
             ))}
           </ol>
           <Link href={l("/poptavka")} className={`${btn.primary} mt-14`}>
-            {t("Popsat svůj záměr", "Opísať svoj zámer")}
+            {t("Nezávazná poptávka", "Nezáväzný dopyt")}
           </Link>
         </div>
       </section>
