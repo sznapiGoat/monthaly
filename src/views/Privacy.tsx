@@ -35,7 +35,7 @@ export function Privacy({ lang }: { lang: Lang }) {
       },
       {
         h: "Cookies",
-        p: "Nezbytné úložiště v prohlížeči používáme jen k zapamatování vaší volby ohledně cookies. Analytické a reklamní nástroje (Google Tag Manager, Google Analytics, Google Ads) se načtou pouze s vaším souhlasem. Volbu můžete kdykoli změnit odkazem Nastavení cookies v patičce webu.",
+        p: "Nezbytné úložiště v prohlížeči používáme jen k zapamatování vaší volby ohledně cookies. Analytické a reklamní nástroje třetích stran, které měří návštěvnost a účinnost reklamy, se načtou pouze s vaším souhlasem. Volbu můžete kdykoli změnit odkazem Nastavení cookies v patičce webu.",
       },
     ],
     [
@@ -61,7 +61,7 @@ export function Privacy({ lang }: { lang: Lang }) {
       },
       {
         h: "Cookies",
-        p: "Nevyhnutné úložisko v prehliadači používame len na zapamätanie vašej voľby týkajúcej sa cookies. Analytické a reklamné nástroje (Google Tag Manager, Google Analytics, Google Ads) sa načítajú iba s vaším súhlasom. Voľbu môžete kedykoľvek zmeniť odkazom Nastavenie cookies v pätičke webu.",
+        p: "Nevyhnutné úložisko v prehliadači používame len na zapamätanie vašej voľby týkajúcej sa cookies. Analytické a reklamné nástroje tretích strán, ktoré merajú návštevnosť a účinnosť reklamy, sa načítajú iba s vaším súhlasom. Voľbu môžete kedykoľvek zmeniť odkazom Nastavenie cookies v pätičke webu.",
       },
     ],
   );
