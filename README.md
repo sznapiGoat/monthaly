@@ -46,7 +46,8 @@ Fotky v hero jsou vždy skutečné realizace. Sezóna přidává jen jemnou anim
 - Obsah (haly, realizace, FAQ, postup): české texty v `src/lib/data.ts`, slovenské překlady v `src/lib/data-sk.ts` podle slugu. Komponenty berou obsah přes `getContent(lang)`. Nová realizace bez slovenského překladu se na SK ukáže česky.
 - Odkazy se píšou česky a převádí je `localize(lang, href)`: `/realizace` → `/sk/realizacie`, `/poptavka` → `/sk/dopyt`, `/jak-pracujeme` → `/sk/ako-pracujeme`.
 - Canonical, hreflang a sitemapa obsahují obě verze. Slovenské poptávky mají v předmětu e-mailu `[SK]`.
-- Vlastní doména: `NEXT_PUBLIC_SK_URL=https://www.mont-haly.sk` přepne odkazy bez `/sk` a hreflang na doménu. Při spuštění je ještě potřeba v `next.config.ts` přidat rewrite pro host mont-haly.sk na `/sk/...` a přesměrování `mont-haly.cz/sk/...` na doménu.
+- Doména mont-haly.sk (rozhodnuto 11/2026): obě domény v jednom projektu na Vercelu. Po nastavení `NEXT_PUBLIC_SK_URL=https://www.mont-haly.sk` a novém nasazení se na mont-haly.sk stránky berou ze slovenské větve bez `/sk` v adrese (rewrite v `next.config.ts`), `mont-haly.cz/sk/...` se trvale přesměruje na mont-haly.sk a odkazy, canonical i hreflang vedou na doménu. Bez proměnné běží slovenská verze pod `/sk` (náhled).
+- DNS pro mont-haly.sk při spuštění: A/AAAA (případně CNAME pro www) na Vercel jako u .cz, zrušit webový alias .sk → .cz u Českého hostingu. Záznamy pošty se nemění.
 
 ## Spuštění na ostré doméně
 

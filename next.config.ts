@@ -30,6 +30,11 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
 ];
 
+// Slovenská verze na vlastní doméně (mont-haly.sk). Zapíná se proměnnou NEXT_PUBLIC_SK_URL=https://www.mont-haly.sk,
+// do té doby běží jen pod /sk na české doméně. Obě domény jsou v jednom projektu na Vercelu.
+const skUrl = process.env.NEXT_PUBLIC_SK_URL?.replace(/\/$/, "");
+const skHost = skUrl ? `(www\\.)?${new URL(skUrl).hostname.replace(/^www\./, "").replace(/\./g, "\\.")}` : null;
+
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   // Dva kořenové layouty (čeština a slovenština), neznámé adresy proto chytá app/global-not-found.tsx.
@@ -41,7 +46,28 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   async redirects() {
-    return legacy.map(([source, destination]) => ({ source, destination, permanent: true }));
+    return [
+      ...legacy.map(([source, destination]) => ({ source, destination, permanent: true })),
+      // Slovenské stránky mají jedinou adresu: mont-haly.cz/sk/realizacie → mont-haly.sk/realizacie.
+      ...(skUrl
+        ? [
+            { source: "/sk", destination: skUrl, permanent: true },
+            { source: "/sk/:path*", destination: `${skUrl}/:path*`, permanent: true },
+          ]
+        : []),
+    ];
+  },
+  async rewrites() {
+    if (!skHost) return [];
+    // Na mont-haly.sk se stránky berou ze slovenské větve (/sk/...). Soubory s tečkou (fotky, logo, sitemap) a _next/api zůstávají společné.
+    const has = [{ type: "host" as const, value: skHost }];
+    return {
+      beforeFiles: [
+        { source: "/:path((?!_next/|api/)[^.]*)", has, destination: "/sk/:path" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
 };
 
