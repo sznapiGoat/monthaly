@@ -32,6 +32,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
+  // Dva kořenové layouty (čeština a slovenština), neznámé adresy proto chytá app/global-not-found.tsx.
+  experimental: { globalNotFound: true },
   poweredByHeader: false,
   // AVIF je o pětinu až třetinu menší než WebP; prohlížeče bez podpory dostanou WebP.
   images: { formats: ["image/avif", "image/webp"], qualities: [75, 85] },

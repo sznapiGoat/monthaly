@@ -3,8 +3,10 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Photo } from "@/lib/data";
+import { pick, type Lang } from "@/lib/i18n";
 
-export function Gallery({ photos, layout = "three" }: { photos: Photo[]; layout?: "three" | "two" | "feature" }) {
+export function Gallery({ lang, photos, layout = "three" }: { lang: Lang; photos: Photo[]; layout?: "three" | "two" | "feature" }) {
+  const t = pick(lang);
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const [index, setIndex] = useState(0);
@@ -45,7 +47,7 @@ export function Gallery({ photos, layout = "three" }: { photos: Photo[]; layout?
                 type="button"
                 onClick={(e) => open(i, e.currentTarget)}
                 className="sd-reveal group relative block aspect-[4/3] h-full w-full overflow-clip rounded-md bg-mist outline-offset-4"
-                aria-label={`Zvětšit fotografii: ${ph.alt}`}
+                aria-label={`${t("Zvětšit fotografii", "Zväčšiť fotografiu")}: ${ph.alt}`}
               >
                 <Image
                   src={ph.src}
@@ -63,7 +65,7 @@ export function Gallery({ photos, layout = "three" }: { photos: Photo[]; layout?
 
       <dialog
         ref={dialog}
-        aria-label="Fotogalerie"
+        aria-label={t("Fotogalerie", "Fotogaléria")}
         onClick={(e) => {
           if (e.target === dialog.current) dialog.current?.close();
         }}
@@ -82,7 +84,7 @@ export function Gallery({ photos, layout = "three" }: { photos: Photo[]; layout?
               onClick={() => dialog.current?.close()}
               className="rounded-md border border-white/30 px-4 py-2 font-semibold hover:border-white"
             >
-              Zavřít
+              {t("Zavřít", "Zavrieť")}
             </button>
           </div>
           <div className="relative min-h-0 flex-1 px-2 sm:px-20">
@@ -91,10 +93,10 @@ export function Gallery({ photos, layout = "three" }: { photos: Photo[]; layout?
           {photos.length > 1 && (
             <div className="flex justify-center gap-3 px-5 py-5">
               <button type="button" onClick={() => step(-1)} className="rounded-md border border-white/30 px-5 py-2.5 font-semibold hover:border-white">
-                Předchozí
+                {t("Předchozí", "Predchádzajúca")}
               </button>
               <button type="button" onClick={() => step(1)} className="rounded-md border border-white/30 px-5 py-2.5 font-semibold hover:border-white">
-                Další
+                {t("Další", "Ďalšia")}
               </button>
             </div>
           )}

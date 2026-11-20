@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { company, realizations } from "@/lib/data";
+import { company, type Realization } from "@/lib/data";
+import { localize, pick, type Lang } from "@/lib/i18n";
 import { czPath, mapBox, project, skPath } from "@/lib/map-shapes";
 
 // Popisky, které by vpravo narazily na sousední bod nebo popisek, jdou jinam.
@@ -13,7 +14,8 @@ const labelSide: Record<string, "left" | "below"> = {
 const seat = project([49.195, 16.608]);
 
 /** Statická mapa ČR a SR s body realizací. Bez cizích služeb, cookies a JavaScriptu. */
-export function RealizationMap() {
+export function RealizationMap({ lang, realizations }: { lang: Lang; realizations: Realization[] }) {
+  const t = pick(lang);
   const points = realizations.map((r) => ({ ...r, ...project(r.coords) }));
 
   return (
@@ -22,7 +24,7 @@ export function RealizationMap() {
         viewBox={`0 0 ${mapBox.width} ${mapBox.height}`}
         className="h-auto w-full"
         role="group"
-        aria-label="Mapa realizací v Česku a na Slovensku"
+        aria-label={t("Mapa realizací v Česku a na Slovensku", "Mapa realizácií v Česku a na Slovensku")}
       >
         <path d={czPath} className="fill-mist stroke-line" strokeWidth={2} strokeLinejoin="round" />
         <path d={skPath} className="fill-mist stroke-line" strokeWidth={2} strokeLinejoin="round" />
@@ -34,7 +36,7 @@ export function RealizationMap() {
         {points.map((p) => {
           const side = labelSide[p.place] ?? "right";
           return (
-            <Link key={p.slug} href={`/realizace/${p.slug}`} aria-label={p.title} className="group">
+            <Link key={p.slug} href={localize(lang, `/realizace/${p.slug}`)} aria-label={p.title} className="group">
               <circle cx={p.x} cy={p.y} r={22} className="fill-transparent" />
               <circle
                 cx={p.x}
@@ -56,14 +58,14 @@ export function RealizationMap() {
         })}
 
         <text x={seat.x} y={seat.y + 46} textAnchor="middle" className="fill-dim text-[18px] max-sm:hidden" aria-hidden="true">
-          sídlo
+          {t("sídlo", "sídlo")}
         </text>
       </svg>
 
       <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
         {realizations.map((r) => (
           <li key={r.slug}>
-            <Link href={`/realizace/${r.slug}`} className="text-ink underline decoration-line underline-offset-4 hover:decoration-link">
+            <Link href={localize(lang, `/realizace/${r.slug}`)} className="text-ink underline decoration-line underline-offset-4 hover:decoration-link">
               {r.place}
               {r.country === "SK" && <span className="text-dim"> (SK)</span>}
             </Link>
@@ -74,7 +76,7 @@ export function RealizationMap() {
         <svg viewBox="0 0 20 20" className="size-4" aria-hidden="true">
           <circle cx="10" cy="10" r="7.5" className="fill-none stroke-brand" strokeWidth={2} />
         </svg>
-        Sídlo firmy: {company.street}, {company.city}
+        {t("Sídlo firmy", "Sídlo firmy")}: {company.street}, {company.city}
       </p>
     </div>
   );

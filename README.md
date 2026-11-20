@@ -38,6 +38,16 @@ Fotky v hero jsou vždy skutečné realizace. Sezóna přidává jen jemnou anim
 - Pro celý web: `NEXT_PUBLIC_SEZONA=zima|jaro|leto|podzim|normal` (`normal` efekt vypne).
 - Při pauze animací a při omezení pohybu v systému efekt neběží.
 
+## Slovenská verze
+
+Česká verze je v `src/app/(cs)`, slovenská v `src/app/(sk)/sk` (dva kořenové layouty, `<html lang>` podle jazyka). Obsah stránek je ve sdílených komponentách v `src/views`, trasy jsou jen tenké obaly.
+
+- Texty komponent: `t("česky", "slovensky")` přímo v kódu (`pick` z `src/lib/i18n.ts`), obě verze vedle sebe.
+- Obsah (haly, realizace, FAQ, postup): české texty v `src/lib/data.ts`, slovenské překlady v `src/lib/data-sk.ts` podle slugu. Komponenty berou obsah přes `getContent(lang)`. Nová realizace bez slovenského překladu se na SK ukáže česky.
+- Odkazy se píšou česky a převádí je `localize(lang, href)`: `/realizace` → `/sk/realizacie`, `/poptavka` → `/sk/dopyt`, `/jak-pracujeme` → `/sk/ako-pracujeme`.
+- Canonical, hreflang a sitemapa obsahují obě verze. Slovenské poptávky mají v předmětu e-mailu `[SK]`.
+- Vlastní doména: `NEXT_PUBLIC_SK_URL=https://www.mont-haly.sk` přepne odkazy bez `/sk` a hreflang na doménu. Při spuštění je ještě potřeba v `next.config.ts` přidat rewrite pro host mont-haly.sk na `/sk/...` a přesměrování `mont-haly.cz/sk/...` na doménu.
+
 ## Spuštění na ostré doméně
 
 | Proměnná | K čemu |

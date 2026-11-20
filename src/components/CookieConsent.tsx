@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { localize, pick, type Lang } from "@/lib/i18n";
 
 type Choice = "all" | "necessary";
 
@@ -40,7 +41,8 @@ const subscribe = (cb: () => void) => {
   };
 };
 
-export function CookieConsent() {
+export function CookieConsent({ lang }: { lang: Lang }) {
+  const t = pick(lang);
   // Na serveru volba neexistuje, lišta se vykreslí až v prohlížeči.
   const choice = useSyncExternalStore(subscribe, read, () => "pending" as const);
   const [reopened, setReopened] = useState(false);
@@ -70,13 +72,16 @@ export function CookieConsent() {
   return (
     <div
       role="region"
-      aria-label="Souhlas s cookies"
+      aria-label={t("Souhlas s cookies", "Súhlas s cookies")}
       className="fixed inset-x-3 bottom-3 z-50 rounded-md border border-line bg-white p-5 text-ink shadow-[0_8px_30px_rgb(22_26_45/0.18)] sm:inset-x-auto sm:right-5 sm:bottom-5 sm:max-w-[420px]"
     >
       <p className="text-[15px] leading-relaxed text-dim">
-        Nezbytné cookies potřebuje web ke svému fungování. Analytické a reklamní použijeme jen s vaším souhlasem.{" "}
-        <Link href="/ochrana-osobnich-udaju#cookies" className="font-semibold text-link underline underline-offset-4">
-          Více informací
+        {t(
+          "Nezbytné cookies potřebuje web ke svému fungování. Analytické a reklamní použijeme jen s vaším souhlasem.",
+          "Nevyhnutné cookies potrebuje web na svoje fungovanie. Analytické a reklamné použijeme len s vaším súhlasom.",
+        )}{" "}
+        <Link href={localize(lang, "/ochrana-osobnich-udaju#cookies")} className="font-semibold text-link underline underline-offset-4">
+          {t("Více informací", "Viac informácií")}
         </Link>
       </p>
       <div className="mt-4 grid grid-cols-2 gap-3">
@@ -85,24 +90,24 @@ export function CookieConsent() {
           onClick={() => decide("necessary")}
           className="rounded-md border border-line px-4 py-3 text-[15px] font-semibold text-ink transition-colors hover:border-brand"
         >
-          Jen nezbytné
+          {t("Jen nezbytné", "Len nevyhnutné")}
         </button>
         <button
           type="button"
           onClick={() => decide("all")}
           className="rounded-md bg-brand px-4 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-deep"
         >
-          Přijmout vše
+          {t("Přijmout vše", "Prijať všetko")}
         </button>
       </div>
     </div>
   );
 }
 
-export function CookieSettingsButton({ className }: { className?: string }) {
+export function CookieSettingsButton({ className, label }: { className?: string; label: string }) {
   return (
     <button type="button" onClick={() => window.dispatchEvent(new Event(OPEN_EVENT))} className={className}>
-      Nastavení cookies
+      {label}
     </button>
   );
 }

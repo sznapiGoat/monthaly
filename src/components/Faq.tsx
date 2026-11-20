@@ -1,6 +1,6 @@
-import { faq } from "@/lib/data";
+type Item = { q: string; a: string };
 
-export function Faq({ items = faq }: { items?: typeof faq }) {
+export function Faq({ items }: { items: Item[] }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

@@ -1,4 +1,5 @@
 import { getHall } from "@/lib/data";
+import type { Lang } from "@/lib/i18n";
 import { area, emptyQuote, validateContact, type QuoteInput } from "@/lib/quote";
 
 const clip = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
@@ -13,8 +14,9 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, error: "Neplatný požadavek." }, { status: 400 });
   }
 
+  const lang: Lang = body.lang === "sk" ? "sk" : "cs";
   const q: QuoteInput = {
-    ...emptyQuote,
+    ...emptyQuote(lang),
     typ: clip(body.typ, 60),
     zamer: clip(body.zamer, 60),
     sirka: clip(body.sirka, 10),
@@ -36,7 +38,7 @@ export async function POST(request: Request) {
   // Robot vyplnil skryté pole. Tváříme se, že je vše v pořádku.
   if (q.web) return Response.json({ ok: true });
 
-  const errors = validateContact(q);
+  const errors = validateContact(q, lang);
   if (Object.keys(errors).length) {
     return Response.json({ ok: false, errors }, { status: 422 });
   }
@@ -58,6 +60,7 @@ export async function POST(request: Request) {
     ["E-mail", q.email || "neuvedeno"],
     ["Telefon", q.telefon || "neuvedeno"],
     ["Zpráva", q.zprava || "bez zprávy"],
+    ["Jazyk webu", lang === "sk" ? "slovenská verze" : "česká verze"],
   ];
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -84,7 +87,7 @@ export async function POST(request: Request) {
       from: process.env.POPTAVKA_FROM ?? "MontHaly web <onboarding@resend.dev>",
       to: to.split(",").map((s) => s.trim()),
       reply_to: q.email || undefined,
-      subject: `Poptávka: ${typLabel}${q.misto ? `, ${q.misto}` : ""} (${q.jmeno})`,
+      subject: `${lang === "sk" ? "[SK] " : ""}Poptávka: ${typLabel}${q.misto ? `, ${q.misto}` : ""} (${q.jmeno})`,
       html,
       text,
     }),

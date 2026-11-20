@@ -4,18 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SeasonalEffect } from "@/components/SeasonalEffect";
+import { localize, pick, type Lang } from "@/lib/i18n";
 
-const slides = [
-  // Zesvětlené kopie (public/foto/hero): zvednuté stíny a víc světla na obloze.
-  { src: "/foto/hero/steti.webp", alt: "Skladová hala ve Štětí podél železniční vlečky", place: "Štětí", info: "Skladová hala · 1 125 m²", href: "/realizace/skladova-hala-steti", focus: "60% 55%" },
-  { src: "/foto/hero/zemedelske-haly-2.webp", alt: "Zemědělská hala se žlutým opláštěním a otevřenou stájí", place: "Zemědělské haly", info: "Hala s otevřenou stájí", href: "/haly/zemedelske-haly", focus: "55% 50%" },
-  { src: "/foto/hero/litvinov.webp", alt: "Bílá skladová hala v Litvínově na mokrém asfaltu", place: "Litvínov", info: "Skladová hala · 900 m²", href: "/realizace/skladova-hala-litvinov", focus: "70% 55%" },
-  { src: "/foto/hero/jezdecke-haly.webp", alt: "Jezdecká hala s obloukovými okny v čelní stěně", place: "Jezdecké haly", info: "Hala s obloukovými okny", href: "/haly/jezdecke-haly", focus: "45% 50%" },
-];
+const slidesFor = (lang: Lang) => {
+  const t = pick(lang);
+  return [
+    // Zesvětlené kopie (public/foto/hero): zvednuté stíny a víc světla na obloze.
+    { src: "/foto/hero/steti.webp", alt: t("Skladová hala ve Štětí podél železniční vlečky", "Skladová hala v Štětí pozdĺž železničnej vlečky"), place: "Štětí", info: t("Skladová hala · 1 125 m²", "Skladová hala · 1 125 m²"), href: "/realizace/skladova-hala-steti", focus: "60% 55%" },
+    { src: "/foto/hero/zemedelske-haly-2.webp", alt: t("Zemědělská hala se žlutým opláštěním a otevřenou stájí", "Poľnohospodárska hala so žltým opláštením a otvorenou maštaľou"), place: t("Zemědělské haly", "Poľnohospodárske haly"), info: t("Hala s otevřenou stájí", "Hala s otvorenou maštaľou"), href: "/haly/zemedelske-haly", focus: "55% 50%" },
+    { src: "/foto/hero/litvinov.webp", alt: t("Bílá skladová hala v Litvínově na mokrém asfaltu", "Biela skladová hala v Litvínove na mokrom asfalte"), place: "Litvínov", info: t("Skladová hala · 900 m²", "Skladová hala · 900 m²"), href: "/realizace/skladova-hala-litvinov", focus: "70% 55%" },
+    { src: "/foto/hero/jezdecke-haly.webp", alt: t("Jezdecká hala s obloukovými okny v čelní stěně", "Jazdecká hala s oblúkovými oknami v čelnej stene"), place: t("Jezdecké haly", "Jazdecké haly"), info: t("Hala s obloukovými okny", "Hala s oblúkovými oknami"), href: "/haly/jezdecke-haly", focus: "45% 50%" },
+  ].map((s) => ({ ...s, href: localize(lang, s.href) }));
+};
 
 const SLIDE_MS = 7000;
 
-export function HeroSlideshow() {
+export function HeroSlideshow({ lang }: { lang: Lang }) {
+  const t = pick(lang);
+  const slides = slidesFor(lang);
   // Předchozí fotka zůstává pod novou, dokud ji nová nepřejede.
   const [{ index, prev }, setSlide] = useState({ index: 0, prev: -1 });
   const go = (n: number) => setSlide((st) => (n === st.index ? st : { index: n, prev: st.index }));
@@ -61,9 +67,9 @@ export function HeroSlideshow() {
   // Přepínání fotek. Při pauze se interval zastaví a po spuštění běží od aktuální fotky.
   useEffect(() => {
     if (!running) return;
-    const t = setTimeout(() => setSlide((st) => ({ index: (st.index + 1) % slides.length, prev: st.index })), SLIDE_MS);
-    return () => clearTimeout(t);
-  }, [running, index]);
+    const timer = setTimeout(() => setSlide((st) => ({ index: (st.index + 1) % slides.length, prev: st.index })), SLIDE_MS);
+    return () => clearTimeout(timer);
+  }, [running, index, slides.length]);
 
   const s = slides[index];
 
@@ -110,13 +116,13 @@ export function HeroSlideshow() {
 
       <div className="pointer-events-none absolute inset-x-0 top-[88px] z-20 md:top-auto md:bottom-[84px]">
         <div className="mx-auto flex w-full max-w-[1240px] items-center justify-end gap-5 px-5 sm:px-8 md:items-end md:justify-start md:gap-8 [&>*]:pointer-events-auto">
-          <div className="flex items-center gap-1.5 md:gap-2" role="group" aria-label="Fotografie realizací">
+          <div className="flex items-center gap-1.5 md:gap-2" role="group" aria-label={t("Fotografie realizací", "Fotografie realizácií")}>
             {slides.map((sl, i) => (
               <button
                 key={sl.src}
                 type="button"
                 onClick={() => go(i)}
-                aria-label={`Zobrazit ${sl.place}`}
+                aria-label={`${t("Zobrazit", "Zobraziť")} ${sl.place}`}
                 aria-current={i === index}
                 className="group relative h-11 w-11 md:h-6 md:w-12"
               >
@@ -141,7 +147,7 @@ export function HeroSlideshow() {
               aria-pressed={userPaused}
               className="text-[13px] font-semibold text-white/75 underline decoration-white/30 underline-offset-4 hover:text-white"
             >
-              {userPaused ? "Spustit" : "Pozastavit"}<span className="max-md:sr-only"> animace</span>
+              {userPaused ? t("Spustit", "Spustiť") : t("Pozastavit", "Pozastaviť")}<span className="max-md:sr-only"> {t("animace", "animácie")}</span>
             </button>
           )}
         </div>

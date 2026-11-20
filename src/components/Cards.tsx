@@ -1,10 +1,11 @@
 import { Img } from "@/components/Img";
 import Link from "next/link";
 import type { Hall, Realization } from "@/lib/data";
+import { localize, type Lang } from "@/lib/i18n";
 
-export function RealizationCard({ item, sizes, eager }: { item: Realization; sizes?: string; eager?: boolean }) {
+export function RealizationCard({ lang, item, sizes, eager }: { lang: Lang; item: Realization; sizes?: string; eager?: boolean }) {
   return (
-    <Link href={`/realizace/${item.slug}`} className="group block">
+    <Link href={localize(lang, `/realizace/${item.slug}`)} className="group block">
       <div className="sd-reveal relative aspect-[4/3] overflow-clip rounded-md bg-mist">
         <Img
           src={item.photos[0].src}
@@ -31,9 +32,9 @@ export function RealizationCard({ item, sizes, eager }: { item: Realization; siz
 }
 
 // wide: jediná hala ve skupině rozcestníku, přes celou šířku.
-export function HallCard({ hall, sizes, large, wide }: { hall: Hall; sizes?: string; large?: boolean; wide?: boolean }) {
+export function HallCard({ lang, hall, sizes, large, wide }: { lang: Lang; hall: Hall; sizes?: string; large?: boolean; wide?: boolean }) {
   return (
-    <Link href={`/haly/${hall.slug}`} className="group block">
+    <Link href={localize(lang, `/haly/${hall.slug}`)} className="group block">
       <div className={`sd-reveal relative overflow-clip rounded-md bg-mist ${wide ? "aspect-[3/2] sm:aspect-[21/9]" : large ? "aspect-[3/2] lg:aspect-[16/9]" : "aspect-[3/2]"}`}>
         <Img
           src={hall.photos[0].src}

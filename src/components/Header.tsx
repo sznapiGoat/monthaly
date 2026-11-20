@@ -5,16 +5,46 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { company } from "@/lib/company";
+import { localize, pick, switchHref, toCs, type Lang } from "@/lib/i18n";
 import { btn, container } from "@/lib/ui";
 
-const nav = [
-  { href: "/haly", label: "Naše haly" },
-  { href: "/realizace", label: "Realizace" },
-  { href: "/jak-pracujeme", label: "Jak pracujeme" },
-  { href: "/kontakt", label: "Kontakt" },
-];
+/** Přepínač CZ / SK. Vede na tutéž stránku v druhém jazyce (jiný kořenový layout, proto obyčejný odkaz). */
+function LangSwitch({ lang, pathname, light }: { lang: Lang; pathname: string; light?: boolean }) {
+  const csHref = toCs(lang, pathname);
+  return (
+    <div className="flex items-center gap-1 text-[13px] font-semibold" aria-label={pick(lang)("Jazyk", "Jazyk")} role="group">
+      {(["cs", "sk"] as const).map((l) =>
+        l === lang ? (
+          <span key={l} aria-current="true" className={`rounded px-1.5 py-1 ${light ? "text-white" : "text-ink"}`}>
+            {l === "cs" ? "CZ" : "SK"}
+          </span>
+        ) : (
+          <a
+            key={l}
+            href={switchHref(l, csHref)}
+            hrefLang={l}
+            lang={l}
+            aria-label={l === "cs" ? "Česky" : "Slovensky"}
+            className={`rounded px-1.5 py-1 underline-offset-4 hover:underline ${light ? "text-white/60 hover:text-white" : "text-dim hover:text-brand"}`}
+          >
+            {l === "cs" ? "CZ" : "SK"}
+          </a>
+        ),
+      )}
+    </div>
+  );
+}
 
-export function Header() {
+export function Header({ lang }: { lang: Lang }) {
+  const t = pick(lang);
+  const nav = [
+    { href: localize(lang, "/haly"), label: t("Naše haly", "Naše haly") },
+    { href: localize(lang, "/realizace"), label: t("Realizace", "Realizácie") },
+    { href: localize(lang, "/jak-pracujeme"), label: t("Jak pracujeme", "Ako pracujeme") },
+    { href: localize(lang, "/kontakt"), label: t("Kontakt", "Kontakt") },
+  ];
+  const home = localize(lang, "/");
+  const quote = localize(lang, "/poptavka");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
@@ -39,7 +69,7 @@ export function Header() {
   }, [open]);
 
   // Na úvodce je hlavička nad tmavým hero průhledná. Jakmile hero odjede pod hlavičku, přepne se na bílou.
-  const isHome = pathname === "/";
+  const isHome = pathname === home;
   const [heroUnder, setHeroUnder] = useState(true);
   useEffect(() => {
     const hero = isHome ? document.getElementById("hero") : null;
@@ -61,11 +91,11 @@ export function Header() {
       >
         <div className={`${container} flex h-[72px] items-center justify-between gap-6`}>
           <Link
-            href="/"
-            aria-label="MontHaly, úvodní stránka"
+            href={home}
+            aria-label={t("MontHaly, úvodní stránka", "MontHaly, úvodná stránka")}
             className="shrink-0"
             onClick={(e) => {
-              if (pathname === "/") {
+              if (pathname === home) {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
               }
@@ -94,7 +124,7 @@ export function Header() {
             </span>
           </Link>
 
-          <nav aria-label="Hlavní navigace" className="hidden lg:block">
+          <nav aria-label={t("Hlavní navigace", "Hlavná navigácia")} className="hidden lg:block">
             <ul className="flex items-center gap-8">
               {nav.map((item) => (
                 <li key={item.href}>
@@ -117,14 +147,15 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-6 lg:flex">
+            <LangSwitch lang={lang} pathname={pathname} light={clear} />
             <a
               href={`tel:${company.phone}`}
               className={`text-[15px] font-semibold tabular-nums transition-colors ${clear ? "text-white hover:text-azure-soft" : "text-ink hover:text-brand"}`}
             >
               {company.phoneIntl}
             </a>
-            <Link href="/poptavka" className={`${btn.primary} px-5 py-2.5 text-[14px]`}>
-              Nezávazná poptávka
+            <Link href={quote} className={`${btn.primary} px-5 py-2.5 text-[14px]`}>
+              {t("Nezávazná poptávka", "Nezáväzný dopyt")}
             </Link>
           </div>
 
@@ -137,7 +168,7 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              aria-label={open ? "Zavřít menu" : "Otevřít menu"}
+              aria-label={open ? t("Zavřít menu", "Zavrieť menu") : t("Otevřít menu", "Otvoriť menu")}
               className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-md transition-colors ${clear ? "text-white" : "text-ink"}`}
             >
               <span className="relative block h-3.5 w-6">
@@ -152,10 +183,10 @@ export function Header() {
 
       {open && (
         <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-[73px] z-30 overflow-y-auto bg-white lg:hidden">
-          <nav aria-label="Mobilní navigace" className={`${container} flex min-h-full flex-col py-6`}>
+          <nav aria-label={t("Mobilní navigace", "Mobilná navigácia")} className={`${container} flex min-h-full flex-col py-6`}>
             <ul className="divide-y divide-line border-y border-line">
-              {[{ href: "/", label: "Úvod" }, ...nav].map((item) => {
-                const active = item.href === "/" ? pathname === "/" : isActive(item.href);
+              {[{ href: home, label: t("Úvod", "Úvod") }, ...nav].map((item) => {
+                const active = item.href === home ? pathname === home : isActive(item.href);
                 return (
                   <li key={item.href}>
                     <Link href={item.href} className={`block py-4 font-display text-[29px] leading-[1.12] ${active ? "text-brand" : "text-ink"}`}>
@@ -166,12 +197,15 @@ export function Header() {
               })}
             </ul>
             <div className="mt-auto space-y-3 pt-10">
-              <Link href="/poptavka" className={`${btn.primary} w-full`}>
-                Nezávazná poptávka
+              <Link href={quote} className={`${btn.primary} w-full`}>
+                {t("Nezávazná poptávka", "Nezáväzný dopyt")}
               </Link>
               <a href={`tel:${company.phone}`} className={`${btn.ghost} w-full tabular-nums`}>
-                Zavolat {company.phoneIntl}
+                {t("Zavolat", "Zavolať")} {company.phoneIntl}
               </a>
+              <div className="flex justify-center pt-2">
+                <LangSwitch lang={lang} pathname={pathname} />
+              </div>
             </div>
           </nav>
         </div>

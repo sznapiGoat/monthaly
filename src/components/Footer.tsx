@@ -1,37 +1,42 @@
 import { Img } from "@/components/Img";
 import Link from "next/link";
 import { CookieSettingsButton } from "@/components/CookieConsent";
-import { company, hallGroups, halls } from "@/lib/data";
+import { getContent } from "@/lib/content";
+import { localize, pick, type Lang } from "@/lib/i18n";
 import { container } from "@/lib/ui";
 
 const heading = "text-[16px] font-semibold text-white";
 
-export function Footer() {
+export function Footer({ lang }: { lang: Lang }) {
+  const t = pick(lang);
+  const l = (href: string) => localize(lang, href);
+  const { company, hallGroups, halls, sales } = getContent(lang);
+
   return (
     <footer className="bg-night text-white/75">
       <div className={`${container} grid gap-12 py-16 md:grid-cols-12 md:py-20`}>
         <div className="md:col-span-4">
-          <Link href="/" aria-label="MontHaly, úvodní stránka" className="inline-block">
+          <Link href={l("/")} aria-label={t("MontHaly, úvodní stránka", "MontHaly, úvodná stránka")} className="inline-block">
             <Img src="/logo-light.svg" alt="MontHaly s.r.o." width={192} height={40} className="h-10 w-auto" />
           </Link>
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">
-            Montované haly na míru od prvního návrhu po montáž.
+            {t("Montované haly na míru od prvního návrhu po montáž.", "Montované haly na mieru od prvého návrhu po montáž.")}
           </p>
           <address className="mt-6 text-[14px] not-italic leading-relaxed text-white/60">
             {company.name}
             <br />
             {company.street}, {company.city}
             <br />
-            IČ {company.ico} · DIČ {company.dic}
+            {t("IČ", "IČO")} {company.ico} · DIČ {company.dic}
           </address>
         </div>
 
         <div className="md:col-span-3">
-          <h2 className={heading}>Naše haly</h2>
+          <h2 className={heading}>{t("Naše haly", "Naše haly")}</h2>
           <ul className="mt-5 space-y-2.5 text-[15px]">
             {hallGroups.flatMap((g) => halls.filter((h) => h.group === g.id)).map((h) => (
               <li key={h.slug}>
-                <Link href={`/haly/${h.slug}`} className="hover:text-white">
+                <Link href={l(`/haly/${h.slug}`)} className="hover:text-white">
                   {h.name}
                 </Link>
               </li>
@@ -43,22 +48,22 @@ export function Footer() {
           <h2 className={heading}>MontHaly</h2>
           <ul className="mt-5 space-y-2.5 text-[15px]">
             <li>
-              <Link href="/realizace" className="hover:text-white">Realizace</Link>
+              <Link href={l("/realizace")} className="hover:text-white">{t("Realizace", "Realizácie")}</Link>
             </li>
             <li>
-              <Link href="/jak-pracujeme" className="hover:text-white">Jak pracujeme</Link>
+              <Link href={l("/jak-pracujeme")} className="hover:text-white">{t("Jak pracujeme", "Ako pracujeme")}</Link>
             </li>
             <li>
-              <Link href="/kontakt" className="hover:text-white">Kontakt</Link>
+              <Link href={l("/kontakt")} className="hover:text-white">Kontakt</Link>
             </li>
             <li>
-              <Link href="/poptavka" className="hover:text-white">Nezávazná poptávka</Link>
+              <Link href={l("/poptavka")} className="hover:text-white">{t("Nezávazná poptávka", "Nezáväzný dopyt")}</Link>
             </li>
           </ul>
         </div>
 
         <div className="md:col-span-3">
-          <h2 className={heading}>Jsme vám k dispozici</h2>
+          <h2 className={heading}>{t("Jsme vám k dispozici", "Sme vám k dispozícii")}</h2>
           <a
             href={`tel:${company.phone}`}
             className="mt-5 block font-display text-[29px] leading-[0.9] tabular-nums text-white hover:text-azure-soft"
@@ -68,7 +73,9 @@ export function Footer() {
           <a href={`mailto:${company.email}`} className="mt-3 block text-[15px] hover:text-white">
             {company.email}
           </a>
-          <p className="mt-1 text-[14px] text-white/55">Roman Chalupka, prodej hal</p>
+          <p className="mt-1 text-[14px] text-white/55">
+            {sales.name}, {sales.role.toLowerCase()}
+          </p>
         </div>
       </div>
 
@@ -78,14 +85,14 @@ export function Footer() {
             © {new Date().getFullYear()} {company.name}
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="/ochrana-osobnich-udaju" className="hover:text-white">
-              Ochrana osobních údajů
+            <Link href={l("/ochrana-osobnich-udaju")} className="hover:text-white">
+              {t("Ochrana osobních údajů", "Ochrana osobných údajov")}
             </Link>
-            <Link href="/mimosoudni-reseni-spotrebitelskych-sporu" className="hover:text-white">
-              Spotřebitelské spory
+            <Link href={l("/mimosoudni-reseni-spotrebitelskych-sporu")} className="hover:text-white">
+              {t("Spotřebitelské spory", "Spotrebiteľské spory")}
             </Link>
-            <CookieSettingsButton className="text-left hover:text-white" />
-            <span>Ukázková verze webu</span>
+            <CookieSettingsButton className="text-left hover:text-white" label={t("Nastavení cookies", "Nastavenie cookies")} />
+            <span>{t("Ukázková verze webu", "Ukážková verzia webu")}</span>
           </div>
         </div>
       </div>

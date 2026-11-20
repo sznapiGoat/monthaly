@@ -4,11 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { company } from "@/lib/company";
+import { localize, pick, type Lang } from "@/lib/i18n";
 import { btn } from "@/lib/ui";
 
 // Na mobilu je poptávka i telefon stále po ruce (zadání 11/2026). Lišta vyjede až po odscrollování úvodu,
 // na stránce poptávky není. Lišta cookies (z-50) i mobilní menu (z-30) ji překryjí.
-export function MobileCta() {
+export function MobileCta({ lang }: { lang: Lang }) {
+  const t = pick(lang);
+  const quote = localize(lang, "/poptavka");
   const pathname = usePathname();
   const [shown, setShown] = useState(false);
 
@@ -19,7 +22,7 @@ export function MobileCta() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (pathname.startsWith("/poptavka")) return null;
+  if (pathname.startsWith(quote)) return null;
 
   return (
     <>
@@ -32,11 +35,11 @@ export function MobileCta() {
         }`}
       >
         <div className="flex gap-3">
-          <Link href="/poptavka" className={`${btn.primary} flex-1 py-3`}>
-            Nezávazná poptávka
+          <Link href={quote} className={`${btn.primary} flex-1 py-3`}>
+            {t("Nezávazná poptávka", "Nezáväzný dopyt")}
           </Link>
           <a href={`tel:${company.phone}`} className={`${btn.ghost} py-3`}>
-            Zavolat
+            {t("Zavolat", "Zavolať")}
           </a>
         </div>
       </div>
