@@ -56,7 +56,19 @@ export type Hall = {
   prompt: { title: string; text: string };
   photos: Photo[];
   related: string[];
+  /** Technické parametry; bez nich se ukáže společné provedení hal (hallSpecs). */
+  specs?: { k: string; v: string }[];
 };
+
+// Technické provedení montovaných hal. Zdroj: stránky typů hal na nelpet.cz (2020–2025), před spuštěním potvrdit u klienta.
+export const hallSpecs: { k: string; v: string }[] = [
+  { k: "Rozměry", v: "Šířka až 60 m podle potřeby, délka bez omezení v modulech po 5 m." },
+  { k: "Konstrukce", v: "Hliníkové slitiny 6005 AT6, 6061 T6 a 6082 T6, nebo žárově zinkovaná ocel S235JR a S355JR." },
+  { k: "Opláštění", v: "Technická plachta PES s PVC 670 až 900 g/m² (Thermo 1 300 g/m²), trapézový plech, nebo sendvičové panely PUR/PIR." },
+  { k: "Plachta", v: "Nepromokavá, propouští denní světlo, odolná UV, teplotní stálost −30 až +70 °C, nehořlavost DIN 4102 B1." },
+  { k: "Výpočet", v: "Konstrukce podle EN 13782, zatížení sněhem podle EN 1991-1-3 a větrem podle EN 1991-1-4 pro místo stavby." },
+  { k: "Vybavení", v: "Vrata posuvná, křídlová i sekční, dveře včetně protipožárních, okna, větrání, antikondenzační membrány, elektroinstalace a topení." },
+];
 
 export const halls: Hall[] = [
   {
@@ -226,6 +238,40 @@ export const halls: Hall[] = [
       p("party-stany-2.webp", "Párty stan u jezírka s fontánou", 1400, 788),
     ],
     related: ["party-stan-horni-dvur"],
+  },
+  {
+    slug: "nuzkove-stany",
+    name: "Nůžkové stany",
+    short: "Rychlé zastřešení na trhy a akce.",
+    group: "hangary-dalsi",
+    tagline: "Stan, který postavíte do minuty a odvezete osobním autem.",
+    lead: "Lehká hliníková konstrukce s nůžkovým systémem. Stan rozložíte během chvilky, menší rozměry postaví i jeden člověk a plachty potiskneme vaším logem.",
+    features: [
+      { title: "Postavíte do 60 vteřin", text: "Push systém konstrukci rychle rozloží, složí i zajistí. Výšku nastavíte podle potřeby." },
+      { title: "Potisk podle vás", text: "Střechu i bočnice potiskneme sublimačním tiskem. Na bočnice jdou i vyměnitelné bannery na suchý zip." },
+      { title: "Stabilní konstrukce", text: "Šestihranné hliníkové profily 40 nebo 50 mm, eloxované proti korozi, s ocelovými patkami pro pevné ukotvení." },
+    ],
+    uses: ["Prodejní a výstavní stánky", "Firemní a sportovní akce", "Trhy a festivaly"],
+    prompt: {
+      title: "Kolik stanů a v jakém rozměru potřebujete?",
+      text: "Napište rozměr, počet stanů a jestli chcete potisk. Pošlete logo nebo grafiku a připravíme návrh.",
+    },
+    photos: [
+      p("nuzkove-stany.webp", "Nůžkové stany Pivovaru Chmelnice s pivními sety na náměstí"),
+      p("nuzkove-stany-1.webp", "Bílý nůžkový stan s potiskem Rossmann"),
+      p("nuzkove-stany-2.webp", "Nůžkový stan Erste Leasing na venkovní výstavě"),
+      p("nuzkove-stany-3.webp", "Nůžkový stan Mendelovy univerzity s celoplošným potiskem"),
+      p("nuzkove-stany-4.webp", "Modrý nůžkový stan s potiskem Stachema na trávě"),
+    ],
+    related: [],
+    specs: [
+      { k: "Rozměry", v: "2 × 2, 2 × 3, 2 × 4, 3 × 3, 3 × 4,5, 3 × 6, 4 × 4, 4 × 6, 4 × 8 a 5 × 5 m. Stan 4 × 6 m i bez středových noh." },
+      { k: "Konstrukce", v: "Hexagon 40 (profil 40 mm, stěna 1,5 mm) nebo Hexagon 50 (profil 50 mm, stěna 2 mm), push systém, nastavitelná výška." },
+      { k: "Opláštění", v: "100% PES s úpravou proti plísni, špinění a UV, 200 až 270 g/m² s potiskem, 300 až 450 g/m² bez potisku." },
+      { k: "Barvy a potisk", v: "17 základních barev, digitální sublimační tisk se světlostálostí 6 až 7 z 8." },
+      { k: "V balení", v: "Přepravní vak, kotevní hřeby a návod." },
+      { k: "Příslušenství", v: "Bočnice plné, s okny i dveřmi, polobočnice, zátěžové desky a pískové vaky, dešťové okapy, bannery." },
+    ],
   },
 ];
 
@@ -979,7 +1025,7 @@ export const faq = [
   },
   {
     q: "Jak dlouho trvá dodání a montáž?",
-    a: "Halu na klíč stavíme v termínech již od čtyř týdnů. Přesný termín se odvíjí od typu haly, rozsahu dodávky, připravenosti podkladu a potřebné dokumentace. Dobu přípravy, dodání a vlastní montáže vám rozlišíme v konkrétní nabídce.",
+    a: "Halu na klíč stavíme v termínech již od čtyř týdnů. Přesný termín se odvíjí od typu haly, rozsahu dodávky, připravenosti podkladu a potřebné dokumentace. Samotná montáž haly trvá obvykle 1 až 3 dny. Dobu přípravy, dodání a vlastní montáže vám rozlišíme v konkrétní nabídce.",
   },
   {
     q: "Musím znát přesné rozměry?",

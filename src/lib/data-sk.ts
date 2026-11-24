@@ -2,7 +2,7 @@
 // Klíčem je slug, ať se nic nerozjede, když se v data.ts změní pořadí.
 import type { Hall, HallGroup, RealizationCategory } from "./data";
 
-type HallText = Pick<Hall, "name" | "short" | "tagline" | "lead" | "features" | "uses" | "prompt"> & { alts: string[] };
+type HallText = Pick<Hall, "name" | "short" | "tagline" | "lead" | "features" | "uses" | "prompt" | "specs"> & { alts: string[] };
 type RealizationText = { title: string; kind: string; summary: string; notes: string[]; use?: string; alts: string[] };
 
 export const skHallGroups: Record<HallGroup, { label: string; text: string }> = {
@@ -160,7 +160,47 @@ export const skHalls: Record<string, HallText> = {
       "Párty stan pri jazierku s fontánou",
     ],
   },
+  "nuzkove-stany": {
+    name: "Nožnicové stany",
+    short: "Rýchle zastrešenie na trhy a akcie.",
+    tagline: "Stan, ktorý postavíte do minúty a odveziete osobným autom.",
+    lead: "Ľahká hliníková konštrukcia s nožnicovým systémom. Stan rozložíte za chvíľu, menšie rozmery postaví aj jeden človek a plachty potlačíme vaším logom.",
+    features: [
+      { title: "Postavíte do 60 sekúnd", text: "Push systém konštrukciu rýchlo rozloží, zloží aj zaistí. Výšku nastavíte podľa potreby." },
+      { title: "Potlač podľa vás", text: "Strechu aj bočnice potlačíme sublimačnou tlačou. Na bočnice sa dajú aj vymeniteľné bannery na suchý zips." },
+      { title: "Stabilná konštrukcia", text: "Šesťhranné hliníkové profily 40 alebo 50 mm, eloxované proti korózii, s oceľovými pätkami na pevné ukotvenie." },
+    ],
+    uses: ["Predajné a výstavné stánky", "Firemné a športové akcie", "Trhy a festivaly"],
+    prompt: {
+      title: "Koľko stanov a v akom rozmere potrebujete?",
+      text: "Napíšte rozmer, počet stanov a či chcete potlač. Pošlite logo alebo grafiku a pripravíme návrh.",
+    },
+    specs: [
+      { k: "Rozmery", v: "2 × 2, 2 × 3, 2 × 4, 3 × 3, 3 × 4,5, 3 × 6, 4 × 4, 4 × 6, 4 × 8 a 5 × 5 m. Stan 4 × 6 m aj bez stredových nôh." },
+      { k: "Konštrukcia", v: "Hexagon 40 (profil 40 mm, stena 1,5 mm) alebo Hexagon 50 (profil 50 mm, stena 2 mm), push systém, nastaviteľná výška." },
+      { k: "Opláštenie", v: "100 % PES s úpravou proti plesni, špineniu a UV, 200 až 270 g/m² s potlačou, 300 až 450 g/m² bez potlače." },
+      { k: "Farby a potlač", v: "17 základných farieb, digitálna sublimačná tlač so svetlostálosťou 6 až 7 z 8." },
+      { k: "V balení", v: "Prepravný vak, kotviace klince a návod." },
+      { k: "Príslušenstvo", v: "Bočnice plné, s oknami aj dverami, polobočnice, záťažové dosky a pieskové vaky, dažďové odkvapy, bannery." },
+    ],
+    alts: [
+      "Nožnicové stany Pivovaru Chmelnice s pivnými setmi na námestí",
+      "Biely nožnicový stan s potlačou Rossmann",
+      "Nožnicový stan Erste Leasing na vonkajšej výstave",
+      "Nožnicový stan Mendelovej univerzity s celoplošnou potlačou",
+      "Modrý nožnicový stan s potlačou Stachema na tráve",
+    ],
+  },
 };
+
+export const skHallSpecs: { k: string; v: string }[] = [
+  { k: "Rozmery", v: "Šírka až 60 m podľa potreby, dĺžka bez obmedzenia v moduloch po 5 m." },
+  { k: "Konštrukcia", v: "Hliníkové zliatiny 6005 AT6, 6061 T6 a 6082 T6, alebo žiarovo zinkovaná oceľ S235JR a S355JR." },
+  { k: "Opláštenie", v: "Technická plachta PES s PVC 670 až 900 g/m² (Thermo 1 300 g/m²), trapézový plech, alebo sendvičové panely PUR/PIR." },
+  { k: "Plachta", v: "Nepremokavá, prepúšťa denné svetlo, odolná voči UV, teplotná stálosť −30 až +70 °C, horľavosť DIN 4102 B1." },
+  { k: "Výpočet", v: "Konštrukcia podľa EN 13782, zaťaženie snehom podľa EN 1991-1-3 a vetrom podľa EN 1991-1-4 pre miesto stavby." },
+  { k: "Vybavenie", v: "Brány posuvné, krídlové aj sekcionálne, dvere vrátane protipožiarnych, okná, vetranie, antikondenzačné membrány, elektroinštalácia a vykurovanie." },
+];
 
 export const skRealizationCategories: Record<RealizationCategory, string> = {
   skladove: "Skladové haly",
@@ -430,7 +470,7 @@ export const skFaq = [
   },
   {
     q: "Ako dlho trvá dodanie a montáž?",
-    a: "Halu na kľúč staviame v termínoch už od štyroch týždňov. Presný termín závisí od typu haly, rozsahu dodávky, pripravenosti podkladu a potrebnej dokumentácie. Čas prípravy, dodania a samotnej montáže vám rozpíšeme v konkrétnej ponuke.",
+    a: "Halu na kľúč staviame v termínoch už od štyroch týždňov. Presný termín závisí od typu haly, rozsahu dodávky, pripravenosti podkladu a potrebnej dokumentácie. Samotná montáž haly trvá zvyčajne 1 až 3 dni. Čas prípravy, dodania a samotnej montáže vám rozpíšeme v konkrétnej ponuke.",
   },
   {
     q: "Musím poznať presné rozmery?",

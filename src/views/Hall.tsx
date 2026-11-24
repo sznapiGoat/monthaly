@@ -6,8 +6,9 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { RealizationCard } from "@/components/Cards";
 import { Faq } from "@/components/Faq";
 import { Gallery } from "@/components/Gallery";
+import { Testimonials } from "@/components/Testimonials";
 import { getContent } from "@/lib/content";
-import { halls } from "@/lib/data";
+import { halls, testimonials } from "@/lib/data";
 import { alternates, localize, pick, type Lang } from "@/lib/i18n";
 import { btn, container, link } from "@/lib/ui";
 
@@ -27,7 +28,7 @@ export const hallMeta = (lang: Lang, slug: string): Metadata => {
 export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
   const t = pick(lang);
   const l = (href: string) => localize(lang, href);
-  const { faq, getHall, getRealization, halls } = getContent(lang);
+  const { faq, getHall, getRealization, hallSpecs, halls } = getContent(lang);
   const hall = getHall(slug);
   if (!hall) notFound();
 
@@ -35,6 +36,8 @@ export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
   const next = halls[(idx + 1) % halls.length];
   const related = hall.related.map((s) => getRealization(s)!).filter(Boolean);
   const [hero, ...more] = hall.photos;
+  const specs = hall.specs ?? hallSpecs;
+  const isTent = hall.slug === "nuzkove-stany";
 
   return (
     <>
@@ -49,7 +52,7 @@ export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
             <p className="mt-6 text-[18px] leading-relaxed text-dim">{hall.lead}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href={l(`/poptavka?typ=${hall.slug}`)} className={btn.primary}>
-                {t("Poptat tuto halu", "Dopytovať túto halu")}
+                {isTent ? t("Poptat stany", "Dopytovať stany") : t("Poptat tuto halu", "Dopytovať túto halu")}
               </Link>
               <Link href={l("/kontakt")} className={btn.ghost}>
                 {t("Chci se poradit", "Chcem sa poradiť")}
@@ -113,6 +116,29 @@ export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
         </div>
       </section>
 
+      <section aria-labelledby="provedeni" className="border-t border-line bg-mist py-20 md:py-24">
+        <div className={`${container} grid gap-10 lg:grid-cols-12`}>
+          <div className="lg:col-span-4">
+            <h2 id="provedeni" className="font-display text-[38px] leading-[0.94] text-ink sm:text-[45px]">
+              {isTent ? t("Technické parametry", "Technické parametre") : t("Technické provedení", "Technické prevedenie")}
+            </h2>
+            <p className="mt-5 max-w-[40ch] text-[16px] leading-relaxed text-dim">
+              {isTent
+                ? t("Rozměr, konstrukci i potisk vybereme podle toho, jak a kde budete stan používat.", "Rozmer, konštrukciu aj potlač vyberieme podľa toho, ako a kde budete stan používať.")
+                : t("Konkrétní rozměry, opláštění a vybavení navrhneme pro vaši halu a místo stavby.", "Konkrétne rozmery, opláštenie a vybavenie navrhneme pre vašu halu a miesto stavby.")}
+            </p>
+          </div>
+          <dl className="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
+            {specs.map((s) => (
+              <div key={s.k} className="border-t border-line py-5">
+                <dt className="text-[14px] font-semibold text-ink">{s.k}</dt>
+                <dd className="mt-1 text-[15px] leading-relaxed text-dim">{s.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="bg-night text-white">
         <div className={`${container} grid gap-8 py-16 md:grid-cols-12 md:items-center md:py-20`}>
           <div className="md:col-span-8">
@@ -121,11 +147,13 @@ export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
           </div>
           <div className="md:col-span-4 md:text-right">
             <Link href={l(`/poptavka?typ=${hall.slug}`)} className={btn.primary}>
-              {t("Poptat tuto halu", "Dopytovať túto halu")}
+              {isTent ? t("Poptat stany", "Dopytovať stany") : t("Poptat tuto halu", "Dopytovať túto halu")}
             </Link>
           </div>
         </div>
       </section>
+
+      {isTent && <Testimonials lang={lang} items={testimonials.filter((x) => x.topic === "stany")} title={t("Co říkají zákazníci o stanech", "Čo hovoria zákazníci o stanoch")} />}
 
       {related.length > 0 && (
         <section className="py-20 md:py-28">
@@ -147,6 +175,8 @@ export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
         </section>
       )}
 
+      {/* Otázky jsou o halách, u stanů je nemá smysl ukazovat. */}
+      {!isTent && (
       <section className={`py-20 md:py-28 ${related.length ? "bg-mist" : ""}`}>
         <div className={`${container} grid gap-12 lg:grid-cols-12`}>
           <div className="lg:col-span-5">
@@ -160,6 +190,7 @@ export function Hall({ lang, slug }: { lang: Lang; slug: string }) {
           </div>
         </div>
       </section>
+      )}
 
       <nav aria-label={t("Další typ haly", "Ďalší typ haly")} className="border-t border-line">
         <Link href={l(`/haly/${next.slug}`)} className={`${container} group flex items-center justify-between gap-6 py-10`}>

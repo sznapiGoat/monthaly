@@ -1,6 +1,6 @@
 // Obsah webu v jazyce stránky. Česky rovnou z data.ts, slovensky stejná data s překlady z data-sk.ts.
 import * as cs from "./data";
-import { skContactRoles, skFaq, skHallGroups, skHalls, skRealizationCategories, skRealizations, skSteps } from "./data-sk";
+import { skContactRoles, skFaq, skHallGroups, skHallSpecs, skHalls, skRealizationCategories, skRealizations, skSteps } from "./data-sk";
 import type { Lang } from "./i18n";
 
 const withAlts = (photos: cs.Photo[], alts: string[]) => photos.map((ph, i) => ({ ...ph, alt: alts[i] ?? ph.alt }));
@@ -29,6 +29,7 @@ const content = {
     faq: cs.faq,
     steps: cs.steps,
     contacts: cs.contacts,
+    hallSpecs: cs.hallSpecs,
   },
   sk: {
     halls: skHallList,
@@ -38,6 +39,7 @@ const content = {
     faq: skFaq,
     steps: skSteps,
     contacts: skContacts,
+    hallSpecs: skHallSpecs,
   },
 };
 
