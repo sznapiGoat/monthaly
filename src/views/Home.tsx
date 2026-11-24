@@ -65,7 +65,8 @@ export function Home({ lang }: { lang: Lang }) {
   };
 
   const featured = ["skladova-hala-lhotka-nad-becvou", "sportovni-hala-brno", "skladove-haly-mosnov"].map((s) => getRealization(s)!);
-  const rest = realizations.filter((r) => !featured.some((f) => f.slug === r.slug));
+  // Pod třemi hlavními jen výběr, celý seznam je na stránce Realizace.
+  const rest = realizations.filter((r) => !featured.some((f) => f.slug === r.slug)).slice(0, 8);
 
   return (
     <>

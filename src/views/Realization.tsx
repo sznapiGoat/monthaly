@@ -10,6 +10,10 @@ import { realizations } from "@/lib/data";
 import { alternates, localize, pick, type Lang } from "@/lib/i18n";
 import { btn, container, link } from "@/lib/ui";
 
+/** Délka montáže: „1 den“, „3 dny“, „5 dnů“ / „1 deň“, „3 dni“, „5 dní“. */
+const days = (lang: Lang, n: number) =>
+  `${n}\u00a0${pick(lang)(n === 1 ? "den" : n < 5 ? "dny" : "dnů", n === 1 ? "deň" : n < 5 ? "dni" : "dní")}`;
+
 export const realizationParams = () => realizations.map((r) => ({ slug: r.slug }));
 
 export const realizationMeta = (lang: Lang, slug: string): Metadata => {
@@ -37,9 +41,12 @@ export function Realization({ lang, slug }: { lang: Lang; slug: string }) {
 
   const specs = [
     { k: t("Místo", "Miesto"), v: item.country === "SK" ? `${item.place}, ${t("Slovensko", "Slovensko")}` : item.place },
-    { k: t("Využití", "Využitie"), v: item.kind },
+    { k: t("Využití", "Využitie"), v: item.use ?? item.kind },
     ...(item.dimensions ? [{ k: t("Rozměry", "Rozmery"), v: item.dimensions }] : []),
     ...(item.area ? [{ k: t("Půdorysná plocha", "Pôdorysná plocha"), v: item.area }] : []),
+    ...(item.client ? [{ k: t("Zákazník", "Zákazník"), v: item.client }] : []),
+    ...(item.year ? [{ k: t("Rok realizace", "Rok realizácie"), v: String(item.year) }] : []),
+    ...(item.assemblyDays ? [{ k: t("Montáž", "Montáž"), v: days(lang, item.assemblyDays) }] : []),
   ];
 
   return (
