@@ -104,6 +104,22 @@ export function HowWeWork({ lang }: { lang: Lang }) {
         </div>
       </section>
 
+      {/* Skutečný montážní tým (fotka ze starého webu nelpet.cz). */}
+      <figure className="relative">
+        <div className="relative aspect-[2000/773] w-full overflow-clip bg-mist">
+          <Img
+            src="/foto/tym.webp"
+            alt={t("Montážní tým MontHaly v rozestavěné hale", "Montážny tím MontHaly v rozostavanej hale")}
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        <figcaption className={`${container} py-4 text-[14px] text-dim`}>
+          {t("Náš montážní tým. Haly stavíme vlastními montážníky.", "Náš montážny tím. Haly staviame vlastnými montážnikmi.")}
+        </figcaption>
+      </figure>
+
       <section className="bg-night text-white">
         <div className={`${container} grid gap-12 py-20 md:py-24 lg:grid-cols-12`}>
           <div className="lg:col-span-5">
