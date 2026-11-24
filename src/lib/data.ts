@@ -32,6 +32,15 @@ export const clients = [
   { name: "Huhn Group", logo: "/loga/huhn.png" },
   { name: "Zahradnictví Líbeznice", logo: "/loga/libeznice.png" },
   { name: "Rybníkářství Pohořelice", logo: "/loga/pohokapr.png" },
+  // Další zákazníci z referencí nelpet.cz, loga převedená do stejné šedé.
+  { name: "Škoda Auto", logo: "/loga/skoda.png" },
+  { name: "Erste Leasing", logo: "/loga/erste.png" },
+  { name: "ING", logo: "/loga/ing.png" },
+  { name: "AGC Automotive", logo: "/loga/agc.png" },
+  { name: "Algeco", logo: "/loga/algeco.png" },
+  { name: "SOR Libchavy", logo: "/loga/sor.png" },
+  { name: "Racio", logo: "/loga/racio.png" },
+  { name: "Navos", logo: "/loga/navos.png" },
 ];
 
 // Rozcestník podle účelu, jak ho chce klient v zadání (11/2026).
