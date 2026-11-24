@@ -4,7 +4,9 @@ import { HallCard, RealizationCard } from "@/components/Cards";
 import { CtaBand } from "@/components/CtaBand";
 import { Faq } from "@/components/Faq";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
+import { Testimonials } from "@/components/Testimonials";
 import { getContent } from "@/lib/content";
+import { testimonials } from "@/lib/data";
 import { localize, pick, type Lang } from "@/lib/i18n";
 import { btn, container, link } from "@/lib/ui";
 
@@ -285,6 +287,8 @@ export function Home({ lang }: { lang: Lang }) {
           </ul>
         </div>
       </section>
+
+      <Testimonials lang={lang} items={testimonials.filter((x) => x.topic === "haly").slice(0, 4)} />
 
       {/* Postup */}
       <section className="bg-mist py-20 md:py-28">

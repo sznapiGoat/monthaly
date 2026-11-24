@@ -164,7 +164,7 @@ export const skHalls: Record<string, HallText> = {
 
 export const skRealizationCategories: Record<RealizationCategory, string> = {
   skladove: "Skladové haly",
-  sportovni: "Športové a jazdecké haly",
+  sportovni: "Športové a jazdecké haly",
   zemedelske: "Poľnohospodárske haly",
   hangary: "Hangáre",
   eventove: "Párty stany",
@@ -257,7 +257,7 @@ export const skRealizations: Record<string, RealizationText> = {
     title: "Hala s pultovou strechou pre Alzu",
     kind: "Atypická hala",
     summary: "Manipulačný sklad s pultovou strechou pre Alzu v Prahe. Hala 15 × 40 m je na jednej strane vysoká 4,5 m, na druhej 9 m.",
-    notes: ["Pultová strecha, výška 4,5 až 9 m", "Manipulačný sklad", "Montáž za 4 dni"],
+    notes: ["Pultová strecha, výška 4,5 až 9 m", "Manipulačný sklad", "Montáž za 4 dni"],
     use: "Manipulačný sklad",
     alts: ["Hala s pultovou strechou pre Alzu", "Hala s pultovou strechou pre Alzu, ďalší pohľad", "Hala s pultovou strechou pre Alzu, ďalší pohľad", "Hala s pultovou strechou pre Alzu, ďalší pohľad"],
   },
