@@ -232,12 +232,12 @@ export function Home({ lang }: { lang: Lang }) {
 
           <div className="mt-12 grid gap-x-6 gap-y-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <RealizationCard lang={lang} item={featured[0]} sizes="(min-width: 1024px) 700px, 100vw" />
+              <RealizationCard lang={lang} item={featured[0]} sizes="(min-width: 1024px) 700px, 100vw" stretch />
             </div>
             <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
               {featured.slice(1).map((r) => (
                 <div key={r.slug}>
-                  <RealizationCard lang={lang} item={r} sizes="(min-width: 1024px) 480px, 50vw" />
+                  <RealizationCard lang={lang} item={r} sizes="(min-width: 1024px) 480px, 50vw" ratio="aspect-[4/3] lg:aspect-[16/9]" />
                 </div>
               ))}
             </div>

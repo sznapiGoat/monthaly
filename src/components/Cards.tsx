@@ -3,10 +3,25 @@ import Link from "next/link";
 import type { Hall, Realization } from "@/lib/data";
 import { localize, type Lang } from "@/lib/i18n";
 
-export function RealizationCard({ lang, item, sizes, eager }: { lang: Lang; item: Realization; sizes?: string; eager?: boolean }) {
+// stretch: na lg fotka vyplní výšku buňky mřížky (velká karta vedle sloupce menších).
+export function RealizationCard({
+  lang,
+  item,
+  sizes,
+  eager,
+  stretch,
+  ratio = "aspect-[4/3]",
+}: {
+  lang: Lang;
+  item: Realization;
+  sizes?: string;
+  eager?: boolean;
+  stretch?: boolean;
+  ratio?: string;
+}) {
   return (
-    <Link href={localize(lang, `/realizace/${item.slug}`)} className="group block">
-      <div className="sd-reveal relative aspect-[4/3] overflow-clip rounded-md bg-mist">
+    <Link href={localize(lang, `/realizace/${item.slug}`)} className={`group ${stretch ? "flex h-full flex-col" : "block"}`}>
+      <div className={`sd-reveal relative overflow-clip rounded-md bg-mist ${ratio} ${stretch ? "lg:aspect-auto lg:min-h-0 lg:flex-1" : ""}`}>
         <Img
           src={item.photos[0].src}
           alt={item.photos[0].alt}
